@@ -1,4 +1,4 @@
-# OpenAPIClient-php
+# AccountService PHP SDK
 
 Provides HTTP endpoints to manage User Accounts and User Sessions.
 
@@ -39,7 +39,7 @@ Then run `composer install`
 Download the files and include `autoload.php`:
 
 ```php
-    require_once('/path/to/OpenAPIClient-php/vendor/autoload.php');
+    require_once('/path/to/AccountService PHP SDK/vendor/autoload.php');
 ```
 
 ## Tests
@@ -124,5 +124,6 @@ Class | Method | HTTP request | Description
 All endpoints do not require authorization.
 
 ## Author
+
 
 
