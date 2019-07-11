@@ -61,7 +61,7 @@ class User implements ModelInterface, ArrayAccess
         'displayName' => 'string',
         'email' => 'string',
         'mobilePhone' => 'string',
-        'locale' => '\Equisoft\SDK\AccountService\Model\UserLocale',
+        'locale' => 'string',
         'state' => '\Equisoft\SDK\AccountService\Model\UserState',
         'roles' => 'string[]',
         'deletable' => 'bool',
@@ -375,7 +375,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Gets locale
      *
-     * @return \Equisoft\SDK\AccountService\Model\UserLocale|null
+     * @return string|null
      */
     public function getLocale()
     {
@@ -385,7 +385,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Sets locale
      *
-     * @param \Equisoft\SDK\AccountService\Model\UserLocale|null $locale locale
+     * @param string|null $locale locale
      *
      * @return $this
      */

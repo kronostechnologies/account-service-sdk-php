@@ -36,6 +36,7 @@ use \Equisoft\SDK\AccountService\ObjectSerializer;
  * UserDatabase Class Doc Comment
  *
  * @category Class
+ * @description &#x60;!!NOTE!!&#x60; - Do not rely on this property, it is subject to changes.
  * @package  Equisoft\SDK\AccountService
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

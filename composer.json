@@ -1,6 +1,6 @@
 {
     "name": "kronostechnologies/account-service-sdk-php",
-    "version": "0.1",
+    "version": "dev",
     "description": "Provides HTTP endpoints to manage User Accounts and User Sessions.",
     "keywords": [
         "openapitools",

@@ -116,255 +116,19 @@ class SessionApi
     }
 
     /**
-     * Operation activateSession
-     *
-     * Allow activation for sessions created with activate=false. This may be extended to activate specific services. Inactive sessions are not allowed to be used by first-party application (crm, fna).
-     *
-     * @param  string $uuid uuid (required)
-     *
-     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function activateSession($uuid)
-    {
-        $this->activateSessionWithHttpInfo($uuid);
-    }
-
-    /**
-     * Operation activateSessionWithHttpInfo
-     *
-     * Allow activation for sessions created with activate=false. This may be extended to activate specific services. Inactive sessions are not allowed to be used by first-party application (crm, fna).
-     *
-     * @param  string $uuid (required)
-     *
-     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function activateSessionWithHttpInfo($uuid)
-    {
-        $request = $this->activateSessionRequest($uuid);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Equisoft\SDK\AccountService\Model\ErrorPayload',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation activateSessionAsync
-     *
-     * Allow activation for sessions created with activate=false. This may be extended to activate specific services. Inactive sessions are not allowed to be used by first-party application (crm, fna).
-     *
-     * @param  string $uuid (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function activateSessionAsync($uuid)
-    {
-        return $this->activateSessionAsyncWithHttpInfo($uuid)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation activateSessionAsyncWithHttpInfo
-     *
-     * Allow activation for sessions created with activate=false. This may be extended to activate specific services. Inactive sessions are not allowed to be used by first-party application (crm, fna).
-     *
-     * @param  string $uuid (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function activateSessionAsyncWithHttpInfo($uuid)
-    {
-        $returnType = '';
-        $request = $this->activateSessionRequest($uuid);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'activateSession'
-     *
-     * @param  string $uuid (required)
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    protected function activateSessionRequest($uuid)
-    {
-        // verify the required parameter 'uuid' is set
-        if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling activateSession'
-            );
-        }
-        if (strlen($uuid) < 1) {
-            throw new \InvalidArgumentException('invalid length for "$uuid" when calling SessionApi.activateSession, must be bigger than or equal to 1.');
-        }
-
-
-        $resourcePath = '/sessions/{uuid}/activate';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-        // path params
-        if ($uuid !== null) {
-            $resourcePath = str_replace(
-                '{' . 'uuid' . '}',
-                ObjectSerializer::toPathValue($uuid),
-                $resourcePath
-            );
-        }
-
-        // body params
-        $_tempBody = null;
-
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            // $_tempBody is the method argument, if present
-            if ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
-            } else {
-                $httpBody = $_tempBody;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $multipartContents[] = [
-                        'name' => $formParamName,
-                        'contents' => $formParamValue
-                    ];
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
-
-            } else {
-                // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
-        return new Request(
-            'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
      * Operation createSession
      *
      * Create a user session.
      *
-     * @param  \Equisoft\SDK\AccountService\Model\CreateSessionPayload $createSessionPayload createSessionPayload (required)
+     * @param  \Equisoft\SDK\AccountService\Model\SessionPayload $sessionPayload sessionPayload (required)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Equisoft\SDK\AccountService\Model\UserSessionResponse
+     * @return \Equisoft\SDK\AccountService\Model\SessionPayload
      */
-    public function createSession($createSessionPayload)
+    public function createSession($sessionPayload)
     {
-        list($response) = $this->createSessionWithHttpInfo($createSessionPayload);
+        list($response) = $this->createSessionWithHttpInfo($sessionPayload);
         return $response;
     }
 
@@ -373,15 +137,15 @@ class SessionApi
      *
      * Create a user session.
      *
-     * @param  \Equisoft\SDK\AccountService\Model\CreateSessionPayload $createSessionPayload (required)
+     * @param  \Equisoft\SDK\AccountService\Model\SessionPayload $sessionPayload (required)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Equisoft\SDK\AccountService\Model\UserSessionResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Equisoft\SDK\AccountService\Model\SessionPayload, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createSessionWithHttpInfo($createSessionPayload)
+    public function createSessionWithHttpInfo($sessionPayload)
     {
-        $request = $this->createSessionRequest($createSessionPayload);
+        $request = $this->createSessionRequest($sessionPayload);
 
         try {
             $options = $this->createHttpClientOption();
@@ -414,20 +178,20 @@ class SessionApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 201:
-                    if ('\Equisoft\SDK\AccountService\Model\UserSessionResponse' === '\SplFileObject') {
+                    if ('\Equisoft\SDK\AccountService\Model\SessionPayload' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\UserSessionResponse', []),
+                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\SessionPayload', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Equisoft\SDK\AccountService\Model\UserSessionResponse';
+            $returnType = '\Equisoft\SDK\AccountService\Model\SessionPayload';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -446,7 +210,7 @@ class SessionApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Equisoft\SDK\AccountService\Model\UserSessionResponse',
+                        '\Equisoft\SDK\AccountService\Model\SessionPayload',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -461,14 +225,14 @@ class SessionApi
      *
      * Create a user session.
      *
-     * @param  \Equisoft\SDK\AccountService\Model\CreateSessionPayload $createSessionPayload (required)
+     * @param  \Equisoft\SDK\AccountService\Model\SessionPayload $sessionPayload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createSessionAsync($createSessionPayload)
+    public function createSessionAsync($sessionPayload)
     {
-        return $this->createSessionAsyncWithHttpInfo($createSessionPayload)
+        return $this->createSessionAsyncWithHttpInfo($sessionPayload)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -481,15 +245,15 @@ class SessionApi
      *
      * Create a user session.
      *
-     * @param  \Equisoft\SDK\AccountService\Model\CreateSessionPayload $createSessionPayload (required)
+     * @param  \Equisoft\SDK\AccountService\Model\SessionPayload $sessionPayload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createSessionAsyncWithHttpInfo($createSessionPayload)
+    public function createSessionAsyncWithHttpInfo($sessionPayload)
     {
-        $returnType = '\Equisoft\SDK\AccountService\Model\UserSessionResponse';
-        $request = $this->createSessionRequest($createSessionPayload);
+        $returnType = '\Equisoft\SDK\AccountService\Model\SessionPayload';
+        $request = $this->createSessionRequest($sessionPayload);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -528,17 +292,17 @@ class SessionApi
     /**
      * Create request for operation 'createSession'
      *
-     * @param  \Equisoft\SDK\AccountService\Model\CreateSessionPayload $createSessionPayload (required)
+     * @param  \Equisoft\SDK\AccountService\Model\SessionPayload $sessionPayload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createSessionRequest($createSessionPayload)
+    protected function createSessionRequest($sessionPayload)
     {
-        // verify the required parameter 'createSessionPayload' is set
-        if ($createSessionPayload === null || (is_array($createSessionPayload) && count($createSessionPayload) === 0)) {
+        // verify the required parameter 'sessionPayload' is set
+        if ($sessionPayload === null || (is_array($sessionPayload) && count($sessionPayload) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $createSessionPayload when calling createSession'
+                'Missing the required parameter $sessionPayload when calling createSession'
             );
         }
 
@@ -553,8 +317,8 @@ class SessionApi
 
         // body params
         $_tempBody = null;
-        if (isset($createSessionPayload)) {
-            $_tempBody = $createSessionPayload;
+        if (isset($sessionPayload)) {
+            $_tempBody = $sessionPayload;
         }
 
         if ($multipart) {
@@ -855,6 +619,242 @@ class SessionApi
     }
 
     /**
+     * Operation enableSession
+     *
+     * Allow activation for sessions created with enable=false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (crm, fna).
+     *
+     * @param  string $uuid uuid (required)
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function enableSession($uuid)
+    {
+        $this->enableSessionWithHttpInfo($uuid);
+    }
+
+    /**
+     * Operation enableSessionWithHttpInfo
+     *
+     * Allow activation for sessions created with enable=false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (crm, fna).
+     *
+     * @param  string $uuid (required)
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function enableSessionWithHttpInfo($uuid)
+    {
+        $request = $this->enableSessionRequest($uuid);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Equisoft\SDK\AccountService\Model\ErrorPayload',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation enableSessionAsync
+     *
+     * Allow activation for sessions created with enable=false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (crm, fna).
+     *
+     * @param  string $uuid (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function enableSessionAsync($uuid)
+    {
+        return $this->enableSessionAsyncWithHttpInfo($uuid)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation enableSessionAsyncWithHttpInfo
+     *
+     * Allow activation for sessions created with enable=false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (crm, fna).
+     *
+     * @param  string $uuid (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function enableSessionAsyncWithHttpInfo($uuid)
+    {
+        $returnType = '';
+        $request = $this->enableSessionRequest($uuid);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'enableSession'
+     *
+     * @param  string $uuid (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function enableSessionRequest($uuid)
+    {
+        // verify the required parameter 'uuid' is set
+        if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $uuid when calling enableSession'
+            );
+        }
+        if (strlen($uuid) < 1) {
+            throw new \InvalidArgumentException('invalid length for "$uuid" when calling SessionApi.enableSession, must be bigger than or equal to 1.');
+        }
+
+
+        $resourcePath = '/sessions/{uuid}/enable';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // path params
+        if ($uuid !== null) {
+            $resourcePath = str_replace(
+                '{' . 'uuid' . '}',
+                ObjectSerializer::toPathValue($uuid),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'POST',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getSession
      *
      * Get detailed information about a user session.
@@ -863,7 +863,7 @@ class SessionApi
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Equisoft\SDK\AccountService\Model\UserSessionResponse|\Equisoft\SDK\AccountService\Model\ErrorPayload
+     * @return \Equisoft\SDK\AccountService\Model\Session|\Equisoft\SDK\AccountService\Model\ErrorPayload
      */
     public function getSession($uuid)
     {
@@ -880,7 +880,7 @@ class SessionApi
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Equisoft\SDK\AccountService\Model\UserSessionResponse|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Equisoft\SDK\AccountService\Model\Session|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSessionWithHttpInfo($uuid)
     {
@@ -917,14 +917,14 @@ class SessionApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\Equisoft\SDK\AccountService\Model\UserSessionResponse' === '\SplFileObject') {
+                    if ('\Equisoft\SDK\AccountService\Model\Session' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\UserSessionResponse', []),
+                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\Session', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -942,7 +942,7 @@ class SessionApi
                     ];
             }
 
-            $returnType = '\Equisoft\SDK\AccountService\Model\UserSessionResponse';
+            $returnType = '\Equisoft\SDK\AccountService\Model\Session';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -961,7 +961,7 @@ class SessionApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Equisoft\SDK\AccountService\Model\UserSessionResponse',
+                        '\Equisoft\SDK\AccountService\Model\Session',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1011,7 +1011,7 @@ class SessionApi
      */
     public function getSessionAsyncWithHttpInfo($uuid)
     {
-        $returnType = '\Equisoft\SDK\AccountService\Model\UserSessionResponse';
+        $returnType = '\Equisoft\SDK\AccountService\Model\Session';
         $request = $this->getSessionRequest($uuid);
 
         return $this->client
@@ -1160,7 +1160,7 @@ class SessionApi
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Equisoft\SDK\AccountService\Model\GetSsoTokenResponse|\Equisoft\SDK\AccountService\Model\ErrorPayload
+     * @return \Equisoft\SDK\AccountService\Model\SsoToken|\Equisoft\SDK\AccountService\Model\ErrorPayload
      */
     public function getSessionSsoToken($uuid, $tokenId)
     {
@@ -1178,7 +1178,7 @@ class SessionApi
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Equisoft\SDK\AccountService\Model\GetSsoTokenResponse|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Equisoft\SDK\AccountService\Model\SsoToken|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSessionSsoTokenWithHttpInfo($uuid, $tokenId)
     {
@@ -1215,14 +1215,14 @@ class SessionApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\Equisoft\SDK\AccountService\Model\GetSsoTokenResponse' === '\SplFileObject') {
+                    if ('\Equisoft\SDK\AccountService\Model\SsoToken' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\GetSsoTokenResponse', []),
+                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\SsoToken', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1240,7 +1240,7 @@ class SessionApi
                     ];
             }
 
-            $returnType = '\Equisoft\SDK\AccountService\Model\GetSsoTokenResponse';
+            $returnType = '\Equisoft\SDK\AccountService\Model\SsoToken';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -1259,7 +1259,7 @@ class SessionApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Equisoft\SDK\AccountService\Model\GetSsoTokenResponse',
+                        '\Equisoft\SDK\AccountService\Model\SsoToken',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1311,7 +1311,7 @@ class SessionApi
      */
     public function getSessionSsoTokenAsyncWithHttpInfo($uuid, $tokenId)
     {
-        $returnType = '\Equisoft\SDK\AccountService\Model\GetSsoTokenResponse';
+        $returnType = '\Equisoft\SDK\AccountService\Model\SsoToken';
         $request = $this->getSessionSsoTokenRequest($uuid, $tokenId);
 
         return $this->client
@@ -1470,38 +1470,38 @@ class SessionApi
     }
 
     /**
-     * Operation impersonateUser
+     * Operation impersonate
      *
      * Impersonate the given user context.
      *
      * @param  string $uuid uuid (required)
-     * @param  \Equisoft\SDK\AccountService\Model\ImpersonateUserPayload $impersonateUserPayload impersonateUserPayload (required)
+     * @param  \Equisoft\SDK\AccountService\Model\ImpersonatePayload $impersonatePayload impersonatePayload (required)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Equisoft\SDK\AccountService\Model\ImpersonateUserResponse|\Equisoft\SDK\AccountService\Model\ErrorPayload
+     * @return \Equisoft\SDK\AccountService\Model\ImpersonateResponse|\Equisoft\SDK\AccountService\Model\ErrorPayload
      */
-    public function impersonateUser($uuid, $impersonateUserPayload)
+    public function impersonate($uuid, $impersonatePayload)
     {
-        list($response) = $this->impersonateUserWithHttpInfo($uuid, $impersonateUserPayload);
+        list($response) = $this->impersonateWithHttpInfo($uuid, $impersonatePayload);
         return $response;
     }
 
     /**
-     * Operation impersonateUserWithHttpInfo
+     * Operation impersonateWithHttpInfo
      *
      * Impersonate the given user context.
      *
      * @param  string $uuid (required)
-     * @param  \Equisoft\SDK\AccountService\Model\ImpersonateUserPayload $impersonateUserPayload (required)
+     * @param  \Equisoft\SDK\AccountService\Model\ImpersonatePayload $impersonatePayload (required)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Equisoft\SDK\AccountService\Model\ImpersonateUserResponse|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Equisoft\SDK\AccountService\Model\ImpersonateResponse|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
      */
-    public function impersonateUserWithHttpInfo($uuid, $impersonateUserPayload)
+    public function impersonateWithHttpInfo($uuid, $impersonatePayload)
     {
-        $request = $this->impersonateUserRequest($uuid, $impersonateUserPayload);
+        $request = $this->impersonateRequest($uuid, $impersonatePayload);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1534,14 +1534,14 @@ class SessionApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\Equisoft\SDK\AccountService\Model\ImpersonateUserResponse' === '\SplFileObject') {
+                    if ('\Equisoft\SDK\AccountService\Model\ImpersonateResponse' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\ImpersonateUserResponse', []),
+                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\ImpersonateResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -1559,7 +1559,7 @@ class SessionApi
                     ];
             }
 
-            $returnType = '\Equisoft\SDK\AccountService\Model\ImpersonateUserResponse';
+            $returnType = '\Equisoft\SDK\AccountService\Model\ImpersonateResponse';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -1578,7 +1578,7 @@ class SessionApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Equisoft\SDK\AccountService\Model\ImpersonateUserResponse',
+                        '\Equisoft\SDK\AccountService\Model\ImpersonateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1597,19 +1597,19 @@ class SessionApi
     }
 
     /**
-     * Operation impersonateUserAsync
+     * Operation impersonateAsync
      *
      * Impersonate the given user context.
      *
      * @param  string $uuid (required)
-     * @param  \Equisoft\SDK\AccountService\Model\ImpersonateUserPayload $impersonateUserPayload (required)
+     * @param  \Equisoft\SDK\AccountService\Model\ImpersonatePayload $impersonatePayload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function impersonateUserAsync($uuid, $impersonateUserPayload)
+    public function impersonateAsync($uuid, $impersonatePayload)
     {
-        return $this->impersonateUserAsyncWithHttpInfo($uuid, $impersonateUserPayload)
+        return $this->impersonateAsyncWithHttpInfo($uuid, $impersonatePayload)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1618,20 +1618,20 @@ class SessionApi
     }
 
     /**
-     * Operation impersonateUserAsyncWithHttpInfo
+     * Operation impersonateAsyncWithHttpInfo
      *
      * Impersonate the given user context.
      *
      * @param  string $uuid (required)
-     * @param  \Equisoft\SDK\AccountService\Model\ImpersonateUserPayload $impersonateUserPayload (required)
+     * @param  \Equisoft\SDK\AccountService\Model\ImpersonatePayload $impersonatePayload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function impersonateUserAsyncWithHttpInfo($uuid, $impersonateUserPayload)
+    public function impersonateAsyncWithHttpInfo($uuid, $impersonatePayload)
     {
-        $returnType = '\Equisoft\SDK\AccountService\Model\ImpersonateUserResponse';
-        $request = $this->impersonateUserRequest($uuid, $impersonateUserPayload);
+        $returnType = '\Equisoft\SDK\AccountService\Model\ImpersonateResponse';
+        $request = $this->impersonateRequest($uuid, $impersonatePayload);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1668,30 +1668,30 @@ class SessionApi
     }
 
     /**
-     * Create request for operation 'impersonateUser'
+     * Create request for operation 'impersonate'
      *
      * @param  string $uuid (required)
-     * @param  \Equisoft\SDK\AccountService\Model\ImpersonateUserPayload $impersonateUserPayload (required)
+     * @param  \Equisoft\SDK\AccountService\Model\ImpersonatePayload $impersonatePayload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function impersonateUserRequest($uuid, $impersonateUserPayload)
+    protected function impersonateRequest($uuid, $impersonatePayload)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling impersonateUser'
+                'Missing the required parameter $uuid when calling impersonate'
             );
         }
         if (strlen($uuid) < 1) {
-            throw new \InvalidArgumentException('invalid length for "$uuid" when calling SessionApi.impersonateUser, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid length for "$uuid" when calling SessionApi.impersonate, must be bigger than or equal to 1.');
         }
 
-        // verify the required parameter 'impersonateUserPayload' is set
-        if ($impersonateUserPayload === null || (is_array($impersonateUserPayload) && count($impersonateUserPayload) === 0)) {
+        // verify the required parameter 'impersonatePayload' is set
+        if ($impersonatePayload === null || (is_array($impersonatePayload) && count($impersonatePayload) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $impersonateUserPayload when calling impersonateUser'
+                'Missing the required parameter $impersonatePayload when calling impersonate'
             );
         }
 
@@ -1714,8 +1714,8 @@ class SessionApi
 
         // body params
         $_tempBody = null;
-        if (isset($impersonateUserPayload)) {
-            $_tempBody = $impersonateUserPayload;
+        if (isset($impersonatePayload)) {
+            $_tempBody = $impersonatePayload;
         }
 
         if ($multipart) {

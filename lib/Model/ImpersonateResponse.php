@@ -1,6 +1,6 @@
 <?php
 /**
- * SsoProvider
+ * ImpersonateResponse
  *
  * PHP version 5
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \Equisoft\SDK\AccountService\ObjectSerializer;
 
 /**
- * SsoProvider Class Doc Comment
+ * ImpersonateResponse Class Doc Comment
  *
  * @category Class
- * @description Details related to the SSO provider user to create this session.
+ * @description Impersonation may/should invalidate sessionId. Upon success the new sessionId is returned.
  * @package  Equisoft\SDK\AccountService
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class SsoProvider implements ModelInterface, ArrayAccess
+class ImpersonateResponse implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SsoProvider';
+    protected static $openAPIModelName = 'ImpersonateResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'identifier' => 'string'
+        'newSessionId' => 'string'
     ];
 
     /**
@@ -68,8 +67,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'provider' => null,
-        'identifier' => null
+        'newSessionId' => null
     ];
 
     /**
@@ -99,8 +97,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
-        'identifier' => 'identifier'
+        'newSessionId' => 'newSessionId'
     ];
 
     /**
@@ -109,8 +106,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
-        'identifier' => 'setIdentifier'
+        'newSessionId' => 'setNewSessionId'
     ];
 
     /**
@@ -119,8 +115,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
-        'identifier' => 'getIdentifier'
+        'newSessionId' => 'getNewSessionId'
     ];
 
     /**
@@ -183,8 +178,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['provider'] = isset($data['provider']) ? $data['provider'] : null;
-        $this->container['identifier'] = isset($data['identifier']) ? $data['identifier'] : null;
+        $this->container['newSessionId'] = isset($data['newSessionId']) ? $data['newSessionId'] : null;
     }
 
     /**
@@ -212,49 +206,25 @@ class SsoProvider implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets provider
+     * Gets newSessionId
      *
      * @return string|null
      */
-    public function getProvider()
+    public function getNewSessionId()
     {
-        return $this->container['provider'];
+        return $this->container['newSessionId'];
     }
 
     /**
-     * Sets provider
+     * Sets newSessionId
      *
-     * @param string|null $provider SSO Provider who initiated the single sign on.
+     * @param string|null $newSessionId The newly created session id.
      *
      * @return $this
      */
-    public function setProvider($provider)
+    public function setNewSessionId($newSessionId)
     {
-        $this->container['provider'] = $provider;
-
-        return $this;
-    }
-
-    /**
-     * Gets identifier
-     *
-     * @return string|null
-     */
-    public function getIdentifier()
-    {
-        return $this->container['identifier'];
-    }
-
-    /**
-     * Sets identifier
-     *
-     * @param string|null $identifier External identifier the user used to login with the SSO provider.
-     *
-     * @return $this
-     */
-    public function setIdentifier($identifier)
-    {
-        $this->container['identifier'] = $identifier;
+        $this->container['newSessionId'] = $newSessionId;
 
         return $this;
     }

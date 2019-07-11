@@ -57,7 +57,8 @@ class ErrorPayload implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string'
+        'message' => 'string',
+        'description' => 'string'
     ];
 
     /**
@@ -66,7 +67,8 @@ class ErrorPayload implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'message' => null
+        'message' => null,
+        'description' => null
     ];
 
     /**
@@ -96,7 +98,8 @@ class ErrorPayload implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'message' => 'message'
+        'message' => 'message',
+        'description' => 'description'
     ];
 
     /**
@@ -105,7 +108,8 @@ class ErrorPayload implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'message' => 'setMessage'
+        'message' => 'setMessage',
+        'description' => 'setDescription'
     ];
 
     /**
@@ -114,7 +118,8 @@ class ErrorPayload implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'message' => 'getMessage'
+        'message' => 'getMessage',
+        'description' => 'getDescription'
     ];
 
     /**
@@ -178,6 +183,7 @@ class ErrorPayload implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['message'] = isset($data['message']) ? $data['message'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
     }
 
     /**
@@ -224,6 +230,30 @@ class ErrorPayload implements ModelInterface, ArrayAccess
     public function setMessage($message)
     {
         $this->container['message'] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string|null $description description
+     *
+     * @return $this
+     */
+    public function setDescription($description)
+    {
+        $this->container['description'] = $description;
 
         return $this;
     }

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **displayName** | **string** |  | [optional] 
 **email** | **string** |  | [optional] 
 **mobilePhone** | **string** | Mobile phone used for sms password reset. | [optional] 
-**locale** | [**\Equisoft\SDK\AccountService\Model\UserLocale**](UserLocale.md) |  | [optional] 
+**locale** | **string** |  | [optional] 
 **state** | [**\Equisoft\SDK\AccountService\Model\UserState**](UserState.md) |  | [optional] 
 **roles** | **string[]** | Roles the user is member a member of. | [optional] 
 **deletable** | **bool** | User deletion is disabled. | [optional] 

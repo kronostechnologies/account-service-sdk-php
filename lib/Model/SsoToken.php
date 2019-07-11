@@ -1,6 +1,6 @@
 <?php
 /**
- * SsoProvider
+ * SsoToken
  *
  * PHP version 5
  *
@@ -33,15 +33,14 @@ use \ArrayAccess;
 use \Equisoft\SDK\AccountService\ObjectSerializer;
 
 /**
- * SsoProvider Class Doc Comment
+ * SsoToken Class Doc Comment
  *
  * @category Class
- * @description Details related to the SSO provider user to create this session.
  * @package  Equisoft\SDK\AccountService
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class SsoProvider implements ModelInterface, ArrayAccess
+class SsoToken implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SsoProvider';
+    protected static $openAPIModelName = 'SsoToken';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +57,8 @@ class SsoProvider implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'identifier' => 'string'
+        'id' => 'string',
+        'value' => 'string'
     ];
 
     /**
@@ -68,8 +67,8 @@ class SsoProvider implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'provider' => null,
-        'identifier' => null
+        'id' => null,
+        'value' => null
     ];
 
     /**
@@ -99,8 +98,8 @@ class SsoProvider implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
-        'identifier' => 'identifier'
+        'id' => 'id',
+        'value' => 'value'
     ];
 
     /**
@@ -109,8 +108,8 @@ class SsoProvider implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
-        'identifier' => 'setIdentifier'
+        'id' => 'setId',
+        'value' => 'setValue'
     ];
 
     /**
@@ -119,8 +118,8 @@ class SsoProvider implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
-        'identifier' => 'getIdentifier'
+        'id' => 'getId',
+        'value' => 'getValue'
     ];
 
     /**
@@ -183,8 +182,8 @@ class SsoProvider implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['provider'] = isset($data['provider']) ? $data['provider'] : null;
-        $this->container['identifier'] = isset($data['identifier']) ? $data['identifier'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
     }
 
     /**
@@ -212,49 +211,49 @@ class SsoProvider implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets provider
+     * Gets id
      *
      * @return string|null
      */
-    public function getProvider()
+    public function getId()
     {
-        return $this->container['provider'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets provider
+     * Sets id
      *
-     * @param string|null $provider SSO Provider who initiated the single sign on.
+     * @param string|null $id String that uniquely identify a sso token for a given session.
      *
      * @return $this
      */
-    public function setProvider($provider)
+    public function setId($id)
     {
-        $this->container['provider'] = $provider;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets identifier
+     * Gets value
      *
      * @return string|null
      */
-    public function getIdentifier()
+    public function getValue()
     {
-        return $this->container['identifier'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets identifier
+     * Sets value
      *
-     * @param string|null $identifier External identifier the user used to login with the SSO provider.
+     * @param string|null $value Token value returned as stored. There is no double-encoding.
      *
      * @return $this
      */
-    public function setIdentifier($identifier)
+    public function setValue($value)
     {
-        $this->container['identifier'] = $identifier;
+        $this->container['value'] = $value;
 
         return $this;
     }

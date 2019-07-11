@@ -1,6 +1,6 @@
 <?php
 /**
- * SsoProvider
+ * SessionPayload
  *
  * PHP version 5
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \Equisoft\SDK\AccountService\ObjectSerializer;
 
 /**
- * SsoProvider Class Doc Comment
+ * SessionPayload Class Doc Comment
  *
  * @category Class
- * @description Details related to the SSO provider user to create this session.
+ * @description Data needed for the creation of a user session.
  * @package  Equisoft\SDK\AccountService
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class SsoProvider implements ModelInterface, ArrayAccess
+class SessionPayload implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SsoProvider';
+    protected static $openAPIModelName = 'SessionPayload';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,11 @@ class SsoProvider implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'identifier' => 'string'
+        'userUuid' => 'string',
+        'absoluteTimeout' => 'int',
+        'enable' => 'bool',
+        'sso' => '\Equisoft\SDK\AccountService\Model\SsoProvider',
+        'crm' => '\Equisoft\SDK\AccountService\Model\CrmSession'
     ];
 
     /**
@@ -68,8 +71,11 @@ class SsoProvider implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'provider' => null,
-        'identifier' => null
+        'userUuid' => null,
+        'absoluteTimeout' => 'int64',
+        'enable' => null,
+        'sso' => null,
+        'crm' => null
     ];
 
     /**
@@ -99,8 +105,11 @@ class SsoProvider implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
-        'identifier' => 'identifier'
+        'userUuid' => 'userUuid',
+        'absoluteTimeout' => 'absoluteTimeout',
+        'enable' => 'enable',
+        'sso' => 'sso',
+        'crm' => 'crm'
     ];
 
     /**
@@ -109,8 +118,11 @@ class SsoProvider implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
-        'identifier' => 'setIdentifier'
+        'userUuid' => 'setUserUuid',
+        'absoluteTimeout' => 'setAbsoluteTimeout',
+        'enable' => 'setEnable',
+        'sso' => 'setSso',
+        'crm' => 'setCrm'
     ];
 
     /**
@@ -119,8 +131,11 @@ class SsoProvider implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
-        'identifier' => 'getIdentifier'
+        'userUuid' => 'getUserUuid',
+        'absoluteTimeout' => 'getAbsoluteTimeout',
+        'enable' => 'getEnable',
+        'sso' => 'getSso',
+        'crm' => 'getCrm'
     ];
 
     /**
@@ -183,8 +198,11 @@ class SsoProvider implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['provider'] = isset($data['provider']) ? $data['provider'] : null;
-        $this->container['identifier'] = isset($data['identifier']) ? $data['identifier'] : null;
+        $this->container['userUuid'] = isset($data['userUuid']) ? $data['userUuid'] : null;
+        $this->container['absoluteTimeout'] = isset($data['absoluteTimeout']) ? $data['absoluteTimeout'] : null;
+        $this->container['enable'] = isset($data['enable']) ? $data['enable'] : null;
+        $this->container['sso'] = isset($data['sso']) ? $data['sso'] : null;
+        $this->container['crm'] = isset($data['crm']) ? $data['crm'] : null;
     }
 
     /**
@@ -195,6 +213,10 @@ class SsoProvider implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if (!is_null($this->container['absoluteTimeout']) && ($this->container['absoluteTimeout'] < 1)) {
+            $invalidProperties[] = "invalid value for 'absoluteTimeout', must be bigger than or equal to 1.";
+        }
 
         return $invalidProperties;
     }
@@ -212,49 +234,126 @@ class SsoProvider implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets provider
+     * Gets userUuid
      *
      * @return string|null
      */
-    public function getProvider()
+    public function getUserUuid()
     {
-        return $this->container['provider'];
+        return $this->container['userUuid'];
     }
 
     /**
-     * Sets provider
+     * Sets userUuid
      *
-     * @param string|null $provider SSO Provider who initiated the single sign on.
+     * @param string|null $userUuid Globally unique identifier.
      *
      * @return $this
      */
-    public function setProvider($provider)
+    public function setUserUuid($userUuid)
     {
-        $this->container['provider'] = $provider;
+        $this->container['userUuid'] = $userUuid;
 
         return $this;
     }
 
     /**
-     * Gets identifier
+     * Gets absoluteTimeout
      *
-     * @return string|null
+     * @return int|null
      */
-    public function getIdentifier()
+    public function getAbsoluteTimeout()
     {
-        return $this->container['identifier'];
+        return $this->container['absoluteTimeout'];
     }
 
     /**
-     * Sets identifier
+     * Sets absoluteTimeout
      *
-     * @param string|null $identifier External identifier the user used to login with the SSO provider.
+     * @param int|null $absoluteTimeout This timeout (in seconds) defines the maximum amount of time a session can be active.
      *
      * @return $this
      */
-    public function setIdentifier($identifier)
+    public function setAbsoluteTimeout($absoluteTimeout)
     {
-        $this->container['identifier'] = $identifier;
+
+        if (!is_null($absoluteTimeout) && ($absoluteTimeout < 1)) {
+            throw new \InvalidArgumentException('invalid value for $absoluteTimeout when calling SessionPayload., must be bigger than or equal to 1.');
+        }
+
+        $this->container['absoluteTimeout'] = $absoluteTimeout;
+
+        return $this;
+    }
+
+    /**
+     * Gets enable
+     *
+     * @return bool|null
+     */
+    public function getEnable()
+    {
+        return $this->container['enable'];
+    }
+
+    /**
+     * Sets enable
+     *
+     * @param bool|null $enable enable
+     *
+     * @return $this
+     */
+    public function setEnable($enable)
+    {
+        $this->container['enable'] = $enable;
+
+        return $this;
+    }
+
+    /**
+     * Gets sso
+     *
+     * @return \Equisoft\SDK\AccountService\Model\SsoProvider|null
+     */
+    public function getSso()
+    {
+        return $this->container['sso'];
+    }
+
+    /**
+     * Sets sso
+     *
+     * @param \Equisoft\SDK\AccountService\Model\SsoProvider|null $sso sso
+     *
+     * @return $this
+     */
+    public function setSso($sso)
+    {
+        $this->container['sso'] = $sso;
+
+        return $this;
+    }
+
+    /**
+     * Gets crm
+     *
+     * @return \Equisoft\SDK\AccountService\Model\CrmSession|null
+     */
+    public function getCrm()
+    {
+        return $this->container['crm'];
+    }
+
+    /**
+     * Sets crm
+     *
+     * @param \Equisoft\SDK\AccountService\Model\CrmSession|null $crm crm
+     *
+     * @return $this
+     */
+    public function setCrm($crm)
+    {
+        $this->container['crm'] = $crm;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * SsoProvider
+ * ImpersonatePayload
  *
  * PHP version 5
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \Equisoft\SDK\AccountService\ObjectSerializer;
 
 /**
- * SsoProvider Class Doc Comment
+ * ImpersonatePayload Class Doc Comment
  *
  * @category Class
- * @description Details related to the SSO provider user to create this session.
+ * @description Parameters needed to impersonanted a user for a user session
  * @package  Equisoft\SDK\AccountService
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class SsoProvider implements ModelInterface, ArrayAccess
+class ImpersonatePayload implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'SsoProvider';
+    protected static $openAPIModelName = 'ImpersonatePayload';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'identifier' => 'string'
+        'userUuid' => 'string'
     ];
 
     /**
@@ -68,8 +67,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'provider' => null,
-        'identifier' => null
+        'userUuid' => null
     ];
 
     /**
@@ -99,8 +97,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
-        'identifier' => 'identifier'
+        'userUuid' => 'userUuid'
     ];
 
     /**
@@ -109,8 +106,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
-        'identifier' => 'setIdentifier'
+        'userUuid' => 'setUserUuid'
     ];
 
     /**
@@ -119,8 +115,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
-        'identifier' => 'getIdentifier'
+        'userUuid' => 'getUserUuid'
     ];
 
     /**
@@ -183,8 +178,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['provider'] = isset($data['provider']) ? $data['provider'] : null;
-        $this->container['identifier'] = isset($data['identifier']) ? $data['identifier'] : null;
+        $this->container['userUuid'] = isset($data['userUuid']) ? $data['userUuid'] : null;
     }
 
     /**
@@ -212,49 +206,25 @@ class SsoProvider implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets provider
+     * Gets userUuid
      *
      * @return string|null
      */
-    public function getProvider()
+    public function getUserUuid()
     {
-        return $this->container['provider'];
+        return $this->container['userUuid'];
     }
 
     /**
-     * Sets provider
+     * Sets userUuid
      *
-     * @param string|null $provider SSO Provider who initiated the single sign on.
+     * @param string|null $userUuid Globally unique identifier.
      *
      * @return $this
      */
-    public function setProvider($provider)
+    public function setUserUuid($userUuid)
     {
-        $this->container['provider'] = $provider;
-
-        return $this;
-    }
-
-    /**
-     * Gets identifier
-     *
-     * @return string|null
-     */
-    public function getIdentifier()
-    {
-        return $this->container['identifier'];
-    }
-
-    /**
-     * Sets identifier
-     *
-     * @param string|null $identifier External identifier the user used to login with the SSO provider.
-     *
-     * @return $this
-     */
-    public function setIdentifier($identifier)
-    {
-        $this->container['identifier'] = $identifier;
+        $this->container['userUuid'] = $userUuid;
 
         return $this;
     }

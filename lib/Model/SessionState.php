@@ -1,6 +1,6 @@
 <?php
 /**
- * DatabaseState
+ * SessionState
  *
  * PHP version 5
  *
@@ -31,23 +31,24 @@ namespace Equisoft\SDK\AccountService\Model;
 use \Equisoft\SDK\AccountService\ObjectSerializer;
 
 /**
- * DatabaseState Class Doc Comment
+ * SessionState Class Doc Comment
  *
  * @category Class
- * @description States: * &#x60;ENABLED&#x60; - Database is active. * &#x60;DISABLED&#x60; - Access to this database is suspended. * &#x60;DELETED&#x60; - Database is deleted. * &#x60;MAINTENANCE&#x60; - Database is in maintenance, login temporarily suspended.
+ * @description States: * &#x60;NEW&#x60; - Session creation is not finished.  It can&#39;t be used by consumer. * &#x60;ENABLED&#x60; - Session is active and ready. * &#x60;SUSPENDED&#x60; - Session idle for too long.  User has to reenter credentials to activate it (Not implemented yet). * &#x60;EXPIRED&#x60; - Session is expired. * &#x60;DELETED&#x60; - Session exists but is soft-deleted (Not implemented yet).
  * @package  Equisoft\SDK\AccountService
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class DatabaseState
+class SessionState
 {
     /**
      * Possible values of this enum
      */
+    const _NEW = 'NEW';
     const ENABLED = 'ENABLED';
-    const DISABLED = 'DISABLED';
+    const SUSPENDED = 'SUSPENDED';
+    const EXPIRED = 'EXPIRED';
     const DELETED = 'DELETED';
-    const MAINTENANCE = 'MAINTENANCE';
     
     /**
      * Gets allowable values of the enum
@@ -56,10 +57,11 @@ class DatabaseState
     public static function getAllowableEnumValues()
     {
         return [
+            self::_NEW,
             self::ENABLED,
-            self::DISABLED,
+            self::SUSPENDED,
+            self::EXPIRED,
             self::DELETED,
-            self::MAINTENANCE,
         ];
     }
 }

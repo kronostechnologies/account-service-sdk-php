@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **sessionId** | **string** | Globally unique identifier. | [optional] 
+**state** | [**\Equisoft\SDK\AccountService\Model\SessionState**](SessionState.md) |  | [optional] 
 **created** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **expire** | [**\DateTime**](\DateTime.md) |  | [optional] 
-**active** | **bool** |  | [optional] 
 **user** | [**\Equisoft\SDK\AccountService\Model\AccountDetails**](AccountDetails.md) |  | [optional] 
 **actor** | [**\Equisoft\SDK\AccountService\Model\ActorDetails**](ActorDetails.md) |  | [optional] 
 **sso** | [**\Equisoft\SDK\AccountService\Model\SsoProvider**](SsoProvider.md) |  | [optional] 

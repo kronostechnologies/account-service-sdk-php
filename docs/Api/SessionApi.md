@@ -4,74 +4,21 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activateSession**](SessionApi.md#activateSession) | **POST** /sessions/{uuid}/activate | Allow activation for sessions created with activate&#x3D;false. This may be extended to activate specific services. Inactive sessions are not allowed to be used by first-party application (crm, fna).
 [**createSession**](SessionApi.md#createSession) | **POST** /sessions | Create a user session.
 [**deleteSession**](SessionApi.md#deleteSession) | **DELETE** /sessions/{uuid} | Delete a user session.
+[**enableSession**](SessionApi.md#enableSession) | **POST** /sessions/{uuid}/enable | Allow activation for sessions created with enable&#x3D;false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (crm, fna).
 [**getSession**](SessionApi.md#getSession) | **GET** /sessions/{uuid} | Get detailed information about a user session.
 [**getSessionSsoToken**](SessionApi.md#getSessionSsoToken) | **GET** /sessions/{uuid}/tokens/{tokenId} | Get a stored sso token for the session
-[**impersonateUser**](SessionApi.md#impersonateUser) | **POST** /sessions/{uuid}/impersonate | Impersonate the given user context.
+[**impersonate**](SessionApi.md#impersonate) | **POST** /sessions/{uuid}/impersonate | Impersonate the given user context.
 [**revertIdentity**](SessionApi.md#revertIdentity) | **POST** /sessions/{uuid}/revertIdentity | Revert an impersonated session to the context of the \&quot;admin\&quot; user who initiated the impersontation.
 [**searchSession**](SessionApi.md#searchSession) | **GET** /sessions | List or search session ids.
 [**setSessionSsoToken**](SessionApi.md#setSessionSsoToken) | **PUT** /sessions/{uuid}/tokens/{tokenId} | Store a sso token for the session for a given id/name/type
 
 
 
-## activateSession
-
-> activateSession($uuid)
-
-Allow activation for sessions created with activate=false. This may be extended to activate specific services. Inactive sessions are not allowed to be used by first-party application (crm, fna).
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-$apiInstance = new Equisoft\SDK\AccountService\Api\SessionApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client()
-);
-$uuid = 'uuid_example'; // string | 
-
-try {
-    $apiInstance->activateSession($uuid);
-} catch (Exception $e) {
-    echo 'Exception when calling SessionApi->activateSession: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**|  |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
-[[Back to README]](../../README.md)
-
-
 ## createSession
 
-> \Equisoft\SDK\AccountService\Model\UserSessionResponse createSession($createSessionPayload)
+> \Equisoft\SDK\AccountService\Model\SessionPayload createSession($sessionPayload)
 
 Create a user session.
 
@@ -87,10 +34,10 @@ $apiInstance = new Equisoft\SDK\AccountService\Api\SessionApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$createSessionPayload = new \Equisoft\SDK\AccountService\Model\CreateSessionPayload(); // \Equisoft\SDK\AccountService\Model\CreateSessionPayload | 
+$sessionPayload = new \Equisoft\SDK\AccountService\Model\SessionPayload(); // \Equisoft\SDK\AccountService\Model\SessionPayload | 
 
 try {
-    $result = $apiInstance->createSession($createSessionPayload);
+    $result = $apiInstance->createSession($sessionPayload);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SessionApi->createSession: ', $e->getMessage(), PHP_EOL;
@@ -103,11 +50,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createSessionPayload** | [**\Equisoft\SDK\AccountService\Model\CreateSessionPayload**](../Model/CreateSessionPayload.md)|  |
+ **sessionPayload** | [**\Equisoft\SDK\AccountService\Model\SessionPayload**](../Model/SessionPayload.md)|  |
 
 ### Return type
 
-[**\Equisoft\SDK\AccountService\Model\UserSessionResponse**](../Model/UserSessionResponse.md)
+[**\Equisoft\SDK\AccountService\Model\SessionPayload**](../Model/SessionPayload.md)
 
 ### Authorization
 
@@ -176,9 +123,62 @@ No authorization required
 [[Back to README]](../../README.md)
 
 
+## enableSession
+
+> enableSession($uuid)
+
+Allow activation for sessions created with enable=false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (crm, fna).
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Equisoft\SDK\AccountService\Api\SessionApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$uuid = 'uuid_example'; // string | 
+
+try {
+    $apiInstance->enableSession($uuid);
+} catch (Exception $e) {
+    echo 'Exception when calling SessionApi->enableSession: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **string**|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
 ## getSession
 
-> \Equisoft\SDK\AccountService\Model\UserSessionResponse getSession($uuid)
+> \Equisoft\SDK\AccountService\Model\Session getSession($uuid)
 
 Get detailed information about a user session.
 
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Equisoft\SDK\AccountService\Model\UserSessionResponse**](../Model/UserSessionResponse.md)
+[**\Equisoft\SDK\AccountService\Model\Session**](../Model/Session.md)
 
 ### Authorization
 
@@ -232,7 +232,7 @@ No authorization required
 
 ## getSessionSsoToken
 
-> \Equisoft\SDK\AccountService\Model\GetSsoTokenResponse getSessionSsoToken($uuid, $tokenId)
+> \Equisoft\SDK\AccountService\Model\SsoToken getSessionSsoToken($uuid, $tokenId)
 
 Get a stored sso token for the session
 
@@ -270,7 +270,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Equisoft\SDK\AccountService\Model\GetSsoTokenResponse**](../Model/GetSsoTokenResponse.md)
+[**\Equisoft\SDK\AccountService\Model\SsoToken**](../Model/SsoToken.md)
 
 ### Authorization
 
@@ -286,13 +286,13 @@ No authorization required
 [[Back to README]](../../README.md)
 
 
-## impersonateUser
+## impersonate
 
-> \Equisoft\SDK\AccountService\Model\ImpersonateUserResponse impersonateUser($uuid, $impersonateUserPayload)
+> \Equisoft\SDK\AccountService\Model\ImpersonateResponse impersonate($uuid, $impersonatePayload)
 
 Impersonate the given user context.
 
-For adminstrator with impersonation capability. Impersonate the given user context.  After impersontation, the admin user becomes the \"actor\" and the impersonate user becames the \"user\".  Use /revertIdentity to revert the impersonation.
+For administrator with impersonation capability. Impersonate the given user context. After impersonation, the admin user becomes the \"actor\" and the impersonated user becomes the \"user\". Use /revertIdentity to revert the impersonation.
 
 ### Example
 
@@ -307,13 +307,13 @@ $apiInstance = new Equisoft\SDK\AccountService\Api\SessionApi(
     new GuzzleHttp\Client()
 );
 $uuid = 'uuid_example'; // string | 
-$impersonateUserPayload = new \Equisoft\SDK\AccountService\Model\ImpersonateUserPayload(); // \Equisoft\SDK\AccountService\Model\ImpersonateUserPayload | 
+$impersonatePayload = new \Equisoft\SDK\AccountService\Model\ImpersonatePayload(); // \Equisoft\SDK\AccountService\Model\ImpersonatePayload | 
 
 try {
-    $result = $apiInstance->impersonateUser($uuid, $impersonateUserPayload);
+    $result = $apiInstance->impersonate($uuid, $impersonatePayload);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SessionApi->impersonateUser: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SessionApi->impersonate: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -324,11 +324,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | **string**|  |
- **impersonateUserPayload** | [**\Equisoft\SDK\AccountService\Model\ImpersonateUserPayload**](../Model/ImpersonateUserPayload.md)|  |
+ **impersonatePayload** | [**\Equisoft\SDK\AccountService\Model\ImpersonatePayload**](../Model/ImpersonatePayload.md)|  |
 
 ### Return type
 
-[**\Equisoft\SDK\AccountService\Model\ImpersonateUserResponse**](../Model/ImpersonateUserResponse.md)
+[**\Equisoft\SDK\AccountService\Model\ImpersonateResponse**](../Model/ImpersonateResponse.md)
 
 ### Authorization
 

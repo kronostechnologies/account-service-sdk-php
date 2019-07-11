@@ -58,9 +58,9 @@ class Session implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'sessionId' => 'string',
+        'state' => '\Equisoft\SDK\AccountService\Model\SessionState',
         'created' => '\DateTime',
         'expire' => '\DateTime',
-        'active' => 'bool',
         'user' => '\Equisoft\SDK\AccountService\Model\AccountDetails',
         'actor' => '\Equisoft\SDK\AccountService\Model\ActorDetails',
         'sso' => '\Equisoft\SDK\AccountService\Model\SsoProvider',
@@ -74,9 +74,9 @@ class Session implements ModelInterface, ArrayAccess
       */
     protected static $openAPIFormats = [
         'sessionId' => null,
+        'state' => null,
         'created' => 'date-time',
         'expire' => 'date-time',
-        'active' => null,
         'user' => null,
         'actor' => null,
         'sso' => null,
@@ -111,9 +111,9 @@ class Session implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'sessionId' => 'sessionId',
+        'state' => 'state',
         'created' => 'created',
         'expire' => 'expire',
-        'active' => 'active',
         'user' => 'user',
         'actor' => 'actor',
         'sso' => 'sso',
@@ -127,9 +127,9 @@ class Session implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'sessionId' => 'setSessionId',
+        'state' => 'setState',
         'created' => 'setCreated',
         'expire' => 'setExpire',
-        'active' => 'setActive',
         'user' => 'setUser',
         'actor' => 'setActor',
         'sso' => 'setSso',
@@ -143,9 +143,9 @@ class Session implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'sessionId' => 'getSessionId',
+        'state' => 'getState',
         'created' => 'getCreated',
         'expire' => 'getExpire',
-        'active' => 'getActive',
         'user' => 'getUser',
         'actor' => 'getActor',
         'sso' => 'getSso',
@@ -213,9 +213,9 @@ class Session implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['sessionId'] = isset($data['sessionId']) ? $data['sessionId'] : null;
+        $this->container['state'] = isset($data['state']) ? $data['state'] : null;
         $this->container['created'] = isset($data['created']) ? $data['created'] : null;
         $this->container['expire'] = isset($data['expire']) ? $data['expire'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
         $this->container['user'] = isset($data['user']) ? $data['user'] : null;
         $this->container['actor'] = isset($data['actor']) ? $data['actor'] : null;
         $this->container['sso'] = isset($data['sso']) ? $data['sso'] : null;
@@ -271,6 +271,30 @@ class Session implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Gets state
+     *
+     * @return \Equisoft\SDK\AccountService\Model\SessionState|null
+     */
+    public function getState()
+    {
+        return $this->container['state'];
+    }
+
+    /**
+     * Sets state
+     *
+     * @param \Equisoft\SDK\AccountService\Model\SessionState|null $state state
+     *
+     * @return $this
+     */
+    public function setState($state)
+    {
+        $this->container['state'] = $state;
+
+        return $this;
+    }
+
+    /**
      * Gets created
      *
      * @return \DateTime|null
@@ -314,30 +338,6 @@ class Session implements ModelInterface, ArrayAccess
     public function setExpire($expire)
     {
         $this->container['expire'] = $expire;
-
-        return $this;
-    }
-
-    /**
-     * Gets active
-     *
-     * @return bool|null
-     */
-    public function getActive()
-    {
-        return $this->container['active'];
-    }
-
-    /**
-     * Sets active
-     *
-     * @param bool|null $active active
-     *
-     * @return $this
-     */
-    public function setActive($active)
-    {
-        $this->container['active'] = $active;
 
         return $this;
     }
