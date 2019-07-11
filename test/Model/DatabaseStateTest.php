@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  * DatabaseStateTest Class Doc Comment
  *
  * @category    Class
- * @description DatabaseState
+ * @description States: * &#x60;ENABLED&#x60; - Database is active. * &#x60;DISABLED&#x60; - Access to this database is suspended. * &#x60;DELETED&#x60; - Database is deleted. * &#x60;MAINTENANCE&#x60; - Database is in maintenance, login temporarily suspended.
  * @package     Equisoft\SDK\AccountService
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

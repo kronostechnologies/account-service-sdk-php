@@ -84,4 +84,11 @@ class ErrorPayloadTest extends TestCase
     public function testPropertyMessage()
     {
     }
+
+    /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
+    {
+    }
 }

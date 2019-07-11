@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  * UserAgreementStateTest Class Doc Comment
  *
  * @category    Class
- * @description UserAgreementState
+ * @description States: * &#x60;ACCEPTED&#x60; - User agreement and term of use accepted by user. * &#x60;REQUESTED&#x60; - User has yet to approve user agreements.
  * @package     Equisoft\SDK\AccountService
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech

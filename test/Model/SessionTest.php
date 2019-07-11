@@ -86,6 +86,13 @@ class SessionTest extends TestCase
     }
 
     /**
+     * Test attribute "state"
+     */
+    public function testPropertyState()
+    {
+    }
+
+    /**
      * Test attribute "created"
      */
     public function testPropertyCreated()
@@ -96,13 +103,6 @@ class SessionTest extends TestCase
      * Test attribute "expire"
      */
     public function testPropertyExpire()
-    {
-    }
-
-    /**
-     * Test attribute "active"
-     */
-    public function testPropertyActive()
     {
     }
 

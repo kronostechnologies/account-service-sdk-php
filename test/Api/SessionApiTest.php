@@ -73,16 +73,6 @@ class SessionApiTest extends TestCase
     }
 
     /**
-     * Test case for activateSession
-     *
-     * Allow activation for sessions created with activate=false. This may be extended to activate specific services. Inactive sessions are not allowed to be used by first-party application (crm, fna)..
-     *
-     */
-    public function testActivateSession()
-    {
-    }
-
-    /**
      * Test case for createSession
      *
      * Create a user session..
@@ -99,6 +89,16 @@ class SessionApiTest extends TestCase
      *
      */
     public function testDeleteSession()
+    {
+    }
+
+    /**
+     * Test case for enableSession
+     *
+     * Allow activation for sessions created with enable=false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (crm, fna)..
+     *
+     */
+    public function testEnableSession()
     {
     }
 
@@ -123,12 +123,12 @@ class SessionApiTest extends TestCase
     }
 
     /**
-     * Test case for impersonateUser
+     * Test case for impersonate
      *
-     * For adminstrator with impersonation capability. Impersonate the given user context.  After impersontation, the admin user becomes the \"actor\" and the impersonate user becames the \"user\". Use /revertIdentity to revert the impersonation..
+     * Impersonate the given user context..
      *
      */
-    public function testImpersonateUser()
+    public function testImpersonate()
     {
     }
 

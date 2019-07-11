@@ -35,7 +35,7 @@ use PHPUnit\Framework\TestCase;
  * UserStateTest Class Doc Comment
  *
  * @category    Class
- * @description UserState
+ * @description States: * &#x60;DELETED&#x60; - User is soft deleted or archived. * &#x60;DISABLED&#x60; - Temporarily denied login. * &#x60;ENABLED&#x60; - Allowed to login.
  * @package     Equisoft\SDK\AccountService
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
