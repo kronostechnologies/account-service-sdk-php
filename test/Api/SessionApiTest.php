@@ -83,12 +83,32 @@ class SessionApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteAllSessions
+     *
+     * Delete all sessions.
+     *
+     */
+    public function testDeleteAllSessions()
+    {
+    }
+
+    /**
      * Test case for deleteSession
      *
      * Delete a user session..
      *
      */
     public function testDeleteSession()
+    {
+    }
+
+    /**
+     * Test case for deleteSessionSsoToken
+     *
+     * Delete a sso token for the session for a given id/name/type.
+     *
+     */
+    public function testDeleteSessionSsoToken()
     {
     }
 
@@ -139,16 +159,6 @@ class SessionApiTest extends TestCase
      *
      */
     public function testRevertIdentity()
-    {
-    }
-
-    /**
-     * Test case for searchSession
-     *
-     * List or search session ids..
-     *
-     */
-    public function testSearchSession()
     {
     }
 

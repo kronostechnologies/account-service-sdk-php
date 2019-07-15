@@ -73,6 +73,16 @@ class UserApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteUserSessions
+     *
+     * Delete all sessions for the user..
+     *
+     */
+    public function testDeleteUserSessions()
+    {
+    }
+
+    /**
      * Test case for getUser
      *
      * Get detailed information about a user account..
