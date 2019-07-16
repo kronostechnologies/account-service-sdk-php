@@ -100,8 +100,6 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [AccountDetails](docs/Model/AccountDetails.md)
- - [ActorDetails](docs/Model/ActorDetails.md)
  - [CrmSession](docs/Model/CrmSession.md)
  - [DatabaseState](docs/Model/DatabaseState.md)
  - [ErrorPayload](docs/Model/ErrorPayload.md)

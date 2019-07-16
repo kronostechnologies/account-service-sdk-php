@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **state** | [**\Equisoft\SDK\AccountService\Model\SessionState**](SessionState.md) |  | [optional] 
 **created** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **expire** | [**\DateTime**](\DateTime.md) |  | [optional] 
-**user** | [**\Equisoft\SDK\AccountService\Model\AccountDetails**](AccountDetails.md) |  | [optional] 
-**actor** | [**\Equisoft\SDK\AccountService\Model\ActorDetails**](ActorDetails.md) |  | [optional] 
+**user** | [**\Equisoft\SDK\AccountService\Model\User**](User.md) |  | [optional] 
+**actor** | [**\Equisoft\SDK\AccountService\Model\User**](User.md) |  | [optional] 
 **sso** | [**\Equisoft\SDK\AccountService\Model\SsoProvider**](SsoProvider.md) |  | [optional] 
 **crm** | [**\Equisoft\SDK\AccountService\Model\CrmSession**](CrmSession.md) |  | [optional] 
 

@@ -61,8 +61,8 @@ class Session implements ModelInterface, ArrayAccess
         'state' => '\Equisoft\SDK\AccountService\Model\SessionState',
         'created' => '\DateTime',
         'expire' => '\DateTime',
-        'user' => '\Equisoft\SDK\AccountService\Model\AccountDetails',
-        'actor' => '\Equisoft\SDK\AccountService\Model\ActorDetails',
+        'user' => '\Equisoft\SDK\AccountService\Model\User',
+        'actor' => '\Equisoft\SDK\AccountService\Model\User',
         'sso' => '\Equisoft\SDK\AccountService\Model\SsoProvider',
         'crm' => '\Equisoft\SDK\AccountService\Model\CrmSession'
     ];
@@ -345,7 +345,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Gets user
      *
-     * @return \Equisoft\SDK\AccountService\Model\AccountDetails|null
+     * @return \Equisoft\SDK\AccountService\Model\User|null
      */
     public function getUser()
     {
@@ -355,7 +355,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Sets user
      *
-     * @param \Equisoft\SDK\AccountService\Model\AccountDetails|null $user user
+     * @param \Equisoft\SDK\AccountService\Model\User|null $user user
      *
      * @return $this
      */
@@ -369,7 +369,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Gets actor
      *
-     * @return \Equisoft\SDK\AccountService\Model\ActorDetails|null
+     * @return \Equisoft\SDK\AccountService\Model\User|null
      */
     public function getActor()
     {
@@ -379,7 +379,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Sets actor
      *
-     * @param \Equisoft\SDK\AccountService\Model\ActorDetails|null $actor actor
+     * @param \Equisoft\SDK\AccountService\Model\User|null $actor actor
      *
      * @return $this
      */
