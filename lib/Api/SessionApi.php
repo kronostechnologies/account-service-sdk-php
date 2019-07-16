@@ -124,7 +124,7 @@ class SessionApi
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Equisoft\SDK\AccountService\Model\SessionPayload
+     * @return \Equisoft\SDK\AccountService\Model\Session
      */
     public function createSession($sessionPayload)
     {
@@ -141,7 +141,7 @@ class SessionApi
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Equisoft\SDK\AccountService\Model\SessionPayload, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Equisoft\SDK\AccountService\Model\Session, HTTP status code, HTTP response headers (array of strings)
      */
     public function createSessionWithHttpInfo($sessionPayload)
     {
@@ -178,20 +178,20 @@ class SessionApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 201:
-                    if ('\Equisoft\SDK\AccountService\Model\SessionPayload' === '\SplFileObject') {
+                    if ('\Equisoft\SDK\AccountService\Model\Session' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\SessionPayload', []),
+                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\Session', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Equisoft\SDK\AccountService\Model\SessionPayload';
+            $returnType = '\Equisoft\SDK\AccountService\Model\Session';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -210,7 +210,7 @@ class SessionApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Equisoft\SDK\AccountService\Model\SessionPayload',
+                        '\Equisoft\SDK\AccountService\Model\Session',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -252,7 +252,7 @@ class SessionApi
      */
     public function createSessionAsyncWithHttpInfo($sessionPayload)
     {
-        $returnType = '\Equisoft\SDK\AccountService\Model\SessionPayload';
+        $returnType = '\Equisoft\SDK\AccountService\Model\Session';
         $request = $this->createSessionRequest($sessionPayload);
 
         return $this->client

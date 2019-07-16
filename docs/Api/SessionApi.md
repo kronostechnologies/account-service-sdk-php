@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## createSession
 
-> \Equisoft\SDK\AccountService\Model\SessionPayload createSession($sessionPayload)
+> \Equisoft\SDK\AccountService\Model\Session createSession($sessionPayload)
 
 Create a user session.
 
@@ -55,7 +55,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Equisoft\SDK\AccountService\Model\SessionPayload**](../Model/SessionPayload.md)
+[**\Equisoft\SDK\AccountService\Model\Session**](../Model/Session.md)
 
 ### Authorization
 
