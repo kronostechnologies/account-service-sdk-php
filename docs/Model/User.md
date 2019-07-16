@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] 
+**uuid** | **string** |  | [optional] 
 **displayName** | **string** |  | [optional] 
 **email** | **string** |  | [optional] 
 **mobilePhone** | **string** | Mobile phone used for sms password reset. | [optional] 

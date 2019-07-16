@@ -58,6 +58,7 @@ class User implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'id' => 'int',
+        'uuid' => 'string',
         'displayName' => 'string',
         'email' => 'string',
         'mobilePhone' => 'string',
@@ -79,6 +80,7 @@ class User implements ModelInterface, ArrayAccess
       */
     protected static $openAPIFormats = [
         'id' => 'int64',
+        'uuid' => null,
         'displayName' => null,
         'email' => null,
         'mobilePhone' => null,
@@ -121,6 +123,7 @@ class User implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'id' => 'id',
+        'uuid' => 'uuid',
         'displayName' => 'displayName',
         'email' => 'email',
         'mobilePhone' => 'mobilePhone',
@@ -142,6 +145,7 @@ class User implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'id' => 'setId',
+        'uuid' => 'setUuid',
         'displayName' => 'setDisplayName',
         'email' => 'setEmail',
         'mobilePhone' => 'setMobilePhone',
@@ -163,6 +167,7 @@ class User implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'id' => 'getId',
+        'uuid' => 'getUuid',
         'displayName' => 'getDisplayName',
         'email' => 'getEmail',
         'mobilePhone' => 'getMobilePhone',
@@ -238,6 +243,7 @@ class User implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
         $this->container['displayName'] = isset($data['displayName']) ? $data['displayName'] : null;
         $this->container['email'] = isset($data['email']) ? $data['email'] : null;
         $this->container['mobilePhone'] = isset($data['mobilePhone']) ? $data['mobilePhone'] : null;
@@ -296,6 +302,30 @@ class User implements ModelInterface, ArrayAccess
     public function setId($id)
     {
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets uuid
+     *
+     * @return string|null
+     */
+    public function getUuid()
+    {
+        return $this->container['uuid'];
+    }
+
+    /**
+     * Sets uuid
+     *
+     * @param string|null $uuid uuid
+     *
+     * @return $this
+     */
+    public function setUuid($uuid)
+    {
+        $this->container['uuid'] = $uuid;
 
         return $this;
     }
