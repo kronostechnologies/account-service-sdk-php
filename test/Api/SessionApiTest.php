@@ -123,6 +123,16 @@ class SessionApiTest extends TestCase
     }
 
     /**
+     * Test case for enableSessionForCrm
+     *
+     * Enable session for the crm service.
+     *
+     */
+    public function testEnableSessionForCrm()
+    {
+    }
+
+    /**
      * Test case for getSession
      *
      * Get detailed information about a user session..

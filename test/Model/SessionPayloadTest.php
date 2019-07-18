@@ -107,9 +107,9 @@ class SessionPayloadTest extends TestCase
     }
 
     /**
-     * Test attribute "crm"
+     * Test attribute "mobile"
      */
-    public function testPropertyCrm()
+    public function testPropertyMobile()
     {
     }
 }

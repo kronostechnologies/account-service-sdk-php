@@ -133,4 +133,11 @@ class SessionTest extends TestCase
     public function testPropertyCrm()
     {
     }
+
+    /**
+     * Test attribute "mobile"
+     */
+    public function testPropertyMobile()
+    {
+    }
 }

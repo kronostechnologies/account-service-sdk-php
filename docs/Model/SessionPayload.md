@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **absoluteTimeout** | **int** | This timeout (in seconds) defines the maximum amount of time a session can be active. | [optional] 
 **enable** | **bool** |  | [optional] 
 **sso** | [**\Equisoft\SDK\AccountService\Model\SsoProvider**](SsoProvider.md) |  | [optional] 
-**crm** | [**\Equisoft\SDK\AccountService\Model\CrmSession**](CrmSession.md) |  | [optional] 
+**mobile** | **bool** | Indicate that the session is initiated from a mobile device. | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

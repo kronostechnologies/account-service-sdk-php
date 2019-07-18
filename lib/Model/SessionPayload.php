@@ -62,7 +62,7 @@ class SessionPayload implements ModelInterface, ArrayAccess
         'absoluteTimeout' => 'int',
         'enable' => 'bool',
         'sso' => '\Equisoft\SDK\AccountService\Model\SsoProvider',
-        'crm' => '\Equisoft\SDK\AccountService\Model\CrmSession'
+        'mobile' => 'bool'
     ];
 
     /**
@@ -75,7 +75,7 @@ class SessionPayload implements ModelInterface, ArrayAccess
         'absoluteTimeout' => 'int64',
         'enable' => null,
         'sso' => null,
-        'crm' => null
+        'mobile' => null
     ];
 
     /**
@@ -109,7 +109,7 @@ class SessionPayload implements ModelInterface, ArrayAccess
         'absoluteTimeout' => 'absoluteTimeout',
         'enable' => 'enable',
         'sso' => 'sso',
-        'crm' => 'crm'
+        'mobile' => 'mobile'
     ];
 
     /**
@@ -122,7 +122,7 @@ class SessionPayload implements ModelInterface, ArrayAccess
         'absoluteTimeout' => 'setAbsoluteTimeout',
         'enable' => 'setEnable',
         'sso' => 'setSso',
-        'crm' => 'setCrm'
+        'mobile' => 'setMobile'
     ];
 
     /**
@@ -135,7 +135,7 @@ class SessionPayload implements ModelInterface, ArrayAccess
         'absoluteTimeout' => 'getAbsoluteTimeout',
         'enable' => 'getEnable',
         'sso' => 'getSso',
-        'crm' => 'getCrm'
+        'mobile' => 'getMobile'
     ];
 
     /**
@@ -202,7 +202,7 @@ class SessionPayload implements ModelInterface, ArrayAccess
         $this->container['absoluteTimeout'] = isset($data['absoluteTimeout']) ? $data['absoluteTimeout'] : null;
         $this->container['enable'] = isset($data['enable']) ? $data['enable'] : null;
         $this->container['sso'] = isset($data['sso']) ? $data['sso'] : null;
-        $this->container['crm'] = isset($data['crm']) ? $data['crm'] : null;
+        $this->container['mobile'] = isset($data['mobile']) ? $data['mobile'] : null;
     }
 
     /**
@@ -335,25 +335,25 @@ class SessionPayload implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets crm
+     * Gets mobile
      *
-     * @return \Equisoft\SDK\AccountService\Model\CrmSession|null
+     * @return bool|null
      */
-    public function getCrm()
+    public function getMobile()
     {
-        return $this->container['crm'];
+        return $this->container['mobile'];
     }
 
     /**
-     * Sets crm
+     * Sets mobile
      *
-     * @param \Equisoft\SDK\AccountService\Model\CrmSession|null $crm crm
+     * @param bool|null $mobile Indicate that the session is initiated from a mobile device.
      *
      * @return $this
      */
-    public function setCrm($crm)
+    public function setMobile($mobile)
     {
-        $this->container['crm'] = $crm;
+        $this->container['mobile'] = $mobile;
 
         return $this;
     }

@@ -64,7 +64,8 @@ class Session implements ModelInterface, ArrayAccess
         'user' => '\Equisoft\SDK\AccountService\Model\User',
         'actor' => '\Equisoft\SDK\AccountService\Model\User',
         'sso' => '\Equisoft\SDK\AccountService\Model\SsoProvider',
-        'crm' => '\Equisoft\SDK\AccountService\Model\CrmSession'
+        'crm' => '\Equisoft\SDK\AccountService\Model\CrmSession',
+        'mobile' => 'bool'
     ];
 
     /**
@@ -80,7 +81,8 @@ class Session implements ModelInterface, ArrayAccess
         'user' => null,
         'actor' => null,
         'sso' => null,
-        'crm' => null
+        'crm' => null,
+        'mobile' => null
     ];
 
     /**
@@ -117,7 +119,8 @@ class Session implements ModelInterface, ArrayAccess
         'user' => 'user',
         'actor' => 'actor',
         'sso' => 'sso',
-        'crm' => 'crm'
+        'crm' => 'crm',
+        'mobile' => 'mobile'
     ];
 
     /**
@@ -133,7 +136,8 @@ class Session implements ModelInterface, ArrayAccess
         'user' => 'setUser',
         'actor' => 'setActor',
         'sso' => 'setSso',
-        'crm' => 'setCrm'
+        'crm' => 'setCrm',
+        'mobile' => 'setMobile'
     ];
 
     /**
@@ -149,7 +153,8 @@ class Session implements ModelInterface, ArrayAccess
         'user' => 'getUser',
         'actor' => 'getActor',
         'sso' => 'getSso',
-        'crm' => 'getCrm'
+        'crm' => 'getCrm',
+        'mobile' => 'getMobile'
     ];
 
     /**
@@ -220,6 +225,7 @@ class Session implements ModelInterface, ArrayAccess
         $this->container['actor'] = isset($data['actor']) ? $data['actor'] : null;
         $this->container['sso'] = isset($data['sso']) ? $data['sso'] : null;
         $this->container['crm'] = isset($data['crm']) ? $data['crm'] : null;
+        $this->container['mobile'] = isset($data['mobile']) ? $data['mobile'] : null;
     }
 
     /**
@@ -434,6 +440,30 @@ class Session implements ModelInterface, ArrayAccess
     public function setCrm($crm)
     {
         $this->container['crm'] = $crm;
+
+        return $this;
+    }
+
+    /**
+     * Gets mobile
+     *
+     * @return bool|null
+     */
+    public function getMobile()
+    {
+        return $this->container['mobile'];
+    }
+
+    /**
+     * Sets mobile
+     *
+     * @param bool|null $mobile Indicate that the session is initiated from a mobile device.
+     *
+     * @return $this
+     */
+    public function setMobile($mobile)
+    {
+        $this->container['mobile'] = $mobile;
 
         return $this;
     }

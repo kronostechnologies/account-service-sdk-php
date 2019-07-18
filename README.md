@@ -89,6 +89,7 @@ Class | Method | HTTP request | Description
 *SessionApi* | [**deleteSession**](docs/Api/SessionApi.md#deletesession) | **DELETE** /sessions/{uuid} | Delete a user session.
 *SessionApi* | [**deleteSessionSsoToken**](docs/Api/SessionApi.md#deletesessionssotoken) | **DELETE** /sessions/{uuid}/tokens/{tokenId} | Delete a sso token for the session for a given id/name/type
 *SessionApi* | [**enableSession**](docs/Api/SessionApi.md#enablesession) | **POST** /sessions/{uuid}/enable | Allow activation for sessions created with enable&#x3D;false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (crm, fna).
+*SessionApi* | [**enableSessionForCrm**](docs/Api/SessionApi.md#enablesessionforcrm) | **POST** /sessions/{uuid}/enable/crm | Enable session for the crm service
 *SessionApi* | [**getSession**](docs/Api/SessionApi.md#getsession) | **GET** /sessions/{uuid} | Get detailed information about a user session.
 *SessionApi* | [**getSessionSsoToken**](docs/Api/SessionApi.md#getsessionssotoken) | **GET** /sessions/{uuid}/tokens/{tokenId} | Get a stored sso token for the session
 *SessionApi* | [**impersonate**](docs/Api/SessionApi.md#impersonate) | **POST** /sessions/{uuid}/impersonate | Impersonate the given user context.

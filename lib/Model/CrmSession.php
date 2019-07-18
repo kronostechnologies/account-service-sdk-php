@@ -58,8 +58,7 @@ class CrmSession implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'countConcurrentAccess' => 'bool',
-        'mobile' => 'bool'
+        'enabled' => 'bool'
     ];
 
     /**
@@ -68,8 +67,7 @@ class CrmSession implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'countConcurrentAccess' => null,
-        'mobile' => null
+        'enabled' => null
     ];
 
     /**
@@ -99,8 +97,7 @@ class CrmSession implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'countConcurrentAccess' => 'countConcurrentAccess',
-        'mobile' => 'mobile'
+        'enabled' => 'enabled'
     ];
 
     /**
@@ -109,8 +106,7 @@ class CrmSession implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'countConcurrentAccess' => 'setCountConcurrentAccess',
-        'mobile' => 'setMobile'
+        'enabled' => 'setEnabled'
     ];
 
     /**
@@ -119,8 +115,7 @@ class CrmSession implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'countConcurrentAccess' => 'getCountConcurrentAccess',
-        'mobile' => 'getMobile'
+        'enabled' => 'getEnabled'
     ];
 
     /**
@@ -183,8 +178,7 @@ class CrmSession implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['countConcurrentAccess'] = isset($data['countConcurrentAccess']) ? $data['countConcurrentAccess'] : null;
-        $this->container['mobile'] = isset($data['mobile']) ? $data['mobile'] : null;
+        $this->container['enabled'] = isset($data['enabled']) ? $data['enabled'] : null;
     }
 
     /**
@@ -212,49 +206,25 @@ class CrmSession implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets countConcurrentAccess
+     * Gets enabled
      *
      * @return bool|null
      */
-    public function getCountConcurrentAccess()
+    public function getEnabled()
     {
-        return $this->container['countConcurrentAccess'];
+        return $this->container['enabled'];
     }
 
     /**
-     * Sets countConcurrentAccess
+     * Sets enabled
      *
-     * @param bool|null $countConcurrentAccess True if this will be used for concurrent access count.
+     * @param bool|null $enabled Session is enabled for crm and is accounted for concurrent access.
      *
      * @return $this
      */
-    public function setCountConcurrentAccess($countConcurrentAccess)
+    public function setEnabled($enabled)
     {
-        $this->container['countConcurrentAccess'] = $countConcurrentAccess;
-
-        return $this;
-    }
-
-    /**
-     * Gets mobile
-     *
-     * @return bool|null
-     */
-    public function getMobile()
-    {
-        return $this->container['mobile'];
-    }
-
-    /**
-     * Sets mobile
-     *
-     * @param bool|null $mobile True if this session is for the legacy CRM mobile.
-     *
-     * @return $this
-     */
-    public function setMobile($mobile)
-    {
-        $this->container['mobile'] = $mobile;
+        $this->container['enabled'] = $enabled;
 
         return $this;
     }

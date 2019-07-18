@@ -79,16 +79,9 @@ class CrmSessionTest extends TestCase
     }
 
     /**
-     * Test attribute "countConcurrentAccess"
+     * Test attribute "enabled"
      */
-    public function testPropertyCountConcurrentAccess()
-    {
-    }
-
-    /**
-     * Test attribute "mobile"
-     */
-    public function testPropertyMobile()
+    public function testPropertyEnabled()
     {
     }
 }
