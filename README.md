@@ -103,9 +103,10 @@ Class | Method | HTTP request | Description
 
  - [DatabaseState](docs/Model/DatabaseState.md)
  - [EnableEquisoftConnectPayloadSchema](docs/Model/EnableEquisoftConnectPayloadSchema.md)
+ - [ErrorMessage](docs/Model/ErrorMessage.md)
  - [ErrorPayload](docs/Model/ErrorPayload.md)
  - [ImpersonatePayload](docs/Model/ImpersonatePayload.md)
- - [ServiceAccessSchema](docs/Model/ServiceAccessSchema.md)
+ - [ServiceAccess](docs/Model/ServiceAccess.md)
  - [ServiceName](docs/Model/ServiceName.md)
  - [Session](docs/Model/Session.md)
  - [SessionPayload](docs/Model/SessionPayload.md)

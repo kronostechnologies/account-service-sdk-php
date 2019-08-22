@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **billable** | **bool** | User is accounted for billing. | [optional] 
 **agreement** | [**\Equisoft\SDK\AccountService\Model\UserAgreement**](UserAgreement.md) |  | [optional] 
 **created** | [**\DateTime**](\DateTime.md) |  | [optional] 
-**services** | [**\Equisoft\SDK\AccountService\Model\ServiceAccessSchema[]**](ServiceAccessSchema.md) |  | [optional] 
+**services** | [**\Equisoft\SDK\AccountService\Model\ServiceAccess[]**](ServiceAccess.md) |  | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 

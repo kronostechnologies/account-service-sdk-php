@@ -1,6 +1,6 @@
 <?php
 /**
- * ServiceAccessSchema
+ * ServiceAccess
  *
  * PHP version 5
  *
@@ -33,15 +33,14 @@ use \ArrayAccess;
 use \Equisoft\SDK\AccountService\ObjectSerializer;
 
 /**
- * ServiceAccessSchema Class Doc Comment
+ * ServiceAccess Class Doc Comment
  *
  * @category Class
- * @description ServiceAccess
  * @package  Equisoft\SDK\AccountService
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ServiceAccessSchema implements ModelInterface, ArrayAccess
+class ServiceAccess implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class ServiceAccessSchema implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ServiceAccessSchema';
+    protected static $openAPIModelName = 'ServiceAccess';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

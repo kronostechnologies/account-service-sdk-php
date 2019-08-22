@@ -57,7 +57,7 @@ class ErrorPayload implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'message' => 'string',
+        'message' => '\Equisoft\SDK\AccountService\Model\ErrorMessage',
         'description' => 'string'
     ];
 
@@ -213,7 +213,7 @@ class ErrorPayload implements ModelInterface, ArrayAccess
     /**
      * Gets message
      *
-     * @return string|null
+     * @return \Equisoft\SDK\AccountService\Model\ErrorMessage|null
      */
     public function getMessage()
     {
@@ -223,7 +223,7 @@ class ErrorPayload implements ModelInterface, ArrayAccess
     /**
      * Sets message
      *
-     * @param string|null $message message
+     * @param \Equisoft\SDK\AccountService\Model\ErrorMessage|null $message message
      *
      * @return $this
      */

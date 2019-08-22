@@ -69,7 +69,7 @@ class User implements ModelInterface, ArrayAccess
         'billable' => 'bool',
         'agreement' => '\Equisoft\SDK\AccountService\Model\UserAgreement',
         'created' => '\DateTime',
-        'services' => '\Equisoft\SDK\AccountService\Model\ServiceAccessSchema[]'
+        'services' => '\Equisoft\SDK\AccountService\Model\ServiceAccess[]'
     ];
 
     /**
@@ -567,7 +567,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Gets services
      *
-     * @return \Equisoft\SDK\AccountService\Model\ServiceAccessSchema[]|null
+     * @return \Equisoft\SDK\AccountService\Model\ServiceAccess[]|null
      */
     public function getServices()
     {
@@ -577,7 +577,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Sets services
      *
-     * @param \Equisoft\SDK\AccountService\Model\ServiceAccessSchema[]|null $services services
+     * @param \Equisoft\SDK\AccountService\Model\ServiceAccess[]|null $services services
      *
      * @return $this
      */
