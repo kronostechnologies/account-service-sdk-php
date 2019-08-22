@@ -1,5 +1,6 @@
 {
     "name": "kronostechnologies/account-service-sdk-php",
+    "version": "dev",
     "description": "Provides HTTP endpoints to manage User Accounts and User Sessions.",
     "keywords": [
         "openapitools",
@@ -12,7 +13,6 @@
     ],
     "homepage": "https://openapi-generator.tech",
     "license": "unlicense",
-    "minimum-stability": "stable",
     "authors": [
         {
             "name": "OpenAPI-Generator contributors",

@@ -88,11 +88,12 @@ Class | Method | HTTP request | Description
 *SessionApi* | [**deleteAllSessions**](docs/Api/SessionApi.md#deleteallsessions) | **DELETE** /sessions | Delete all sessions
 *SessionApi* | [**deleteSession**](docs/Api/SessionApi.md#deletesession) | **DELETE** /sessions/{uuid} | Delete a user session.
 *SessionApi* | [**deleteSessionSsoToken**](docs/Api/SessionApi.md#deletesessionssotoken) | **DELETE** /sessions/{uuid}/tokens/{tokenId} | Delete a sso token for the session for a given id/name/type
-*SessionApi* | [**enableSession**](docs/Api/SessionApi.md#enablesession) | **POST** /sessions/{uuid}/enable | Allow activation for sessions created with enable&#x3D;false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (crm, fna).
+*SessionApi* | [**enableSession**](docs/Api/SessionApi.md#enablesession) | **POST** /sessions/{uuid}/enable | Allow activation for sessions created with enable&#x3D;false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (Equisoft/Connect, Equisoft/Plan).
+*SessionApi* | [**enableSessionForEquisoftConnect**](docs/Api/SessionApi.md#enablesessionforequisoftconnect) | **POST** /sessions/{uuid}/enable/EQUISOFT_CONNECT | Enable session for the Equisoft/Connect service
 *SessionApi* | [**getSession**](docs/Api/SessionApi.md#getsession) | **GET** /sessions/{uuid} | Get detailed information about a user session.
 *SessionApi* | [**getSessionSsoToken**](docs/Api/SessionApi.md#getsessionssotoken) | **GET** /sessions/{uuid}/tokens/{tokenId} | Get a stored sso token for the session
 *SessionApi* | [**impersonate**](docs/Api/SessionApi.md#impersonate) | **POST** /sessions/{uuid}/impersonate | Impersonate the given user context.
-*SessionApi* | [**revertIdentity**](docs/Api/SessionApi.md#revertidentity) | **POST** /sessions/{uuid}/revertIdentity | Revert an impersonated session to the context of the \&quot;admin\&quot; user who initiated the impersontation.
+*SessionApi* | [**revertIdentity**](docs/Api/SessionApi.md#revertidentity) | **POST** /sessions/{uuid}/revertIdentity | Revert an impersonated session to the context of the \&quot;admin\&quot; user who initiated the impersonation.
 *SessionApi* | [**setSessionSsoToken**](docs/Api/SessionApi.md#setsessionssotoken) | **PUT** /sessions/{uuid}/tokens/{tokenId} | Store a sso token for the session for a given id/name/type
 *UserApi* | [**deleteUserSessions**](docs/Api/UserApi.md#deleteusersessions) | **DELETE** /users/{uuid}/sessions | Delete all sessions for the user.
 *UserApi* | [**getUser**](docs/Api/UserApi.md#getuser) | **GET** /users/{uuid} | Get detailed information about a user account.
@@ -100,10 +101,12 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
- - [CrmSession](docs/Model/CrmSession.md)
  - [DatabaseState](docs/Model/DatabaseState.md)
+ - [EnableEquisoftConnectPayloadSchema](docs/Model/EnableEquisoftConnectPayloadSchema.md)
  - [ErrorPayload](docs/Model/ErrorPayload.md)
  - [ImpersonatePayload](docs/Model/ImpersonatePayload.md)
+ - [ServiceAccessSchema](docs/Model/ServiceAccessSchema.md)
+ - [ServiceName](docs/Model/ServiceName.md)
  - [Session](docs/Model/Session.md)
  - [SessionPayload](docs/Model/SessionPayload.md)
  - [SessionState](docs/Model/SessionState.md)
@@ -112,7 +115,6 @@ Class | Method | HTTP request | Description
  - [User](docs/Model/User.md)
  - [UserAgreement](docs/Model/UserAgreement.md)
  - [UserAgreementState](docs/Model/UserAgreementState.md)
- - [UserDatabase](docs/Model/UserDatabase.md)
  - [UserState](docs/Model/UserState.md)
 
 

@@ -8,11 +8,12 @@ Method | HTTP request | Description
 [**deleteAllSessions**](SessionApi.md#deleteAllSessions) | **DELETE** /sessions | Delete all sessions
 [**deleteSession**](SessionApi.md#deleteSession) | **DELETE** /sessions/{uuid} | Delete a user session.
 [**deleteSessionSsoToken**](SessionApi.md#deleteSessionSsoToken) | **DELETE** /sessions/{uuid}/tokens/{tokenId} | Delete a sso token for the session for a given id/name/type
-[**enableSession**](SessionApi.md#enableSession) | **POST** /sessions/{uuid}/enable | Allow activation for sessions created with enable&#x3D;false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (crm, fna).
+[**enableSession**](SessionApi.md#enableSession) | **POST** /sessions/{uuid}/enable | Allow activation for sessions created with enable&#x3D;false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (Equisoft/Connect, Equisoft/Plan).
+[**enableSessionForEquisoftConnect**](SessionApi.md#enableSessionForEquisoftConnect) | **POST** /sessions/{uuid}/enable/EQUISOFT_CONNECT | Enable session for the Equisoft/Connect service
 [**getSession**](SessionApi.md#getSession) | **GET** /sessions/{uuid} | Get detailed information about a user session.
 [**getSessionSsoToken**](SessionApi.md#getSessionSsoToken) | **GET** /sessions/{uuid}/tokens/{tokenId} | Get a stored sso token for the session
 [**impersonate**](SessionApi.md#impersonate) | **POST** /sessions/{uuid}/impersonate | Impersonate the given user context.
-[**revertIdentity**](SessionApi.md#revertIdentity) | **POST** /sessions/{uuid}/revertIdentity | Revert an impersonated session to the context of the \&quot;admin\&quot; user who initiated the impersontation.
+[**revertIdentity**](SessionApi.md#revertIdentity) | **POST** /sessions/{uuid}/revertIdentity | Revert an impersonated session to the context of the \&quot;admin\&quot; user who initiated the impersonation.
 [**setSessionSsoToken**](SessionApi.md#setSessionSsoToken) | **PUT** /sessions/{uuid}/tokens/{tokenId} | Store a sso token for the session for a given id/name/type
 
 
@@ -232,7 +233,7 @@ No authorization required
 
 > enableSession($uuid)
 
-Allow activation for sessions created with enable=false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (crm, fna).
+Allow activation for sessions created with enable=false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (Equisoft/Connect, Equisoft/Plan).
 
 ### Example
 
@@ -274,6 +275,61 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## enableSessionForEquisoftConnect
+
+> enableSessionForEquisoftConnect($uuid, $enableEquisoftConnectPayloadSchema)
+
+Enable session for the Equisoft/Connect service
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Equisoft\SDK\AccountService\Api\SessionApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$uuid = 'uuid_example'; // string | 
+$enableEquisoftConnectPayloadSchema = new \Equisoft\SDK\AccountService\Model\EnableEquisoftConnectPayloadSchema(); // \Equisoft\SDK\AccountService\Model\EnableEquisoftConnectPayloadSchema | 
+
+try {
+    $apiInstance->enableSessionForEquisoftConnect($uuid, $enableEquisoftConnectPayloadSchema);
+} catch (Exception $e) {
+    echo 'Exception when calling SessionApi->enableSessionForEquisoftConnect: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **string**|  |
+ **enableEquisoftConnectPayloadSchema** | [**\Equisoft\SDK\AccountService\Model\EnableEquisoftConnectPayloadSchema**](../Model/EnableEquisoftConnectPayloadSchema.md)|  | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
@@ -453,7 +509,7 @@ No authorization required
 
 > \Equisoft\SDK\AccountService\Model\Session revertIdentity($uuid)
 
-Revert an impersonated session to the context of the \"admin\" user who initiated the impersontation.
+Revert an impersonated session to the context of the \"admin\" user who initiated the impersonation.
 
 ### Example
 

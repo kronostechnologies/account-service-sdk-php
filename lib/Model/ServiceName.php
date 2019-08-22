@@ -1,6 +1,6 @@
 <?php
 /**
- * UserState
+ * ServiceName
  *
  * PHP version 5
  *
@@ -31,22 +31,22 @@ namespace Equisoft\SDK\AccountService\Model;
 use \Equisoft\SDK\AccountService\ObjectSerializer;
 
 /**
- * UserState Class Doc Comment
+ * ServiceName Class Doc Comment
  *
  * @category Class
- * @description States: * &#x60;DELETED&#x60; - User is soft deleted or archived. * &#x60;DISABLED&#x60; - Temporarily denied login. * &#x60;ENABLED&#x60; - Allowed to login.
  * @package  Equisoft\SDK\AccountService
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class UserState
+class ServiceName
 {
     /**
      * Possible values of this enum
      */
-    const DELETED = 'DELETED';
-    const DISABLED = 'DISABLED';
-    const ENABLED = 'ENABLED';
+    const EQUISOFT_CONNECT = 'EQUISOFT_CONNECT';
+    const EQUISOFT_PLAN = 'EQUISOFT_PLAN';
+    const EQUISOFT_ANALYZE_FOR_ADVISORS = 'EQUISOFT_ANALYZE_FOR_ADVISORS';
+    const CPANEL = 'CPANEL';
     
     /**
      * Gets allowable values of the enum
@@ -55,9 +55,10 @@ class UserState
     public static function getAllowableEnumValues()
     {
         return [
-            self::DELETED,
-            self::DISABLED,
-            self::ENABLED,
+            self::EQUISOFT_CONNECT,
+            self::EQUISOFT_PLAN,
+            self::EQUISOFT_ANALYZE_FOR_ADVISORS,
+            self::CPANEL,
         ];
     }
 }

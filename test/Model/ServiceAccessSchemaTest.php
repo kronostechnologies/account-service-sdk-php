@@ -1,6 +1,6 @@
 <?php
 /**
- * DatabaseStateTest
+ * ServiceAccessSchemaTest
  *
  * PHP version 5
  *
@@ -32,15 +32,15 @@ namespace Equisoft\SDK\AccountService;
 use PHPUnit\Framework\TestCase;
 
 /**
- * DatabaseStateTest Class Doc Comment
+ * ServiceAccessSchemaTest Class Doc Comment
  *
  * @category    Class
- * @description States: * &#x60;ENABLED&#x60; - Database is active. * &#x60;DISABLED&#x60; - Access to this database is suspended. * &#x60;DELETED&#x60; - Database is deleted. * &#x60;MAINTENANCE&#x60; - Database is in maintenance, login temporarily suspended.
+ * @description ServiceAccess
  * @package     Equisoft\SDK\AccountService
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class DatabaseStateTest extends TestCase
+class ServiceAccessSchemaTest extends TestCase
 {
 
     /**
@@ -72,9 +72,51 @@ class DatabaseStateTest extends TestCase
     }
 
     /**
-     * Test "DatabaseState"
+     * Test "ServiceAccessSchema"
      */
-    public function testDatabaseState()
+    public function testServiceAccessSchema()
+    {
+    }
+
+    /**
+     * Test attribute "serviceName"
+     */
+    public function testPropertyServiceName()
+    {
+    }
+
+    /**
+     * Test attribute "databaseId"
+     */
+    public function testPropertyDatabaseId()
+    {
+    }
+
+    /**
+     * Test attribute "databaseName"
+     */
+    public function testPropertyDatabaseName()
+    {
+    }
+
+    /**
+     * Test attribute "databaseState"
+     */
+    public function testPropertyDatabaseState()
+    {
+    }
+
+    /**
+     * Test attribute "userId"
+     */
+    public function testPropertyUserId()
+    {
+    }
+
+    /**
+     * Test attribute "maxConcurrentAccess"
+     */
+    public function testPropertyMaxConcurrentAccess()
     {
     }
 }
