@@ -124,7 +124,7 @@ class SessionApi
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Equisoft\SDK\AccountService\Model\Session
+     * @return \Equisoft\SDK\AccountService\Model\Session|\Equisoft\SDK\AccountService\Model\ErrorPayload
      */
     public function createSession($sessionPayload)
     {
@@ -141,7 +141,7 @@ class SessionApi
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Equisoft\SDK\AccountService\Model\Session, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Equisoft\SDK\AccountService\Model\Session|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
      */
     public function createSessionWithHttpInfo($sessionPayload)
     {
@@ -189,6 +189,18 @@ class SessionApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
+                case 400:
+                    if ('\Equisoft\SDK\AccountService\Model\ErrorPayload' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\ErrorPayload', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
             }
 
             $returnType = '\Equisoft\SDK\AccountService\Model\Session';
@@ -211,6 +223,14 @@ class SessionApi
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Equisoft\SDK\AccountService\Model\Session',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Equisoft\SDK\AccountService\Model\ErrorPayload',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1145,6 +1165,14 @@ class SessionApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Equisoft\SDK\AccountService\Model\ErrorPayload',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
                 case 404:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
