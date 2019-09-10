@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createSession**](SessionApi.md#createSession) | **POST** /sessions | Create a user session.
 [**deleteAllSessions**](SessionApi.md#deleteAllSessions) | **DELETE** /sessions | Delete all sessions
+[**deleteExpiredSessions**](SessionApi.md#deleteExpiredSessions) | **DELETE** /sessions/expired | Delete all expired sessions.
 [**deleteSession**](SessionApi.md#deleteSession) | **DELETE** /sessions/{uuid} | Delete a user session.
 [**deleteSessionSsoToken**](SessionApi.md#deleteSessionSsoToken) | **DELETE** /sessions/{uuid}/tokens/{tokenId} | Delete a sso token for the session for a given id/name/type
 [**enableSession**](SessionApi.md#enableSession) | **POST** /sessions/{uuid}/enable | Allow activation for sessions created with enable&#x3D;false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (Equisoft/Connect, Equisoft/Plan).
@@ -95,6 +96,55 @@ try {
     $apiInstance->deleteAllSessions();
 } catch (Exception $e) {
     echo 'Exception when calling SessionApi->deleteAllSessions: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## deleteExpiredSessions
+
+> deleteExpiredSessions()
+
+Delete all expired sessions.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Equisoft\SDK\AccountService\Api\SessionApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $apiInstance->deleteExpiredSessions();
+} catch (Exception $e) {
+    echo 'Exception when calling SessionApi->deleteExpiredSessions: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -339,7 +389,7 @@ No authorization required
 
 ## getSession
 
-> \Equisoft\SDK\AccountService\Model\Session getSession($uuid)
+> \Equisoft\SDK\AccountService\Model\Session getSession($uuid, $keepAlive)
 
 Get detailed information about a user session.
 
@@ -356,9 +406,10 @@ $apiInstance = new Equisoft\SDK\AccountService\Api\SessionApi(
     new GuzzleHttp\Client()
 );
 $uuid = 'uuid_example'; // string | The user session's identifier
+$keepAlive = True; // bool | If true, update the last access timestamp.
 
 try {
-    $result = $apiInstance->getSession($uuid);
+    $result = $apiInstance->getSession($uuid, $keepAlive);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SessionApi->getSession: ', $e->getMessage(), PHP_EOL;
@@ -372,6 +423,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | **string**| The user session&#39;s identifier |
+ **keepAlive** | **bool**| If true, update the last access timestamp. | [optional]
 
 ### Return type
 

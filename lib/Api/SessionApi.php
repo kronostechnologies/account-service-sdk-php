@@ -608,6 +608,211 @@ class SessionApi
     }
 
     /**
+     * Operation deleteExpiredSessions
+     *
+     * Delete all expired sessions.
+     *
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteExpiredSessions()
+    {
+        $this->deleteExpiredSessionsWithHttpInfo();
+    }
+
+    /**
+     * Operation deleteExpiredSessionsWithHttpInfo
+     *
+     * Delete all expired sessions.
+     *
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteExpiredSessionsWithHttpInfo()
+    {
+        $request = $this->deleteExpiredSessionsRequest();
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteExpiredSessionsAsync
+     *
+     * Delete all expired sessions.
+     *
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteExpiredSessionsAsync()
+    {
+        return $this->deleteExpiredSessionsAsyncWithHttpInfo()
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteExpiredSessionsAsyncWithHttpInfo
+     *
+     * Delete all expired sessions.
+     *
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteExpiredSessionsAsyncWithHttpInfo()
+    {
+        $returnType = '';
+        $request = $this->deleteExpiredSessionsRequest();
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteExpiredSessions'
+     *
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function deleteExpiredSessionsRequest()
+    {
+
+        $resourcePath = '/sessions/expired';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'DELETE',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation deleteSession
      *
      * Delete a user session.
@@ -1604,14 +1809,15 @@ class SessionApi
      * Get detailed information about a user session.
      *
      * @param  string $uuid The user session&#39;s identifier (required)
+     * @param  bool $keepAlive If true, update the last access timestamp. (optional)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Equisoft\SDK\AccountService\Model\Session|\Equisoft\SDK\AccountService\Model\ErrorPayload
      */
-    public function getSession($uuid)
+    public function getSession($uuid, $keepAlive = null)
     {
-        list($response) = $this->getSessionWithHttpInfo($uuid);
+        list($response) = $this->getSessionWithHttpInfo($uuid, $keepAlive);
         return $response;
     }
 
@@ -1621,14 +1827,15 @@ class SessionApi
      * Get detailed information about a user session.
      *
      * @param  string $uuid The user session&#39;s identifier (required)
+     * @param  bool $keepAlive If true, update the last access timestamp. (optional)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Equisoft\SDK\AccountService\Model\Session|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSessionWithHttpInfo($uuid)
+    public function getSessionWithHttpInfo($uuid, $keepAlive = null)
     {
-        $request = $this->getSessionRequest($uuid);
+        $request = $this->getSessionRequest($uuid, $keepAlive);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1729,13 +1936,14 @@ class SessionApi
      * Get detailed information about a user session.
      *
      * @param  string $uuid The user session&#39;s identifier (required)
+     * @param  bool $keepAlive If true, update the last access timestamp. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSessionAsync($uuid)
+    public function getSessionAsync($uuid, $keepAlive = null)
     {
-        return $this->getSessionAsyncWithHttpInfo($uuid)
+        return $this->getSessionAsyncWithHttpInfo($uuid, $keepAlive)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1749,14 +1957,15 @@ class SessionApi
      * Get detailed information about a user session.
      *
      * @param  string $uuid The user session&#39;s identifier (required)
+     * @param  bool $keepAlive If true, update the last access timestamp. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSessionAsyncWithHttpInfo($uuid)
+    public function getSessionAsyncWithHttpInfo($uuid, $keepAlive = null)
     {
         $returnType = '\Equisoft\SDK\AccountService\Model\Session';
-        $request = $this->getSessionRequest($uuid);
+        $request = $this->getSessionRequest($uuid, $keepAlive);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1796,11 +2005,12 @@ class SessionApi
      * Create request for operation 'getSession'
      *
      * @param  string $uuid The user session&#39;s identifier (required)
+     * @param  bool $keepAlive If true, update the last access timestamp. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getSessionRequest($uuid)
+    protected function getSessionRequest($uuid, $keepAlive = null)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1820,6 +2030,10 @@ class SessionApi
         $httpBody = '';
         $multipart = false;
 
+        // query params
+        if ($keepAlive !== null) {
+            $queryParams['keepAlive'] = ObjectSerializer::toQueryValue($keepAlive);
+        }
 
         // path params
         if ($uuid !== null) {

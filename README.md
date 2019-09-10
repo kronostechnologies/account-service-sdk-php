@@ -86,6 +86,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *SessionApi* | [**createSession**](docs/Api/SessionApi.md#createsession) | **POST** /sessions | Create a user session.
 *SessionApi* | [**deleteAllSessions**](docs/Api/SessionApi.md#deleteallsessions) | **DELETE** /sessions | Delete all sessions
+*SessionApi* | [**deleteExpiredSessions**](docs/Api/SessionApi.md#deleteexpiredsessions) | **DELETE** /sessions/expired | Delete all expired sessions.
 *SessionApi* | [**deleteSession**](docs/Api/SessionApi.md#deletesession) | **DELETE** /sessions/{uuid} | Delete a user session.
 *SessionApi* | [**deleteSessionSsoToken**](docs/Api/SessionApi.md#deletesessionssotoken) | **DELETE** /sessions/{uuid}/tokens/{tokenId} | Delete a sso token for the session for a given id/name/type
 *SessionApi* | [**enableSession**](docs/Api/SessionApi.md#enablesession) | **POST** /sessions/{uuid}/enable | Allow activation for sessions created with enable&#x3D;false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (Equisoft/Connect, Equisoft/Plan).

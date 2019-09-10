@@ -93,6 +93,16 @@ class SessionApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteExpiredSessions
+     *
+     * Delete all expired sessions..
+     *
+     */
+    public function testDeleteExpiredSessions()
+    {
+    }
+
+    /**
      * Test case for deleteSession
      *
      * Delete a user session..
