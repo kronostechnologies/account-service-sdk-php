@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteUserSessions**](UserApi.md#deleteUserSessions) | **DELETE** /users/{uuid}/sessions | Delete all sessions for the user.
 [**getUser**](UserApi.md#getUser) | **GET** /users/{uuid} | Get detailed information about a user account.
+[**getUuidById**](UserApi.md#getUuidById) | **GET** /users/{id}/uuid | Find an uuid by id.
 
 
 
@@ -101,6 +102,60 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**\Equisoft\SDK\AccountService\Model\User**](../Model/User.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## getUuidById
+
+> \Equisoft\SDK\AccountService\Model\Id getUuidById($id)
+
+Find an uuid by id.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Equisoft\SDK\AccountService\Api\UserApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$id = 56; // int | The user account's identifier
+
+try {
+    $result = $apiInstance->getUuidById($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UserApi->getUuidById: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **int**| The user account&#39;s identifier |
+
+### Return type
+
+[**\Equisoft\SDK\AccountService\Model\Id**](../Model/Id.md)
 
 ### Authorization
 
