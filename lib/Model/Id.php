@@ -1,6 +1,6 @@
 <?php
 /**
- * UserAgreement
+ * Id
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \Equisoft\SDK\AccountService\ObjectSerializer;
 
 /**
- * UserAgreement Class Doc Comment
+ * Id Class Doc Comment
  *
  * @category Class
  * @package  Equisoft\SDK\AccountService
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class UserAgreement implements ModelInterface, ArrayAccess
+class Id implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class UserAgreement implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'UserAgreement';
+    protected static $openAPIModelName = 'Id';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,7 +57,8 @@ class UserAgreement implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'state' => '\Equisoft\SDK\AccountService\Model\UserAgreementState'
+        'id' => 'int',
+        'uuid' => 'string'
     ];
 
     /**
@@ -66,7 +67,8 @@ class UserAgreement implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'state' => null
+        'id' => 'int64',
+        'uuid' => null
     ];
 
     /**
@@ -96,7 +98,8 @@ class UserAgreement implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'state' => 'state'
+        'id' => 'id',
+        'uuid' => 'uuid'
     ];
 
     /**
@@ -105,7 +108,8 @@ class UserAgreement implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'state' => 'setState'
+        'id' => 'setId',
+        'uuid' => 'setUuid'
     ];
 
     /**
@@ -114,7 +118,8 @@ class UserAgreement implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'state' => 'getState'
+        'id' => 'getId',
+        'uuid' => 'getUuid'
     ];
 
     /**
@@ -177,7 +182,8 @@ class UserAgreement implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['state'] = isset($data['state']) ? $data['state'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
     }
 
     /**
@@ -189,8 +195,11 @@ class UserAgreement implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['state'] === null) {
-            $invalidProperties[] = "'state' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['uuid'] === null) {
+            $invalidProperties[] = "'uuid' can't be null";
         }
         return $invalidProperties;
     }
@@ -208,25 +217,49 @@ class UserAgreement implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets state
+     * Gets id
      *
-     * @return \Equisoft\SDK\AccountService\Model\UserAgreementState
+     * @return int
      */
-    public function getState()
+    public function getId()
     {
-        return $this->container['state'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets state
+     * Sets id
      *
-     * @param \Equisoft\SDK\AccountService\Model\UserAgreementState $state state
+     * @param int $id id
      *
      * @return $this
      */
-    public function setState($state)
+    public function setId($id)
     {
-        $this->container['state'] = $state;
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets uuid
+     *
+     * @return string
+     */
+    public function getUuid()
+    {
+        return $this->container['uuid'];
+    }
+
+    /**
+     * Sets uuid
+     *
+     * @param string $uuid uuid
+     *
+     * @return $this
+     */
+    public function setUuid($uuid)
+    {
+        $this->container['uuid'] = $uuid;
 
         return $this;
     }

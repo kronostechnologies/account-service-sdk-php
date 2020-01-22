@@ -98,6 +98,7 @@ Class | Method | HTTP request | Description
 *SessionApi* | [**setSessionSsoToken**](docs/Api/SessionApi.md#setsessionssotoken) | **PUT** /sessions/{uuid}/tokens/{tokenId} | Store a sso token for the session for a given id/name/type
 *UserApi* | [**deleteUserSessions**](docs/Api/UserApi.md#deleteusersessions) | **DELETE** /users/{uuid}/sessions | Delete all sessions for the user.
 *UserApi* | [**getUser**](docs/Api/UserApi.md#getuser) | **GET** /users/{uuid} | Get detailed information about a user account.
+*UserApi* | [**getUuidById**](docs/Api/UserApi.md#getuuidbyid) | **GET** /users/{id}/uuid | Find an uuid by id.
 
 
 ## Documentation For Models
@@ -106,6 +107,7 @@ Class | Method | HTTP request | Description
  - [EnableEquisoftConnectPayloadSchema](docs/Model/EnableEquisoftConnectPayloadSchema.md)
  - [ErrorMessage](docs/Model/ErrorMessage.md)
  - [ErrorPayload](docs/Model/ErrorPayload.md)
+ - [Id](docs/Model/Id.md)
  - [ImpersonatePayload](docs/Model/ImpersonatePayload.md)
  - [ServiceAccess](docs/Model/ServiceAccess.md)
  - [ServiceName](docs/Model/ServiceName.md)

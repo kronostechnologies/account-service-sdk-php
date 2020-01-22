@@ -1,6 +1,6 @@
 <?php
 /**
- * SsoProviderTest
+ * IdTest
  *
  * PHP version 5
  *
@@ -32,15 +32,15 @@ namespace Equisoft\SDK\AccountService;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SsoProviderTest Class Doc Comment
+ * IdTest Class Doc Comment
  *
  * @category    Class
- * @description Details related to the SSO provider user to create this session.
+ * @description Id
  * @package     Equisoft\SDK\AccountService
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class SsoProviderTest extends TestCase
+class IdTest extends TestCase
 {
 
     /**
@@ -72,23 +72,23 @@ class SsoProviderTest extends TestCase
     }
 
     /**
-     * Test "SsoProvider"
+     * Test "Id"
      */
-    public function testSsoProvider()
+    public function testId()
     {
     }
 
     /**
-     * Test attribute "provider"
+     * Test attribute "id"
      */
-    public function testPropertyProvider()
+    public function testPropertyId()
     {
     }
 
     /**
-     * Test attribute "identifier"
+     * Test attribute "uuid"
      */
-    public function testPropertyIdentifier()
+    public function testPropertyUuid()
     {
     }
 }
