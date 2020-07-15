@@ -99,6 +99,7 @@ Class | Method | HTTP request | Description
 *UserApi* | [**deleteUserSessions**](docs/Api/UserApi.md#deleteusersessions) | **DELETE** /users/{uuid}/sessions | Delete all sessions for the user.
 *UserApi* | [**getUser**](docs/Api/UserApi.md#getuser) | **GET** /users/{uuid} | Get detailed information about a user account.
 *UserApi* | [**getUuidById**](docs/Api/UserApi.md#getuuidbyid) | **GET** /users/{id}/uuid | Find an uuid by id.
+*UserApi* | [**listUsers**](docs/Api/UserApi.md#listusers) | **GET** /users | Searches accounts that match ALL params. If no search parameters are provided, returns all users.
 
 
 ## Documentation For Models
@@ -117,6 +118,7 @@ Class | Method | HTTP request | Description
  - [SsoProvider](docs/Model/SsoProvider.md)
  - [SsoToken](docs/Model/SsoToken.md)
  - [User](docs/Model/User.md)
+ - [UserAccountSearchResult](docs/Model/UserAccountSearchResult.md)
  - [UserAgreement](docs/Model/UserAgreement.md)
  - [UserAgreementState](docs/Model/UserAgreementState.md)
  - [UserState](docs/Model/UserState.md)
