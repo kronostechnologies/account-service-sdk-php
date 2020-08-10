@@ -61,18 +61,17 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Equisoft\SDK\AccountService\Api\SessionApi(
+$apiInstance = new Equisoft\SDK\AccountService\Api\ServiceAccountApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$sessionPayload = new \Equisoft\SDK\AccountService\Model\SessionPayload(); // \Equisoft\SDK\AccountService\Model\SessionPayload | 
+$serviceAccountCreationSchema = new \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema(); // \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema | 
 
 try {
-    $result = $apiInstance->createSession($sessionPayload);
-    print_r($result);
+    $apiInstance->createServiceAccount($serviceAccountCreationSchema);
 } catch (Exception $e) {
-    echo 'Exception when calling SessionApi->createSession: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ServiceAccountApi->createServiceAccount: ', $e->getMessage(), PHP_EOL;
 }
 
 ?>
@@ -84,6 +83,8 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*ServiceAccountApi* | [**createServiceAccount**](docs/Api/ServiceAccountApi.md#createserviceaccount) | **POST** /serviceAccounts | Creates a new service account
+*ServiceAccountApi* | [**getServiceAccount**](docs/Api/ServiceAccountApi.md#getserviceaccount) | **GET** /serviceAccounts/{uuid} | Get detailed information about a user account.
 *SessionApi* | [**createSession**](docs/Api/SessionApi.md#createsession) | **POST** /sessions | Create a user session.
 *SessionApi* | [**deleteAllSessions**](docs/Api/SessionApi.md#deleteallsessions) | **DELETE** /sessions | Delete all sessions
 *SessionApi* | [**deleteExpiredSessions**](docs/Api/SessionApi.md#deleteexpiredsessions) | **DELETE** /sessions/expired | Delete all expired sessions.
@@ -111,6 +112,9 @@ Class | Method | HTTP request | Description
  - [Id](docs/Model/Id.md)
  - [ImpersonatePayload](docs/Model/ImpersonatePayload.md)
  - [ServiceAccess](docs/Model/ServiceAccess.md)
+ - [ServiceAccountCreationSchema](docs/Model/ServiceAccountCreationSchema.md)
+ - [ServiceAccountSchema](docs/Model/ServiceAccountSchema.md)
+ - [ServiceAccountStatus](docs/Model/ServiceAccountStatus.md)
  - [ServiceName](docs/Model/ServiceName.md)
  - [Session](docs/Model/Session.md)
  - [SessionPayload](docs/Model/SessionPayload.md)
