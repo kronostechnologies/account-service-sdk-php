@@ -69,7 +69,8 @@ $apiInstance = new Equisoft\SDK\AccountService\Api\ServiceAccountApi(
 $serviceAccountCreationSchema = new \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema(); // \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema | 
 
 try {
-    $apiInstance->createServiceAccount($serviceAccountCreationSchema);
+    $result = $apiInstance->createServiceAccount($serviceAccountCreationSchema);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling ServiceAccountApi->createServiceAccount: ', $e->getMessage(), PHP_EOL;
 }
@@ -112,6 +113,7 @@ Class | Method | HTTP request | Description
  - [Id](docs/Model/Id.md)
  - [ImpersonatePayload](docs/Model/ImpersonatePayload.md)
  - [ServiceAccess](docs/Model/ServiceAccess.md)
+ - [ServiceAccountCreatedSchema](docs/Model/ServiceAccountCreatedSchema.md)
  - [ServiceAccountCreationSchema](docs/Model/ServiceAccountCreationSchema.md)
  - [ServiceAccountSchema](docs/Model/ServiceAccountSchema.md)
  - [ServiceAccountStatus](docs/Model/ServiceAccountStatus.md)

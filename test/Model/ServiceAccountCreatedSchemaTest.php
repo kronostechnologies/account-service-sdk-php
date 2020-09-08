@@ -1,6 +1,6 @@
 <?php
 /**
- * ServiceAccountCreationSchemaTest
+ * ServiceAccountCreatedSchemaTest
  *
  * PHP version 5
  *
@@ -32,15 +32,15 @@ namespace Equisoft\SDK\AccountService;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ServiceAccountCreationSchemaTest Class Doc Comment
+ * ServiceAccountCreatedSchemaTest Class Doc Comment
  *
  * @category    Class
- * @description A request to create a new account
+ * @description Information about the created service account
  * @package     Equisoft\SDK\AccountService
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ServiceAccountCreationSchemaTest extends TestCase
+class ServiceAccountCreatedSchemaTest extends TestCase
 {
 
     /**
@@ -72,30 +72,16 @@ class ServiceAccountCreationSchemaTest extends TestCase
     }
 
     /**
-     * Test "ServiceAccountCreationSchema"
+     * Test "ServiceAccountCreatedSchema"
      */
-    public function testServiceAccountCreationSchema()
+    public function testServiceAccountCreatedSchema()
     {
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "uuid"
      */
-    public function testPropertyName()
-    {
-    }
-
-    /**
-     * Test attribute "clientId"
-     */
-    public function testPropertyClientId()
-    {
-    }
-
-    /**
-     * Test attribute "displayName"
-     */
-    public function testPropertyDisplayName()
+    public function testPropertyUuid()
     {
     }
 }

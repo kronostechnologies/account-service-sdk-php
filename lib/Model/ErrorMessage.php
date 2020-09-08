@@ -47,6 +47,7 @@ class ErrorMessage
     const NOT_FOUND = 'NOT_FOUND';
     const BAD_REQUEST = 'BAD_REQUEST';
     const ACCESS_DENIED = 'ACCESS_DENIED';
+    const CONFLICT = 'CONFLICT';
     const PASSWORD_RESET_REQUESTED = 'PASSWORD_RESET_REQUESTED';
     const SESSION_ALREADY_IMPERSONATED = 'SESSION_ALREADY_IMPERSONATED';
     const SESSION_NOT_IMPERSONATED = 'SESSION_NOT_IMPERSONATED';
@@ -66,6 +67,7 @@ class ErrorMessage
             self::NOT_FOUND,
             self::BAD_REQUEST,
             self::ACCESS_DENIED,
+            self::CONFLICT,
             self::PASSWORD_RESET_REQUESTED,
             self::SESSION_ALREADY_IMPERSONATED,
             self::SESSION_NOT_IMPERSONATED,
