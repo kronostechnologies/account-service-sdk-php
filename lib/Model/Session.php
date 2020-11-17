@@ -60,6 +60,7 @@ class Session implements ModelInterface, ArrayAccess
         'sessionId' => 'string',
         'state' => '\Equisoft\SDK\AccountService\Model\SessionState',
         'created' => '\DateTime',
+        'suspend' => '\DateTime',
         'expire' => '\DateTime',
         'user' => '\Equisoft\SDK\AccountService\Model\User',
         'actor' => '\Equisoft\SDK\AccountService\Model\User',
@@ -77,6 +78,7 @@ class Session implements ModelInterface, ArrayAccess
         'sessionId' => null,
         'state' => null,
         'created' => 'date-time',
+        'suspend' => 'date-time',
         'expire' => 'date-time',
         'user' => null,
         'actor' => null,
@@ -115,6 +117,7 @@ class Session implements ModelInterface, ArrayAccess
         'sessionId' => 'sessionId',
         'state' => 'state',
         'created' => 'created',
+        'suspend' => 'suspend',
         'expire' => 'expire',
         'user' => 'user',
         'actor' => 'actor',
@@ -132,6 +135,7 @@ class Session implements ModelInterface, ArrayAccess
         'sessionId' => 'setSessionId',
         'state' => 'setState',
         'created' => 'setCreated',
+        'suspend' => 'setSuspend',
         'expire' => 'setExpire',
         'user' => 'setUser',
         'actor' => 'setActor',
@@ -149,6 +153,7 @@ class Session implements ModelInterface, ArrayAccess
         'sessionId' => 'getSessionId',
         'state' => 'getState',
         'created' => 'getCreated',
+        'suspend' => 'getSuspend',
         'expire' => 'getExpire',
         'user' => 'getUser',
         'actor' => 'getActor',
@@ -220,6 +225,7 @@ class Session implements ModelInterface, ArrayAccess
         $this->container['sessionId'] = isset($data['sessionId']) ? $data['sessionId'] : null;
         $this->container['state'] = isset($data['state']) ? $data['state'] : null;
         $this->container['created'] = isset($data['created']) ? $data['created'] : null;
+        $this->container['suspend'] = isset($data['suspend']) ? $data['suspend'] : null;
         $this->container['expire'] = isset($data['expire']) ? $data['expire'] : null;
         $this->container['user'] = isset($data['user']) ? $data['user'] : null;
         $this->container['actor'] = isset($data['actor']) ? $data['actor'] : null;
@@ -320,6 +326,30 @@ class Session implements ModelInterface, ArrayAccess
     public function setCreated($created)
     {
         $this->container['created'] = $created;
+
+        return $this;
+    }
+
+    /**
+     * Gets suspend
+     *
+     * @return \DateTime|null
+     */
+    public function getSuspend()
+    {
+        return $this->container['suspend'];
+    }
+
+    /**
+     * Sets suspend
+     *
+     * @param \DateTime|null $suspend suspend
+     *
+     * @return $this
+     */
+    public function setSuspend($suspend)
+    {
+        $this->container['suspend'] = $suspend;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * SessionTest
+ * LocalizedStringTest
  *
  * PHP version 7.2
  *
@@ -32,15 +32,15 @@ namespace Equisoft\SDK\AccountService;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SessionTest Class Doc Comment
+ * LocalizedStringTest Class Doc Comment
  *
  * @category    Class
- * @description Session
+ * @description LocalizedString
  * @package     Equisoft\SDK\AccountService
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class SessionTest extends TestCase
+class LocalizedStringTest extends TestCase
 {
 
     /**
@@ -72,79 +72,23 @@ class SessionTest extends TestCase
     }
 
     /**
-     * Test "Session"
+     * Test "LocalizedString"
      */
-    public function testSession()
+    public function testLocalizedString()
     {
     }
 
     /**
-     * Test attribute "sessionId"
+     * Test attribute "values"
      */
-    public function testPropertySessionId()
+    public function testPropertyValues()
     {
     }
 
     /**
-     * Test attribute "state"
+     * Test attribute "defaultLocale"
      */
-    public function testPropertyState()
-    {
-    }
-
-    /**
-     * Test attribute "created"
-     */
-    public function testPropertyCreated()
-    {
-    }
-
-    /**
-     * Test attribute "suspend"
-     */
-    public function testPropertySuspend()
-    {
-    }
-
-    /**
-     * Test attribute "expire"
-     */
-    public function testPropertyExpire()
-    {
-    }
-
-    /**
-     * Test attribute "user"
-     */
-    public function testPropertyUser()
-    {
-    }
-
-    /**
-     * Test attribute "actor"
-     */
-    public function testPropertyActor()
-    {
-    }
-
-    /**
-     * Test attribute "sso"
-     */
-    public function testPropertySso()
-    {
-    }
-
-    /**
-     * Test attribute "enabledForEquisoftConnect"
-     */
-    public function testPropertyEnabledForEquisoftConnect()
-    {
-    }
-
-    /**
-     * Test attribute "mobile"
-     */
-    public function testPropertyMobile()
+    public function testPropertyDefaultLocale()
     {
     }
 }

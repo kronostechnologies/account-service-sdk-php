@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **sessionId** | **string** | Globally unique identifier. | [optional] 
 **state** | [**\Equisoft\SDK\AccountService\Model\SessionState**](SessionState.md) |  | [optional] 
 **created** | [**\DateTime**](\DateTime.md) |  | [optional] 
+**suspend** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **expire** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **user** | [**\Equisoft\SDK\AccountService\Model\User**](User.md) |  | [optional] 
 **actor** | [**\Equisoft\SDK\AccountService\Model\User**](User.md) |  | [optional] 

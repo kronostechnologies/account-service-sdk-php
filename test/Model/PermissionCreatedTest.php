@@ -1,6 +1,6 @@
 <?php
 /**
- * SessionTest
+ * PermissionCreatedTest
  *
  * PHP version 7.2
  *
@@ -32,15 +32,15 @@ namespace Equisoft\SDK\AccountService;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SessionTest Class Doc Comment
+ * PermissionCreatedTest Class Doc Comment
  *
  * @category    Class
- * @description Session
+ * @description Information about the created permission
  * @package     Equisoft\SDK\AccountService
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class SessionTest extends TestCase
+class PermissionCreatedTest extends TestCase
 {
 
     /**
@@ -72,79 +72,16 @@ class SessionTest extends TestCase
     }
 
     /**
-     * Test "Session"
+     * Test "PermissionCreated"
      */
-    public function testSession()
+    public function testPermissionCreated()
     {
     }
 
     /**
-     * Test attribute "sessionId"
+     * Test attribute "code"
      */
-    public function testPropertySessionId()
-    {
-    }
-
-    /**
-     * Test attribute "state"
-     */
-    public function testPropertyState()
-    {
-    }
-
-    /**
-     * Test attribute "created"
-     */
-    public function testPropertyCreated()
-    {
-    }
-
-    /**
-     * Test attribute "suspend"
-     */
-    public function testPropertySuspend()
-    {
-    }
-
-    /**
-     * Test attribute "expire"
-     */
-    public function testPropertyExpire()
-    {
-    }
-
-    /**
-     * Test attribute "user"
-     */
-    public function testPropertyUser()
-    {
-    }
-
-    /**
-     * Test attribute "actor"
-     */
-    public function testPropertyActor()
-    {
-    }
-
-    /**
-     * Test attribute "sso"
-     */
-    public function testPropertySso()
-    {
-    }
-
-    /**
-     * Test attribute "enabledForEquisoftConnect"
-     */
-    public function testPropertyEnabledForEquisoftConnect()
-    {
-    }
-
-    /**
-     * Test attribute "mobile"
-     */
-    public function testPropertyMobile()
+    public function testPropertyCode()
     {
     }
 }

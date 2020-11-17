@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ServiceAccountApi
+ * OrganizationApi
  * PHP version 7.2
  *
  * @category Class
@@ -41,14 +41,14 @@ use Equisoft\SDK\AccountService\HeaderSelector;
 use Equisoft\SDK\AccountService\ObjectSerializer;
 
 /**
- * ServiceAccountApi Class Doc Comment
+ * OrganizationApi Class Doc Comment
  *
  * @category Class
  * @package  Equisoft\SDK\AccountService
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ServiceAccountApi
+class OrganizationApi
 {
     /**
      * @var ClientInterface
@@ -117,36 +117,38 @@ class ServiceAccountApi
     }
 
     /**
-     * Operation createServiceAccount
+     * Operation createOrUpdateOrganization
      *
-     * Creates a new service account
+     * Create or update an organization for a given uuid
      *
-     * @param  \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema $serviceAccountCreationSchema serviceAccountCreationSchema (required)
+     * @param  string $uuid The organization identifier (required)
+     * @param  \Equisoft\SDK\AccountService\Model\CreateOrUpdateOrganizationPayload $createOrUpdateOrganizationPayload createOrUpdateOrganizationPayload (required)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Equisoft\SDK\AccountService\Model\ServiceAccountCreatedSchema|\Equisoft\SDK\AccountService\Model\ErrorPayload|\Equisoft\SDK\AccountService\Model\ErrorPayload
+     * @return \Equisoft\SDK\AccountService\Model\OrganizationCreated|\Equisoft\SDK\AccountService\Model\ErrorPayload
      */
-    public function createServiceAccount($serviceAccountCreationSchema)
+    public function createOrUpdateOrganization($uuid, $createOrUpdateOrganizationPayload)
     {
-        list($response) = $this->createServiceAccountWithHttpInfo($serviceAccountCreationSchema);
+        list($response) = $this->createOrUpdateOrganizationWithHttpInfo($uuid, $createOrUpdateOrganizationPayload);
         return $response;
     }
 
     /**
-     * Operation createServiceAccountWithHttpInfo
+     * Operation createOrUpdateOrganizationWithHttpInfo
      *
-     * Creates a new service account
+     * Create or update an organization for a given uuid
      *
-     * @param  \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema $serviceAccountCreationSchema (required)
+     * @param  string $uuid The organization identifier (required)
+     * @param  \Equisoft\SDK\AccountService\Model\CreateOrUpdateOrganizationPayload $createOrUpdateOrganizationPayload (required)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Equisoft\SDK\AccountService\Model\ServiceAccountCreatedSchema|\Equisoft\SDK\AccountService\Model\ErrorPayload|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Equisoft\SDK\AccountService\Model\OrganizationCreated|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
      */
-    public function createServiceAccountWithHttpInfo($serviceAccountCreationSchema)
+    public function createOrUpdateOrganizationWithHttpInfo($uuid, $createOrUpdateOrganizationPayload)
     {
-        $request = $this->createServiceAccountRequest($serviceAccountCreationSchema);
+        $request = $this->createOrUpdateOrganizationRequest($uuid, $createOrUpdateOrganizationPayload);
 
         try {
             $options = $this->createHttpClientOption();
@@ -178,15 +180,15 @@ class ServiceAccountApi
 
             $responseBody = $response->getBody();
             switch($statusCode) {
-                case 201:
-                    if ('\Equisoft\SDK\AccountService\Model\ServiceAccountCreatedSchema' === '\SplFileObject') {
+                case 200:
+                    if ('\Equisoft\SDK\AccountService\Model\OrganizationCreated' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = (string) $responseBody;
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\ServiceAccountCreatedSchema', []),
+                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\OrganizationCreated', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -202,21 +204,9 @@ class ServiceAccountApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-                case 409:
-                    if ('\Equisoft\SDK\AccountService\Model\ErrorPayload' === '\SplFileObject') {
-                        $content = $responseBody; //stream goes to serializer
-                    } else {
-                        $content = (string) $responseBody;
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\ErrorPayload', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
             }
 
-            $returnType = '\Equisoft\SDK\AccountService\Model\ServiceAccountCreatedSchema';
+            $returnType = '\Equisoft\SDK\AccountService\Model\OrganizationCreated';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -232,23 +222,15 @@ class ServiceAccountApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-                case 201:
+                case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Equisoft\SDK\AccountService\Model\ServiceAccountCreatedSchema',
+                        '\Equisoft\SDK\AccountService\Model\OrganizationCreated',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
                     break;
                 case 400:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Equisoft\SDK\AccountService\Model\ErrorPayload',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-                case 409:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
                         '\Equisoft\SDK\AccountService\Model\ErrorPayload',
@@ -262,18 +244,19 @@ class ServiceAccountApi
     }
 
     /**
-     * Operation createServiceAccountAsync
+     * Operation createOrUpdateOrganizationAsync
      *
-     * Creates a new service account
+     * Create or update an organization for a given uuid
      *
-     * @param  \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema $serviceAccountCreationSchema (required)
+     * @param  string $uuid The organization identifier (required)
+     * @param  \Equisoft\SDK\AccountService\Model\CreateOrUpdateOrganizationPayload $createOrUpdateOrganizationPayload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createServiceAccountAsync($serviceAccountCreationSchema)
+    public function createOrUpdateOrganizationAsync($uuid, $createOrUpdateOrganizationPayload)
     {
-        return $this->createServiceAccountAsyncWithHttpInfo($serviceAccountCreationSchema)
+        return $this->createOrUpdateOrganizationAsyncWithHttpInfo($uuid, $createOrUpdateOrganizationPayload)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -282,19 +265,20 @@ class ServiceAccountApi
     }
 
     /**
-     * Operation createServiceAccountAsyncWithHttpInfo
+     * Operation createOrUpdateOrganizationAsyncWithHttpInfo
      *
-     * Creates a new service account
+     * Create or update an organization for a given uuid
      *
-     * @param  \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema $serviceAccountCreationSchema (required)
+     * @param  string $uuid The organization identifier (required)
+     * @param  \Equisoft\SDK\AccountService\Model\CreateOrUpdateOrganizationPayload $createOrUpdateOrganizationPayload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function createServiceAccountAsyncWithHttpInfo($serviceAccountCreationSchema)
+    public function createOrUpdateOrganizationAsyncWithHttpInfo($uuid, $createOrUpdateOrganizationPayload)
     {
-        $returnType = '\Equisoft\SDK\AccountService\Model\ServiceAccountCreatedSchema';
-        $request = $this->createServiceAccountRequest($serviceAccountCreationSchema);
+        $returnType = '\Equisoft\SDK\AccountService\Model\OrganizationCreated';
+        $request = $this->createOrUpdateOrganizationRequest($uuid, $createOrUpdateOrganizationPayload);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -331,23 +315,353 @@ class ServiceAccountApi
     }
 
     /**
-     * Create request for operation 'createServiceAccount'
+     * Create request for operation 'createOrUpdateOrganization'
      *
-     * @param  \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema $serviceAccountCreationSchema (required)
+     * @param  string $uuid The organization identifier (required)
+     * @param  \Equisoft\SDK\AccountService\Model\CreateOrUpdateOrganizationPayload $createOrUpdateOrganizationPayload (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function createServiceAccountRequest($serviceAccountCreationSchema)
+    protected function createOrUpdateOrganizationRequest($uuid, $createOrUpdateOrganizationPayload)
     {
-        // verify the required parameter 'serviceAccountCreationSchema' is set
-        if ($serviceAccountCreationSchema === null || (is_array($serviceAccountCreationSchema) && count($serviceAccountCreationSchema) === 0)) {
+        // verify the required parameter 'uuid' is set
+        if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $serviceAccountCreationSchema when calling createServiceAccount'
+                'Missing the required parameter $uuid when calling createOrUpdateOrganization'
+            );
+        }
+        if (strlen($uuid) < 1) {
+            throw new \InvalidArgumentException('invalid length for "$uuid" when calling OrganizationApi.createOrUpdateOrganization, must be bigger than or equal to 1.');
+        }
+
+        // verify the required parameter 'createOrUpdateOrganizationPayload' is set
+        if ($createOrUpdateOrganizationPayload === null || (is_array($createOrUpdateOrganizationPayload) && count($createOrUpdateOrganizationPayload) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $createOrUpdateOrganizationPayload when calling createOrUpdateOrganization'
             );
         }
 
-        $resourcePath = '/serviceAccounts';
+        $resourcePath = '/organizations/{uuid}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($uuid !== null) {
+            $resourcePath = str_replace(
+                '{' . 'uuid' . '}',
+                ObjectSerializer::toPathValue($uuid),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+        if (isset($createOrUpdateOrganizationPayload)) {
+            $_tempBody = $createOrUpdateOrganizationPayload;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/json'],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($_tempBody));
+            } else {
+                $httpBody = $_tempBody;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PUT',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createOrganization
+     *
+     * Creates a new organization
+     *
+     * @param  \Equisoft\SDK\AccountService\Model\CreateOrganizationPayload $createOrganizationPayload createOrganizationPayload (required)
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return \Equisoft\SDK\AccountService\Model\OrganizationCreated|\Equisoft\SDK\AccountService\Model\ErrorPayload|\Equisoft\SDK\AccountService\Model\ErrorPayload
+     */
+    public function createOrganization($createOrganizationPayload)
+    {
+        list($response) = $this->createOrganizationWithHttpInfo($createOrganizationPayload);
+        return $response;
+    }
+
+    /**
+     * Operation createOrganizationWithHttpInfo
+     *
+     * Creates a new organization
+     *
+     * @param  \Equisoft\SDK\AccountService\Model\CreateOrganizationPayload $createOrganizationPayload (required)
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of \Equisoft\SDK\AccountService\Model\OrganizationCreated|\Equisoft\SDK\AccountService\Model\ErrorPayload|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createOrganizationWithHttpInfo($createOrganizationPayload)
+    {
+        $request = $this->createOrganizationRequest($createOrganizationPayload);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            switch($statusCode) {
+                case 201:
+                    if ('\Equisoft\SDK\AccountService\Model\OrganizationCreated' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\OrganizationCreated', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Equisoft\SDK\AccountService\Model\ErrorPayload' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\ErrorPayload', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 409:
+                    if ('\Equisoft\SDK\AccountService\Model\ErrorPayload' === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\ErrorPayload', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Equisoft\SDK\AccountService\Model\OrganizationCreated';
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = (string) $responseBody;
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 201:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Equisoft\SDK\AccountService\Model\OrganizationCreated',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Equisoft\SDK\AccountService\Model\ErrorPayload',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 409:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Equisoft\SDK\AccountService\Model\ErrorPayload',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createOrganizationAsync
+     *
+     * Creates a new organization
+     *
+     * @param  \Equisoft\SDK\AccountService\Model\CreateOrganizationPayload $createOrganizationPayload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createOrganizationAsync($createOrganizationPayload)
+    {
+        return $this->createOrganizationAsyncWithHttpInfo($createOrganizationPayload)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createOrganizationAsyncWithHttpInfo
+     *
+     * Creates a new organization
+     *
+     * @param  \Equisoft\SDK\AccountService\Model\CreateOrganizationPayload $createOrganizationPayload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createOrganizationAsyncWithHttpInfo($createOrganizationPayload)
+    {
+        $returnType = '\Equisoft\SDK\AccountService\Model\OrganizationCreated';
+        $request = $this->createOrganizationRequest($createOrganizationPayload);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = (string) $responseBody;
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createOrganization'
+     *
+     * @param  \Equisoft\SDK\AccountService\Model\CreateOrganizationPayload $createOrganizationPayload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    protected function createOrganizationRequest($createOrganizationPayload)
+    {
+        // verify the required parameter 'createOrganizationPayload' is set
+        if ($createOrganizationPayload === null || (is_array($createOrganizationPayload) && count($createOrganizationPayload) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $createOrganizationPayload when calling createOrganization'
+            );
+        }
+
+        $resourcePath = '/organizations';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -359,8 +673,8 @@ class ServiceAccountApi
 
         // body params
         $_tempBody = null;
-        if (isset($serviceAccountCreationSchema)) {
-            $_tempBody = $serviceAccountCreationSchema;
+        if (isset($createOrganizationPayload)) {
+            $_tempBody = $createOrganizationPayload;
         }
 
         if ($multipart) {
@@ -428,36 +742,36 @@ class ServiceAccountApi
     }
 
     /**
-     * Operation getServiceAccount
+     * Operation getOrganization
      *
-     * Get detailed information about a user account.
+     * Get detailed information about an organization.
      *
-     * @param  string $uuid Service account identifier (required)
+     * @param  string $uuid The organization identifier (required)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Equisoft\SDK\AccountService\Model\ServiceAccountSchema|\Equisoft\SDK\AccountService\Model\ErrorPayload
+     * @return \Equisoft\SDK\AccountService\Model\Organization|\Equisoft\SDK\AccountService\Model\ErrorPayload
      */
-    public function getServiceAccount($uuid)
+    public function getOrganization($uuid)
     {
-        list($response) = $this->getServiceAccountWithHttpInfo($uuid);
+        list($response) = $this->getOrganizationWithHttpInfo($uuid);
         return $response;
     }
 
     /**
-     * Operation getServiceAccountWithHttpInfo
+     * Operation getOrganizationWithHttpInfo
      *
-     * Get detailed information about a user account.
+     * Get detailed information about an organization.
      *
-     * @param  string $uuid Service account identifier (required)
+     * @param  string $uuid The organization identifier (required)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \Equisoft\SDK\AccountService\Model\ServiceAccountSchema|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Equisoft\SDK\AccountService\Model\Organization|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getServiceAccountWithHttpInfo($uuid)
+    public function getOrganizationWithHttpInfo($uuid)
     {
-        $request = $this->getServiceAccountRequest($uuid);
+        $request = $this->getOrganizationRequest($uuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -490,14 +804,14 @@ class ServiceAccountApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\Equisoft\SDK\AccountService\Model\ServiceAccountSchema' === '\SplFileObject') {
+                    if ('\Equisoft\SDK\AccountService\Model\Organization' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = (string) $responseBody;
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\ServiceAccountSchema', []),
+                        ObjectSerializer::deserialize($content, '\Equisoft\SDK\AccountService\Model\Organization', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -515,7 +829,7 @@ class ServiceAccountApi
                     ];
             }
 
-            $returnType = '\Equisoft\SDK\AccountService\Model\ServiceAccountSchema';
+            $returnType = '\Equisoft\SDK\AccountService\Model\Organization';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -534,7 +848,7 @@ class ServiceAccountApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Equisoft\SDK\AccountService\Model\ServiceAccountSchema',
+                        '\Equisoft\SDK\AccountService\Model\Organization',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -553,18 +867,18 @@ class ServiceAccountApi
     }
 
     /**
-     * Operation getServiceAccountAsync
+     * Operation getOrganizationAsync
      *
-     * Get detailed information about a user account.
+     * Get detailed information about an organization.
      *
-     * @param  string $uuid Service account identifier (required)
+     * @param  string $uuid The organization identifier (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getServiceAccountAsync($uuid)
+    public function getOrganizationAsync($uuid)
     {
-        return $this->getServiceAccountAsyncWithHttpInfo($uuid)
+        return $this->getOrganizationAsyncWithHttpInfo($uuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -573,19 +887,19 @@ class ServiceAccountApi
     }
 
     /**
-     * Operation getServiceAccountAsyncWithHttpInfo
+     * Operation getOrganizationAsyncWithHttpInfo
      *
-     * Get detailed information about a user account.
+     * Get detailed information about an organization.
      *
-     * @param  string $uuid Service account identifier (required)
+     * @param  string $uuid The organization identifier (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getServiceAccountAsyncWithHttpInfo($uuid)
+    public function getOrganizationAsyncWithHttpInfo($uuid)
     {
-        $returnType = '\Equisoft\SDK\AccountService\Model\ServiceAccountSchema';
-        $request = $this->getServiceAccountRequest($uuid);
+        $returnType = '\Equisoft\SDK\AccountService\Model\Organization';
+        $request = $this->getOrganizationRequest($uuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -622,27 +936,27 @@ class ServiceAccountApi
     }
 
     /**
-     * Create request for operation 'getServiceAccount'
+     * Create request for operation 'getOrganization'
      *
-     * @param  string $uuid Service account identifier (required)
+     * @param  string $uuid The organization identifier (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getServiceAccountRequest($uuid)
+    protected function getOrganizationRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling getServiceAccount'
+                'Missing the required parameter $uuid when calling getOrganization'
             );
         }
         if (strlen($uuid) < 1) {
-            throw new \InvalidArgumentException('invalid length for "$uuid" when calling ServiceAccountApi.getServiceAccount, must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid length for "$uuid" when calling OrganizationApi.getOrganization, must be bigger than or equal to 1.');
         }
 
 
-        $resourcePath = '/serviceAccounts/{uuid}';
+        $resourcePath = '/organizations/{uuid}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];

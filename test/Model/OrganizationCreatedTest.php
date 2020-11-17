@@ -1,6 +1,6 @@
 <?php
 /**
- * SessionTest
+ * OrganizationCreatedTest
  *
  * PHP version 7.2
  *
@@ -32,15 +32,15 @@ namespace Equisoft\SDK\AccountService;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SessionTest Class Doc Comment
+ * OrganizationCreatedTest Class Doc Comment
  *
  * @category    Class
- * @description Session
+ * @description Information about the created organization
  * @package     Equisoft\SDK\AccountService
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class SessionTest extends TestCase
+class OrganizationCreatedTest extends TestCase
 {
 
     /**
@@ -72,79 +72,16 @@ class SessionTest extends TestCase
     }
 
     /**
-     * Test "Session"
+     * Test "OrganizationCreated"
      */
-    public function testSession()
+    public function testOrganizationCreated()
     {
     }
 
     /**
-     * Test attribute "sessionId"
+     * Test attribute "uuid"
      */
-    public function testPropertySessionId()
-    {
-    }
-
-    /**
-     * Test attribute "state"
-     */
-    public function testPropertyState()
-    {
-    }
-
-    /**
-     * Test attribute "created"
-     */
-    public function testPropertyCreated()
-    {
-    }
-
-    /**
-     * Test attribute "suspend"
-     */
-    public function testPropertySuspend()
-    {
-    }
-
-    /**
-     * Test attribute "expire"
-     */
-    public function testPropertyExpire()
-    {
-    }
-
-    /**
-     * Test attribute "user"
-     */
-    public function testPropertyUser()
-    {
-    }
-
-    /**
-     * Test attribute "actor"
-     */
-    public function testPropertyActor()
-    {
-    }
-
-    /**
-     * Test attribute "sso"
-     */
-    public function testPropertySso()
-    {
-    }
-
-    /**
-     * Test attribute "enabledForEquisoftConnect"
-     */
-    public function testPropertyEnabledForEquisoftConnect()
-    {
-    }
-
-    /**
-     * Test attribute "mobile"
-     */
-    public function testPropertyMobile()
+    public function testPropertyUuid()
     {
     }
 }

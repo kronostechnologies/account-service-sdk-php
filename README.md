@@ -61,18 +61,19 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-$apiInstance = new Equisoft\SDK\AccountService\Api\ServiceAccountApi(
+$apiInstance = new Equisoft\SDK\AccountService\Api\OrganizationApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$serviceAccountCreationSchema = new \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema(); // \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema | 
+$uuid = 'uuid_example'; // string | The organization identifier
+$createOrUpdateOrganizationPayload = new \Equisoft\SDK\AccountService\Model\CreateOrUpdateOrganizationPayload(); // \Equisoft\SDK\AccountService\Model\CreateOrUpdateOrganizationPayload | 
 
 try {
-    $result = $apiInstance->createServiceAccount($serviceAccountCreationSchema);
+    $result = $apiInstance->createOrUpdateOrganization($uuid, $createOrUpdateOrganizationPayload);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ServiceAccountApi->createServiceAccount: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling OrganizationApi->createOrUpdateOrganization: ', $e->getMessage(), PHP_EOL;
 }
 
 ?>
@@ -84,6 +85,10 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*OrganizationApi* | [**createOrUpdateOrganization**](docs/Api/OrganizationApi.md#createorupdateorganization) | **PUT** /organizations/{uuid} | Create or update an organization for a given uuid
+*OrganizationApi* | [**createOrganization**](docs/Api/OrganizationApi.md#createorganization) | **POST** /organizations | Creates a new organization
+*OrganizationApi* | [**getOrganization**](docs/Api/OrganizationApi.md#getorganization) | **GET** /organizations/{uuid} | Get detailed information about an organization.
+*PermissionApi* | [**createOrUpdatePermission**](docs/Api/PermissionApi.md#createorupdatepermission) | **PUT** /permissions/{code} | Create or update a permission for a given code
 *ServiceAccountApi* | [**createServiceAccount**](docs/Api/ServiceAccountApi.md#createserviceaccount) | **POST** /serviceAccounts | Creates a new service account
 *ServiceAccountApi* | [**getServiceAccount**](docs/Api/ServiceAccountApi.md#getserviceaccount) | **GET** /serviceAccounts/{uuid} | Get detailed information about a user account.
 *SessionApi* | [**createSession**](docs/Api/SessionApi.md#createsession) | **POST** /sessions | Create a user session.
@@ -106,12 +111,19 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [CreateOrUpdateOrganizationPayload](docs/Model/CreateOrUpdateOrganizationPayload.md)
+ - [CreateOrUpdatePermissionPayload](docs/Model/CreateOrUpdatePermissionPayload.md)
+ - [CreateOrganizationPayload](docs/Model/CreateOrganizationPayload.md)
  - [DatabaseState](docs/Model/DatabaseState.md)
  - [EnableEquisoftConnectPayloadSchema](docs/Model/EnableEquisoftConnectPayloadSchema.md)
  - [ErrorMessage](docs/Model/ErrorMessage.md)
  - [ErrorPayload](docs/Model/ErrorPayload.md)
  - [Id](docs/Model/Id.md)
  - [ImpersonatePayload](docs/Model/ImpersonatePayload.md)
+ - [LocalizedString](docs/Model/LocalizedString.md)
+ - [Organization](docs/Model/Organization.md)
+ - [OrganizationCreated](docs/Model/OrganizationCreated.md)
+ - [PermissionCreated](docs/Model/PermissionCreated.md)
  - [ServiceAccess](docs/Model/ServiceAccess.md)
  - [ServiceAccountCreatedSchema](docs/Model/ServiceAccountCreatedSchema.md)
  - [ServiceAccountCreationSchema](docs/Model/ServiceAccountCreationSchema.md)

@@ -1,6 +1,6 @@
 <?php
 /**
- * SessionTest
+ * OrganizationTest
  *
  * PHP version 7.2
  *
@@ -32,15 +32,15 @@ namespace Equisoft\SDK\AccountService;
 use PHPUnit\Framework\TestCase;
 
 /**
- * SessionTest Class Doc Comment
+ * OrganizationTest Class Doc Comment
  *
  * @category    Class
- * @description Session
+ * @description Organization
  * @package     Equisoft\SDK\AccountService
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class SessionTest extends TestCase
+class OrganizationTest extends TestCase
 {
 
     /**
@@ -72,79 +72,58 @@ class SessionTest extends TestCase
     }
 
     /**
-     * Test "Session"
+     * Test "Organization"
      */
-    public function testSession()
+    public function testOrganization()
     {
     }
 
     /**
-     * Test attribute "sessionId"
+     * Test attribute "uuid"
      */
-    public function testPropertySessionId()
+    public function testPropertyUuid()
     {
     }
 
     /**
-     * Test attribute "state"
+     * Test attribute "name"
      */
-    public function testPropertyState()
+    public function testPropertyName()
     {
     }
 
     /**
-     * Test attribute "created"
+     * Test attribute "parentUuid"
      */
-    public function testPropertyCreated()
+    public function testPropertyParentUuid()
     {
     }
 
     /**
-     * Test attribute "suspend"
+     * Test attribute "equisoftConnectProfiles"
      */
-    public function testPropertySuspend()
+    public function testPropertyEquisoftConnectProfiles()
     {
     }
 
     /**
-     * Test attribute "expire"
+     * Test attribute "equisoftPlanProfiles"
      */
-    public function testPropertyExpire()
+    public function testPropertyEquisoftPlanProfiles()
     {
     }
 
     /**
-     * Test attribute "user"
+     * Test attribute "createdAt"
      */
-    public function testPropertyUser()
+    public function testPropertyCreatedAt()
     {
     }
 
     /**
-     * Test attribute "actor"
+     * Test attribute "modifiedAt"
      */
-    public function testPropertyActor()
-    {
-    }
-
-    /**
-     * Test attribute "sso"
-     */
-    public function testPropertySso()
-    {
-    }
-
-    /**
-     * Test attribute "enabledForEquisoftConnect"
-     */
-    public function testPropertyEnabledForEquisoftConnect()
-    {
-    }
-
-    /**
-     * Test attribute "mobile"
-     */
-    public function testPropertyMobile()
+    public function testPropertyModifiedAt()
     {
     }
 }
