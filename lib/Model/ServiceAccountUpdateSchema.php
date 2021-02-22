@@ -1,6 +1,6 @@
 <?php
 /**
- * ServiceAccountCreatedSchema
+ * ServiceAccountUpdateSchema
  *
  * PHP version 7.2
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \Equisoft\SDK\AccountService\ObjectSerializer;
 
 /**
- * ServiceAccountCreatedSchema Class Doc Comment
+ * ServiceAccountUpdateSchema Class Doc Comment
  *
  * @category Class
- * @description Information about the created service account
+ * @description A request to update an existing account. All fields are optional
  * @package  Equisoft\SDK\AccountService
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ServiceAccountCreatedSchema implements ModelInterface, ArrayAccess
+class ServiceAccountUpdateSchema implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ServiceAccountCreatedSchema implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ServiceAccountCreatedSchema';
+    protected static $openAPIModelName = 'ServiceAccountUpdateSchema';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,7 +58,8 @@ class ServiceAccountCreatedSchema implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'uuid' => 'string'
+        'clientId' => 'string',
+        'displayName' => 'string'
     ];
 
     /**
@@ -67,7 +68,8 @@ class ServiceAccountCreatedSchema implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'uuid' => null
+        'clientId' => null,
+        'displayName' => null
     ];
 
     /**
@@ -97,7 +99,8 @@ class ServiceAccountCreatedSchema implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'uuid' => 'uuid'
+        'clientId' => 'clientId',
+        'displayName' => 'displayName'
     ];
 
     /**
@@ -106,7 +109,8 @@ class ServiceAccountCreatedSchema implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'uuid' => 'setUuid'
+        'clientId' => 'setClientId',
+        'displayName' => 'setDisplayName'
     ];
 
     /**
@@ -115,7 +119,8 @@ class ServiceAccountCreatedSchema implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'uuid' => 'getUuid'
+        'clientId' => 'getClientId',
+        'displayName' => 'getDisplayName'
     ];
 
     /**
@@ -178,7 +183,8 @@ class ServiceAccountCreatedSchema implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
+        $this->container['clientId'] = isset($data['clientId']) ? $data['clientId'] : null;
+        $this->container['displayName'] = isset($data['displayName']) ? $data['displayName'] : null;
     }
 
     /**
@@ -206,25 +212,49 @@ class ServiceAccountCreatedSchema implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets uuid
+     * Gets clientId
      *
      * @return string|null
      */
-    public function getUuid()
+    public function getClientId()
     {
-        return $this->container['uuid'];
+        return $this->container['clientId'];
     }
 
     /**
-     * Sets uuid
+     * Sets clientId
      *
-     * @param string|null $uuid uuid
+     * @param string|null $clientId clientId
      *
      * @return $this
      */
-    public function setUuid($uuid)
+    public function setClientId($clientId)
     {
-        $this->container['uuid'] = $uuid;
+        $this->container['clientId'] = $clientId;
+
+        return $this;
+    }
+
+    /**
+     * Gets displayName
+     *
+     * @return string|null
+     */
+    public function getDisplayName()
+    {
+        return $this->container['displayName'];
+    }
+
+    /**
+     * Sets displayName
+     *
+     * @param string|null $displayName displayName
+     *
+     * @return $this
+     */
+    public function setDisplayName($displayName)
+    {
+        $this->container['displayName'] = $displayName;
 
         return $this;
     }

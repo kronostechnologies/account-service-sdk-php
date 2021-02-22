@@ -4,6 +4,7 @@
 README.md
 composer.json
 docs/Api/OrganizationApi.md
+docs/Api/OrganizationRoleApi.md
 docs/Api/PermissionApi.md
 docs/Api/ServiceAccountApi.md
 docs/Api/SessionApi.md
@@ -11,6 +12,7 @@ docs/Api/UserApi.md
 docs/Model/CreateOrUpdateOrganizationPayload.md
 docs/Model/CreateOrUpdatePermissionPayload.md
 docs/Model/CreateOrganizationPayload.md
+docs/Model/CreateRole.md
 docs/Model/DatabaseState.md
 docs/Model/EnableEquisoftConnectPayloadSchema.md
 docs/Model/ErrorMessage.md
@@ -21,11 +23,13 @@ docs/Model/LocalizedString.md
 docs/Model/Organization.md
 docs/Model/OrganizationCreated.md
 docs/Model/PermissionCreated.md
+docs/Model/RoleCreated.md
 docs/Model/ServiceAccess.md
-docs/Model/ServiceAccountCreatedSchema.md
 docs/Model/ServiceAccountCreationSchema.md
 docs/Model/ServiceAccountSchema.md
 docs/Model/ServiceAccountStatus.md
+docs/Model/ServiceAccountUpdateSchema.md
+docs/Model/ServiceAccountUuidSchema.md
 docs/Model/ServiceName.md
 docs/Model/Session.md
 docs/Model/SessionPayload.md
@@ -39,6 +43,7 @@ docs/Model/UserAgreementState.md
 docs/Model/UserState.md
 git_push.sh
 lib/Api/OrganizationApi.php
+lib/Api/OrganizationRoleApi.php
 lib/Api/PermissionApi.php
 lib/Api/ServiceAccountApi.php
 lib/Api/SessionApi.php
@@ -49,6 +54,7 @@ lib/HeaderSelector.php
 lib/Model/CreateOrUpdateOrganizationPayload.php
 lib/Model/CreateOrUpdatePermissionPayload.php
 lib/Model/CreateOrganizationPayload.php
+lib/Model/CreateRole.php
 lib/Model/DatabaseState.php
 lib/Model/EnableEquisoftConnectPayloadSchema.php
 lib/Model/ErrorMessage.php
@@ -60,11 +66,13 @@ lib/Model/ModelInterface.php
 lib/Model/Organization.php
 lib/Model/OrganizationCreated.php
 lib/Model/PermissionCreated.php
+lib/Model/RoleCreated.php
 lib/Model/ServiceAccess.php
-lib/Model/ServiceAccountCreatedSchema.php
 lib/Model/ServiceAccountCreationSchema.php
 lib/Model/ServiceAccountSchema.php
 lib/Model/ServiceAccountStatus.php
+lib/Model/ServiceAccountUpdateSchema.php
+lib/Model/ServiceAccountUuidSchema.php
 lib/Model/ServiceName.php
 lib/Model/Session.php
 lib/Model/SessionPayload.php
@@ -79,6 +87,7 @@ lib/Model/UserState.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
 test/Api/OrganizationApiTest.php
+test/Api/OrganizationRoleApiTest.php
 test/Api/PermissionApiTest.php
 test/Api/ServiceAccountApiTest.php
 test/Api/SessionApiTest.php
@@ -86,6 +95,7 @@ test/Api/UserApiTest.php
 test/Model/CreateOrUpdateOrganizationPayloadTest.php
 test/Model/CreateOrUpdatePermissionPayloadTest.php
 test/Model/CreateOrganizationPayloadTest.php
+test/Model/CreateRoleTest.php
 test/Model/DatabaseStateTest.php
 test/Model/EnableEquisoftConnectPayloadSchemaTest.php
 test/Model/ErrorMessageTest.php
@@ -96,11 +106,13 @@ test/Model/LocalizedStringTest.php
 test/Model/OrganizationCreatedTest.php
 test/Model/OrganizationTest.php
 test/Model/PermissionCreatedTest.php
+test/Model/RoleCreatedTest.php
 test/Model/ServiceAccessTest.php
-test/Model/ServiceAccountCreatedSchemaTest.php
 test/Model/ServiceAccountCreationSchemaTest.php
 test/Model/ServiceAccountSchemaTest.php
 test/Model/ServiceAccountStatusTest.php
+test/Model/ServiceAccountUpdateSchemaTest.php
+test/Model/ServiceAccountUuidSchemaTest.php
 test/Model/ServiceNameTest.php
 test/Model/SessionPayloadTest.php
 test/Model/SessionStateTest.php

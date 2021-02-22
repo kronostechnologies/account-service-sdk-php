@@ -91,4 +91,24 @@ class ServiceAccountApiTest extends TestCase
     public function testGetServiceAccount()
     {
     }
+
+    /**
+     * Test case for searchServiceAccount
+     *
+     * Searches service accounts that match ALL params. If none are provided, returns all service accounts.
+     *
+     */
+    public function testSearchServiceAccount()
+    {
+    }
+
+    /**
+     * Test case for updateServiceAccount
+     *
+     * Updates a service account by uuid.
+     *
+     */
+    public function testUpdateServiceAccount()
+    {
+    }
 }
