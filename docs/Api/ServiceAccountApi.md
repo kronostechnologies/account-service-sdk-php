@@ -6,12 +6,14 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createServiceAccount**](ServiceAccountApi.md#createServiceAccount) | **POST** /serviceAccounts | Creates a new service account
 [**getServiceAccount**](ServiceAccountApi.md#getServiceAccount) | **GET** /serviceAccounts/{uuid} | Get detailed information about a user account.
+[**searchServiceAccount**](ServiceAccountApi.md#searchServiceAccount) | **GET** /serviceAccounts | Searches service accounts that match ALL params. If none are provided, returns all service accounts
+[**updateServiceAccount**](ServiceAccountApi.md#updateServiceAccount) | **PATCH** /serviceAccounts/{uuid} | Updates a service account by uuid
 
 
 
 ## createServiceAccount
 
-> \Equisoft\SDK\AccountService\Model\ServiceAccountCreatedSchema createServiceAccount($serviceAccountCreationSchema)
+> \Equisoft\SDK\AccountService\Model\ServiceAccountUuidSchema createServiceAccount($serviceAccountCreationSchema)
 
 Creates a new service account
 
@@ -47,7 +49,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**\Equisoft\SDK\AccountService\Model\ServiceAccountCreatedSchema**](../Model/ServiceAccountCreatedSchema.md)
+[**\Equisoft\SDK\AccountService\Model\ServiceAccountUuidSchema**](../Model/ServiceAccountUuidSchema.md)
 
 ### Authorization
 
@@ -110,6 +112,116 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## searchServiceAccount
+
+> \Equisoft\SDK\AccountService\Model\ServiceAccountSchema[] searchServiceAccount($name)
+
+Searches service accounts that match ALL params. If none are provided, returns all service accounts
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Equisoft\SDK\AccountService\Api\ServiceAccountApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$name = 'name_example'; // string | 
+
+try {
+    $result = $apiInstance->searchServiceAccount($name);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ServiceAccountApi->searchServiceAccount: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **string**|  | [optional]
+
+### Return type
+
+[**\Equisoft\SDK\AccountService\Model\ServiceAccountSchema[]**](../Model/ServiceAccountSchema.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
+
+
+## updateServiceAccount
+
+> \Equisoft\SDK\AccountService\Model\ServiceAccountUuidSchema updateServiceAccount($uuid, $serviceAccountUpdateSchema)
+
+Updates a service account by uuid
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+$apiInstance = new Equisoft\SDK\AccountService\Api\ServiceAccountApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$uuid = 'uuid_example'; // string | Service account identifier
+$serviceAccountUpdateSchema = new \Equisoft\SDK\AccountService\Model\ServiceAccountUpdateSchema(); // \Equisoft\SDK\AccountService\Model\ServiceAccountUpdateSchema | 
+
+try {
+    $result = $apiInstance->updateServiceAccount($uuid, $serviceAccountUpdateSchema);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ServiceAccountApi->updateServiceAccount: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **string**| Service account identifier |
+ **serviceAccountUpdateSchema** | [**\Equisoft\SDK\AccountService\Model\ServiceAccountUpdateSchema**](../Model/ServiceAccountUpdateSchema.md)|  |
+
+### Return type
+
+[**\Equisoft\SDK\AccountService\Model\ServiceAccountUuidSchema**](../Model/ServiceAccountUuidSchema.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)

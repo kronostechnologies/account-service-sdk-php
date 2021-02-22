@@ -88,9 +88,14 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**createOrUpdateOrganization**](docs/Api/OrganizationApi.md#createorupdateorganization) | **PUT** /organizations/{uuid} | Create or update an organization for a given uuid
 *OrganizationApi* | [**createOrganization**](docs/Api/OrganizationApi.md#createorganization) | **POST** /organizations | Creates a new organization
 *OrganizationApi* | [**getOrganization**](docs/Api/OrganizationApi.md#getorganization) | **GET** /organizations/{uuid} | Get detailed information about an organization.
+*OrganizationApi* | [**listOrganization**](docs/Api/OrganizationApi.md#listorganization) | **GET** /organizations | List organizations
+*OrganizationRoleApi* | [**createOrUpdateRole**](docs/Api/OrganizationRoleApi.md#createorupdaterole) | **PUT** /organizations/{organisationId}/roles/{roleId} | Create or update organization roles for a given uuid
+*OrganizationRoleApi* | [**createRole**](docs/Api/OrganizationRoleApi.md#createrole) | **POST** /organizations/{organizationId}/roles | Create organization roles for a given uuid
 *PermissionApi* | [**createOrUpdatePermission**](docs/Api/PermissionApi.md#createorupdatepermission) | **PUT** /permissions/{code} | Create or update a permission for a given code
 *ServiceAccountApi* | [**createServiceAccount**](docs/Api/ServiceAccountApi.md#createserviceaccount) | **POST** /serviceAccounts | Creates a new service account
 *ServiceAccountApi* | [**getServiceAccount**](docs/Api/ServiceAccountApi.md#getserviceaccount) | **GET** /serviceAccounts/{uuid} | Get detailed information about a user account.
+*ServiceAccountApi* | [**searchServiceAccount**](docs/Api/ServiceAccountApi.md#searchserviceaccount) | **GET** /serviceAccounts | Searches service accounts that match ALL params. If none are provided, returns all service accounts
+*ServiceAccountApi* | [**updateServiceAccount**](docs/Api/ServiceAccountApi.md#updateserviceaccount) | **PATCH** /serviceAccounts/{uuid} | Updates a service account by uuid
 *SessionApi* | [**createSession**](docs/Api/SessionApi.md#createsession) | **POST** /sessions | Create a user session.
 *SessionApi* | [**deleteAllSessions**](docs/Api/SessionApi.md#deleteallsessions) | **DELETE** /sessions | Delete all sessions
 *SessionApi* | [**deleteExpiredSessions**](docs/Api/SessionApi.md#deleteexpiredsessions) | **DELETE** /sessions/expired | Delete all expired sessions.
@@ -114,6 +119,7 @@ Class | Method | HTTP request | Description
  - [CreateOrUpdateOrganizationPayload](docs/Model/CreateOrUpdateOrganizationPayload.md)
  - [CreateOrUpdatePermissionPayload](docs/Model/CreateOrUpdatePermissionPayload.md)
  - [CreateOrganizationPayload](docs/Model/CreateOrganizationPayload.md)
+ - [CreateRole](docs/Model/CreateRole.md)
  - [DatabaseState](docs/Model/DatabaseState.md)
  - [EnableEquisoftConnectPayloadSchema](docs/Model/EnableEquisoftConnectPayloadSchema.md)
  - [ErrorMessage](docs/Model/ErrorMessage.md)
@@ -124,11 +130,13 @@ Class | Method | HTTP request | Description
  - [Organization](docs/Model/Organization.md)
  - [OrganizationCreated](docs/Model/OrganizationCreated.md)
  - [PermissionCreated](docs/Model/PermissionCreated.md)
+ - [RoleCreated](docs/Model/RoleCreated.md)
  - [ServiceAccess](docs/Model/ServiceAccess.md)
- - [ServiceAccountCreatedSchema](docs/Model/ServiceAccountCreatedSchema.md)
  - [ServiceAccountCreationSchema](docs/Model/ServiceAccountCreationSchema.md)
  - [ServiceAccountSchema](docs/Model/ServiceAccountSchema.md)
  - [ServiceAccountStatus](docs/Model/ServiceAccountStatus.md)
+ - [ServiceAccountUpdateSchema](docs/Model/ServiceAccountUpdateSchema.md)
+ - [ServiceAccountUuidSchema](docs/Model/ServiceAccountUuidSchema.md)
  - [ServiceName](docs/Model/ServiceName.md)
  - [Session](docs/Model/Session.md)
  - [SessionPayload](docs/Model/SessionPayload.md)
