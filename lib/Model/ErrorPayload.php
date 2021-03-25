@@ -195,6 +195,9 @@ class ErrorPayload implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['message'] === null) {
+            $invalidProperties[] = "'message' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -213,7 +216,7 @@ class ErrorPayload implements ModelInterface, ArrayAccess
     /**
      * Gets message
      *
-     * @return \Equisoft\SDK\AccountService\Model\ErrorMessage|null
+     * @return \Equisoft\SDK\AccountService\Model\ErrorMessage
      */
     public function getMessage()
     {
@@ -223,7 +226,7 @@ class ErrorPayload implements ModelInterface, ArrayAccess
     /**
      * Sets message
      *
-     * @param \Equisoft\SDK\AccountService\Model\ErrorMessage|null $message message
+     * @param \Equisoft\SDK\AccountService\Model\ErrorMessage $message message
      *
      * @return $this
      */
