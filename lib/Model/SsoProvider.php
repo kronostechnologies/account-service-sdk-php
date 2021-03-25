@@ -196,6 +196,12 @@ class SsoProvider implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['provider'] === null) {
+            $invalidProperties[] = "'provider' can't be null";
+        }
+        if ($this->container['identifier'] === null) {
+            $invalidProperties[] = "'identifier' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -214,7 +220,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
     /**
      * Gets provider
      *
-     * @return string|null
+     * @return string
      */
     public function getProvider()
     {
@@ -224,7 +230,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
     /**
      * Sets provider
      *
-     * @param string|null $provider SSO Provider who initiated the single sign on.
+     * @param string $provider SSO Provider who initiated the single sign on.
      *
      * @return $this
      */
@@ -238,7 +244,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
     /**
      * Gets identifier
      *
-     * @return string|null
+     * @return string
      */
     public function getIdentifier()
     {
@@ -248,7 +254,7 @@ class SsoProvider implements ModelInterface, ArrayAccess
     /**
      * Sets identifier
      *
-     * @param string|null $identifier External identifier the user used to login with the SSO provider.
+     * @param string $identifier External identifier the user used to login with the SSO provider.
      *
      * @return $this
      */

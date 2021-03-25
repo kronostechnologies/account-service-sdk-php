@@ -195,6 +195,12 @@ class SsoToken implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -213,7 +219,7 @@ class SsoToken implements ModelInterface, ArrayAccess
     /**
      * Gets id
      *
-     * @return string|null
+     * @return string
      */
     public function getId()
     {
@@ -223,7 +229,7 @@ class SsoToken implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param string|null $id String that uniquely identify a sso token for a given session.
+     * @param string $id String that uniquely identify a sso token for a given session.
      *
      * @return $this
      */
@@ -237,7 +243,7 @@ class SsoToken implements ModelInterface, ArrayAccess
     /**
      * Gets value
      *
-     * @return string|null
+     * @return string
      */
     public function getValue()
     {
@@ -247,7 +253,7 @@ class SsoToken implements ModelInterface, ArrayAccess
     /**
      * Sets value
      *
-     * @param string|null $value Token value returned as stored. There is no double-encoding.
+     * @param string $value Token value returned as stored. There is no double-encoding.
      *
      * @return $this
      */

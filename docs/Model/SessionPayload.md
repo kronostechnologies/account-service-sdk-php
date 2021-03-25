@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**userUuid** | **string** | Globally unique identifier. | [optional] 
+**userUuid** | **string** | Globally unique identifier. | 
 **enable** | **bool** |  | [optional] 
 **sso** | [**\Equisoft\SDK\AccountService\Model\SsoProvider**](SsoProvider.md) |  | [optional] 
 **publicComputer** | **bool** | Indicate that the session is initiated from a public computer. | [optional] 

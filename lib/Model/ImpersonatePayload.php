@@ -190,6 +190,9 @@ class ImpersonatePayload implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['userUuid'] === null) {
+            $invalidProperties[] = "'userUuid' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -208,7 +211,7 @@ class ImpersonatePayload implements ModelInterface, ArrayAccess
     /**
      * Gets userUuid
      *
-     * @return string|null
+     * @return string
      */
     public function getUserUuid()
     {
@@ -218,7 +221,7 @@ class ImpersonatePayload implements ModelInterface, ArrayAccess
     /**
      * Sets userUuid
      *
-     * @param string|null $userUuid Globally unique identifier.
+     * @param string $userUuid Globally unique identifier.
      *
      * @return $this
      */

@@ -249,6 +249,30 @@ class Session implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['sessionId'] === null) {
+            $invalidProperties[] = "'sessionId' can't be null";
+        }
+        if ($this->container['state'] === null) {
+            $invalidProperties[] = "'state' can't be null";
+        }
+        if ($this->container['created'] === null) {
+            $invalidProperties[] = "'created' can't be null";
+        }
+        if ($this->container['suspend'] === null) {
+            $invalidProperties[] = "'suspend' can't be null";
+        }
+        if ($this->container['expire'] === null) {
+            $invalidProperties[] = "'expire' can't be null";
+        }
+        if ($this->container['user'] === null) {
+            $invalidProperties[] = "'user' can't be null";
+        }
+        if ($this->container['enabledForEquisoftConnect'] === null) {
+            $invalidProperties[] = "'enabledForEquisoftConnect' can't be null";
+        }
+        if ($this->container['mobile'] === null) {
+            $invalidProperties[] = "'mobile' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -267,7 +291,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Gets sessionId
      *
-     * @return string|null
+     * @return string
      */
     public function getSessionId()
     {
@@ -277,7 +301,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Sets sessionId
      *
-     * @param string|null $sessionId Globally unique identifier.
+     * @param string $sessionId Globally unique identifier.
      *
      * @return $this
      */
@@ -291,7 +315,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Gets state
      *
-     * @return \Equisoft\SDK\AccountService\Model\SessionState|null
+     * @return \Equisoft\SDK\AccountService\Model\SessionState
      */
     public function getState()
     {
@@ -301,7 +325,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Sets state
      *
-     * @param \Equisoft\SDK\AccountService\Model\SessionState|null $state state
+     * @param \Equisoft\SDK\AccountService\Model\SessionState $state state
      *
      * @return $this
      */
@@ -315,7 +339,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Gets created
      *
-     * @return \DateTime|null
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -325,7 +349,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Sets created
      *
-     * @param \DateTime|null $created created
+     * @param \DateTime $created created
      *
      * @return $this
      */
@@ -339,7 +363,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Gets suspend
      *
-     * @return \DateTime|null
+     * @return \DateTime
      */
     public function getSuspend()
     {
@@ -349,7 +373,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Sets suspend
      *
-     * @param \DateTime|null $suspend suspend
+     * @param \DateTime $suspend suspend
      *
      * @return $this
      */
@@ -363,7 +387,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Gets expire
      *
-     * @return \DateTime|null
+     * @return \DateTime
      */
     public function getExpire()
     {
@@ -373,7 +397,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Sets expire
      *
-     * @param \DateTime|null $expire expire
+     * @param \DateTime $expire expire
      *
      * @return $this
      */
@@ -411,7 +435,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Gets user
      *
-     * @return \Equisoft\SDK\AccountService\Model\User|null
+     * @return \Equisoft\SDK\AccountService\Model\User
      */
     public function getUser()
     {
@@ -421,7 +445,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Sets user
      *
-     * @param \Equisoft\SDK\AccountService\Model\User|null $user user
+     * @param \Equisoft\SDK\AccountService\Model\User $user user
      *
      * @return $this
      */
@@ -483,7 +507,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Gets enabledForEquisoftConnect
      *
-     * @return bool|null
+     * @return bool
      */
     public function getEnabledForEquisoftConnect()
     {
@@ -493,7 +517,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Sets enabledForEquisoftConnect
      *
-     * @param bool|null $enabledForEquisoftConnect Session is enabled for Equisoft/Connect and is accounted for concurrent access.
+     * @param bool $enabledForEquisoftConnect Session is enabled for Equisoft/Connect and is accounted for concurrent access.
      *
      * @return $this
      */
@@ -507,7 +531,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Gets mobile
      *
-     * @return bool|null
+     * @return bool
      */
     public function getMobile()
     {
@@ -517,7 +541,7 @@ class Session implements ModelInterface, ArrayAccess
     /**
      * Sets mobile
      *
-     * @param bool|null $mobile Indicate that the session is initiated from a mobile device.
+     * @param bool $mobile Indicate that the session is initiated from a mobile device.
      *
      * @return $this
      */
