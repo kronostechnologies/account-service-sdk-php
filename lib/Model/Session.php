@@ -62,6 +62,7 @@ class Session implements ModelInterface, ArrayAccess
         'created' => '\DateTime',
         'suspend' => '\DateTime',
         'expire' => '\DateTime',
+        'cookieDomain' => 'string',
         'user' => '\Equisoft\SDK\AccountService\Model\User',
         'actor' => '\Equisoft\SDK\AccountService\Model\User',
         'sso' => '\Equisoft\SDK\AccountService\Model\SsoProvider',
@@ -80,6 +81,7 @@ class Session implements ModelInterface, ArrayAccess
         'created' => 'date-time',
         'suspend' => 'date-time',
         'expire' => 'date-time',
+        'cookieDomain' => null,
         'user' => null,
         'actor' => null,
         'sso' => null,
@@ -119,6 +121,7 @@ class Session implements ModelInterface, ArrayAccess
         'created' => 'created',
         'suspend' => 'suspend',
         'expire' => 'expire',
+        'cookieDomain' => 'cookieDomain',
         'user' => 'user',
         'actor' => 'actor',
         'sso' => 'sso',
@@ -137,6 +140,7 @@ class Session implements ModelInterface, ArrayAccess
         'created' => 'setCreated',
         'suspend' => 'setSuspend',
         'expire' => 'setExpire',
+        'cookieDomain' => 'setCookieDomain',
         'user' => 'setUser',
         'actor' => 'setActor',
         'sso' => 'setSso',
@@ -155,6 +159,7 @@ class Session implements ModelInterface, ArrayAccess
         'created' => 'getCreated',
         'suspend' => 'getSuspend',
         'expire' => 'getExpire',
+        'cookieDomain' => 'getCookieDomain',
         'user' => 'getUser',
         'actor' => 'getActor',
         'sso' => 'getSso',
@@ -227,6 +232,7 @@ class Session implements ModelInterface, ArrayAccess
         $this->container['created'] = isset($data['created']) ? $data['created'] : null;
         $this->container['suspend'] = isset($data['suspend']) ? $data['suspend'] : null;
         $this->container['expire'] = isset($data['expire']) ? $data['expire'] : null;
+        $this->container['cookieDomain'] = isset($data['cookieDomain']) ? $data['cookieDomain'] : null;
         $this->container['user'] = isset($data['user']) ? $data['user'] : null;
         $this->container['actor'] = isset($data['actor']) ? $data['actor'] : null;
         $this->container['sso'] = isset($data['sso']) ? $data['sso'] : null;
@@ -374,6 +380,30 @@ class Session implements ModelInterface, ArrayAccess
     public function setExpire($expire)
     {
         $this->container['expire'] = $expire;
+
+        return $this;
+    }
+
+    /**
+     * Gets cookieDomain
+     *
+     * @return string|null
+     */
+    public function getCookieDomain()
+    {
+        return $this->container['cookieDomain'];
+    }
+
+    /**
+     * Sets cookieDomain
+     *
+     * @param string|null $cookieDomain Indicate the domain name the session cookie was emitted for.
+     *
+     * @return $this
+     */
+    public function setCookieDomain($cookieDomain)
+    {
+        $this->container['cookieDomain'] = $cookieDomain;
 
         return $this;
     }

@@ -55,6 +55,7 @@ class ErrorMessage
     const USER_NOT_ENABLED = 'USER_NOT_ENABLED';
     const USER_AGREEMENT_REQUESTED = 'USER_AGREEMENT_REQUESTED';
     const CONCURRENT_ACCESS = 'CONCURRENT_ACCESS';
+    const INVALID_COOKIE_DOMAIN_NAME = 'INVALID_COOKIE_DOMAIN_NAME';
     
     /**
      * Gets allowable values of the enum
@@ -75,6 +76,7 @@ class ErrorMessage
             self::USER_NOT_ENABLED,
             self::USER_AGREEMENT_REQUESTED,
             self::CONCURRENT_ACCESS,
+            self::INVALID_COOKIE_DOMAIN_NAME,
         ];
     }
 }

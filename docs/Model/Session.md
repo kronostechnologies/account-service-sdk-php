@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **created** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **suspend** | [**\DateTime**](\DateTime.md) |  | [optional] 
 **expire** | [**\DateTime**](\DateTime.md) |  | [optional] 
+**cookieDomain** | **string** | Indicate the domain name the session cookie was emitted for. | [optional] 
 **user** | [**\Equisoft\SDK\AccountService\Model\User**](User.md) |  | [optional] 
 **actor** | [**\Equisoft\SDK\AccountService\Model\User**](User.md) |  | [optional] 
 **sso** | [**\Equisoft\SDK\AccountService\Model\SsoProvider**](SsoProvider.md) |  | [optional] 

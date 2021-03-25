@@ -114,6 +114,13 @@ class SessionTest extends TestCase
     }
 
     /**
+     * Test attribute "cookieDomain"
+     */
+    public function testPropertyCookieDomain()
+    {
+    }
+
+    /**
      * Test attribute "user"
      */
     public function testPropertyUser()

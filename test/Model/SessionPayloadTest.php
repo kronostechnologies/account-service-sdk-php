@@ -114,6 +114,13 @@ class SessionPayloadTest extends TestCase
     }
 
     /**
+     * Test attribute "cookieDomain"
+     */
+    public function testPropertyCookieDomain()
+    {
+    }
+
+    /**
      * Test attribute "isPublicComputer"
      */
     public function testPropertyIsPublicComputer()

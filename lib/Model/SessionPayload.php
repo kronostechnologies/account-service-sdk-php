@@ -63,6 +63,7 @@ class SessionPayload implements ModelInterface, ArrayAccess
         'sso' => '\Equisoft\SDK\AccountService\Model\SsoProvider',
         'publicComputer' => 'bool',
         'mobileDevice' => 'bool',
+        'cookieDomain' => 'string',
         'isPublicComputer' => 'bool',
         'isMobileDevice' => 'bool'
     ];
@@ -78,6 +79,7 @@ class SessionPayload implements ModelInterface, ArrayAccess
         'sso' => null,
         'publicComputer' => null,
         'mobileDevice' => null,
+        'cookieDomain' => null,
         'isPublicComputer' => null,
         'isMobileDevice' => null
     ];
@@ -114,6 +116,7 @@ class SessionPayload implements ModelInterface, ArrayAccess
         'sso' => 'sso',
         'publicComputer' => 'publicComputer',
         'mobileDevice' => 'mobileDevice',
+        'cookieDomain' => 'cookieDomain',
         'isPublicComputer' => 'isPublicComputer',
         'isMobileDevice' => 'isMobileDevice'
     ];
@@ -129,6 +132,7 @@ class SessionPayload implements ModelInterface, ArrayAccess
         'sso' => 'setSso',
         'publicComputer' => 'setPublicComputer',
         'mobileDevice' => 'setMobileDevice',
+        'cookieDomain' => 'setCookieDomain',
         'isPublicComputer' => 'setIsPublicComputer',
         'isMobileDevice' => 'setIsMobileDevice'
     ];
@@ -144,6 +148,7 @@ class SessionPayload implements ModelInterface, ArrayAccess
         'sso' => 'getSso',
         'publicComputer' => 'getPublicComputer',
         'mobileDevice' => 'getMobileDevice',
+        'cookieDomain' => 'getCookieDomain',
         'isPublicComputer' => 'getIsPublicComputer',
         'isMobileDevice' => 'getIsMobileDevice'
     ];
@@ -213,6 +218,7 @@ class SessionPayload implements ModelInterface, ArrayAccess
         $this->container['sso'] = isset($data['sso']) ? $data['sso'] : null;
         $this->container['publicComputer'] = isset($data['publicComputer']) ? $data['publicComputer'] : null;
         $this->container['mobileDevice'] = isset($data['mobileDevice']) ? $data['mobileDevice'] : null;
+        $this->container['cookieDomain'] = isset($data['cookieDomain']) ? $data['cookieDomain'] : null;
         $this->container['isPublicComputer'] = isset($data['isPublicComputer']) ? $data['isPublicComputer'] : null;
         $this->container['isMobileDevice'] = isset($data['isMobileDevice']) ? $data['isMobileDevice'] : null;
     }
@@ -357,6 +363,30 @@ class SessionPayload implements ModelInterface, ArrayAccess
     public function setMobileDevice($mobileDevice)
     {
         $this->container['mobileDevice'] = $mobileDevice;
+
+        return $this;
+    }
+
+    /**
+     * Gets cookieDomain
+     *
+     * @return string|null
+     */
+    public function getCookieDomain()
+    {
+        return $this->container['cookieDomain'];
+    }
+
+    /**
+     * Sets cookieDomain
+     *
+     * @param string|null $cookieDomain Indicate the domain name the session cookie was emitted for. If null, the cookie is assumed to be on the current hostname.
+     *
+     * @return $this
+     */
+    public function setCookieDomain($cookieDomain)
+    {
+        $this->container['cookieDomain'] = $cookieDomain;
 
         return $this;
     }
