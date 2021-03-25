@@ -261,6 +261,39 @@ class User implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['uuid'] === null) {
+            $invalidProperties[] = "'uuid' can't be null";
+        }
+        if ($this->container['displayName'] === null) {
+            $invalidProperties[] = "'displayName' can't be null";
+        }
+        if ($this->container['email'] === null) {
+            $invalidProperties[] = "'email' can't be null";
+        }
+        if ($this->container['locale'] === null) {
+            $invalidProperties[] = "'locale' can't be null";
+        }
+        if ($this->container['state'] === null) {
+            $invalidProperties[] = "'state' can't be null";
+        }
+        if ($this->container['roles'] === null) {
+            $invalidProperties[] = "'roles' can't be null";
+        }
+        if ($this->container['deletable'] === null) {
+            $invalidProperties[] = "'deletable' can't be null";
+        }
+        if ($this->container['billable'] === null) {
+            $invalidProperties[] = "'billable' can't be null";
+        }
+        if ($this->container['agreement'] === null) {
+            $invalidProperties[] = "'agreement' can't be null";
+        }
+        if ($this->container['services'] === null) {
+            $invalidProperties[] = "'services' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -279,7 +312,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Gets id
      *
-     * @return int|null
+     * @return int
      */
     public function getId()
     {
@@ -289,7 +322,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param int|null $id id
+     * @param int $id id
      *
      * @return $this
      */
@@ -303,7 +336,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Gets uuid
      *
-     * @return string|null
+     * @return string
      */
     public function getUuid()
     {
@@ -313,7 +346,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Sets uuid
      *
-     * @param string|null $uuid uuid
+     * @param string $uuid uuid
      *
      * @return $this
      */
@@ -327,7 +360,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Gets displayName
      *
-     * @return string|null
+     * @return string
      */
     public function getDisplayName()
     {
@@ -337,7 +370,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Sets displayName
      *
-     * @param string|null $displayName displayName
+     * @param string $displayName displayName
      *
      * @return $this
      */
@@ -351,7 +384,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Gets email
      *
-     * @return string|null
+     * @return string
      */
     public function getEmail()
     {
@@ -361,7 +394,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Sets email
      *
-     * @param string|null $email email
+     * @param string $email email
      *
      * @return $this
      */
@@ -399,7 +432,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Gets locale
      *
-     * @return string|null
+     * @return string
      */
     public function getLocale()
     {
@@ -409,7 +442,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Sets locale
      *
-     * @param string|null $locale locale
+     * @param string $locale locale
      *
      * @return $this
      */
@@ -423,7 +456,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Gets state
      *
-     * @return \Equisoft\SDK\AccountService\Model\UserState|null
+     * @return \Equisoft\SDK\AccountService\Model\UserState
      */
     public function getState()
     {
@@ -433,7 +466,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Sets state
      *
-     * @param \Equisoft\SDK\AccountService\Model\UserState|null $state state
+     * @param \Equisoft\SDK\AccountService\Model\UserState $state state
      *
      * @return $this
      */
@@ -447,7 +480,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Gets roles
      *
-     * @return string[]|null
+     * @return string[]
      */
     public function getRoles()
     {
@@ -457,7 +490,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Sets roles
      *
-     * @param string[]|null $roles Roles the user is member a member of.
+     * @param string[] $roles Roles the user is member a member of.
      *
      * @return $this
      */
@@ -471,7 +504,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Gets deletable
      *
-     * @return bool|null
+     * @return bool
      */
     public function getDeletable()
     {
@@ -481,7 +514,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Sets deletable
      *
-     * @param bool|null $deletable User deletion is disabled.
+     * @param bool $deletable User deletion is disabled.
      *
      * @return $this
      */
@@ -495,7 +528,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Gets billable
      *
-     * @return bool|null
+     * @return bool
      */
     public function getBillable()
     {
@@ -505,7 +538,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Sets billable
      *
-     * @param bool|null $billable User is accounted for billing.
+     * @param bool $billable User is accounted for billing.
      *
      * @return $this
      */
@@ -519,7 +552,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Gets agreement
      *
-     * @return \Equisoft\SDK\AccountService\Model\UserAgreement|null
+     * @return \Equisoft\SDK\AccountService\Model\UserAgreement
      */
     public function getAgreement()
     {
@@ -529,7 +562,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Sets agreement
      *
-     * @param \Equisoft\SDK\AccountService\Model\UserAgreement|null $agreement agreement
+     * @param \Equisoft\SDK\AccountService\Model\UserAgreement $agreement agreement
      *
      * @return $this
      */
@@ -567,7 +600,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Gets services
      *
-     * @return \Equisoft\SDK\AccountService\Model\ServiceAccess[]|null
+     * @return \Equisoft\SDK\AccountService\Model\ServiceAccess[]
      */
     public function getServices()
     {
@@ -577,7 +610,7 @@ class User implements ModelInterface, ArrayAccess
     /**
      * Sets services
      *
-     * @param \Equisoft\SDK\AccountService\Model\ServiceAccess[]|null $services services
+     * @param \Equisoft\SDK\AccountService\Model\ServiceAccess[] $services services
      *
      * @return $this
      */

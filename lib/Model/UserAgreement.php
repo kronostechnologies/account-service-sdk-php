@@ -189,6 +189,9 @@ class UserAgreement implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['state'] === null) {
+            $invalidProperties[] = "'state' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -207,7 +210,7 @@ class UserAgreement implements ModelInterface, ArrayAccess
     /**
      * Gets state
      *
-     * @return \Equisoft\SDK\AccountService\Model\UserAgreementState|null
+     * @return \Equisoft\SDK\AccountService\Model\UserAgreementState
      */
     public function getState()
     {
@@ -217,7 +220,7 @@ class UserAgreement implements ModelInterface, ArrayAccess
     /**
      * Sets state
      *
-     * @param \Equisoft\SDK\AccountService\Model\UserAgreementState|null $state state
+     * @param \Equisoft\SDK\AccountService\Model\UserAgreementState $state state
      *
      * @return $this
      */

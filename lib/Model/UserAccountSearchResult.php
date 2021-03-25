@@ -190,6 +190,9 @@ class UserAccountSearchResult implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['uuid'] === null) {
+            $invalidProperties[] = "'uuid' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -208,7 +211,7 @@ class UserAccountSearchResult implements ModelInterface, ArrayAccess
     /**
      * Gets uuid
      *
-     * @return string|null
+     * @return string
      */
     public function getUuid()
     {
@@ -218,7 +221,7 @@ class UserAccountSearchResult implements ModelInterface, ArrayAccess
     /**
      * Sets uuid
      *
-     * @param string|null $uuid uuid
+     * @param string $uuid uuid
      *
      * @return $this
      */
