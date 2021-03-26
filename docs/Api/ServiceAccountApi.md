@@ -1,19 +1,20 @@
 # Equisoft\SDK\AccountService\ServiceAccountApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createServiceAccount**](ServiceAccountApi.md#createServiceAccount) | **POST** /serviceAccounts | Creates a new service account
-[**getServiceAccount**](ServiceAccountApi.md#getServiceAccount) | **GET** /serviceAccounts/{uuid} | Get detailed information about a user account.
-[**searchServiceAccount**](ServiceAccountApi.md#searchServiceAccount) | **GET** /serviceAccounts | Searches service accounts that match ALL params. If none are provided, returns all service accounts
-[**updateServiceAccount**](ServiceAccountApi.md#updateServiceAccount) | **PATCH** /serviceAccounts/{uuid} | Updates a service account by uuid
+[**createServiceAccount()**](ServiceAccountApi.md#createServiceAccount) | **POST** /serviceAccounts | Creates a new service account
+[**getServiceAccount()**](ServiceAccountApi.md#getServiceAccount) | **GET** /serviceAccounts/{uuid} | Get detailed information about a user account.
+[**searchServiceAccount()**](ServiceAccountApi.md#searchServiceAccount) | **GET** /serviceAccounts | Searches service accounts that match ALL params. If none are provided, returns all service accounts
+[**updateServiceAccount()**](ServiceAccountApi.md#updateServiceAccount) | **PATCH** /serviceAccounts/{uuid} | Updates a service account by uuid
 
 
+## `createServiceAccount()`
 
-## createServiceAccount
-
-> \Equisoft\SDK\AccountService\Model\ServiceAccountUuidSchema createServiceAccount($serviceAccountCreationSchema)
+```php
+createServiceAccount($serviceAccountCreationSchema): \Equisoft\SDK\AccountService\Model\ServiceAccountUuidSchema
+```
 
 Creates a new service account
 
@@ -24,12 +25,13 @@ Creates a new service account
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Equisoft\SDK\AccountService\Api\ServiceAccountApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$serviceAccountCreationSchema = new \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema(); // \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema | 
+$serviceAccountCreationSchema = new \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema(); // \Equisoft\SDK\AccountService\Model\ServiceAccountCreationSchema
 
 try {
     $result = $apiInstance->createServiceAccount($serviceAccountCreationSchema);
@@ -37,11 +39,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ServiceAccountApi->createServiceAccount: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -57,17 +57,18 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getServiceAccount()`
 
-## getServiceAccount
-
-> \Equisoft\SDK\AccountService\Model\ServiceAccountSchema getServiceAccount($uuid)
+```php
+getServiceAccount($uuid): \Equisoft\SDK\AccountService\Model\ServiceAccountSchema
+```
 
 Get detailed information about a user account.
 
@@ -76,6 +77,7 @@ Get detailed information about a user account.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Equisoft\SDK\AccountService\Api\ServiceAccountApi(
@@ -91,11 +93,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ServiceAccountApi->getServiceAccount: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -112,16 +112,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `searchServiceAccount()`
 
-## searchServiceAccount
-
-> \Equisoft\SDK\AccountService\Model\ServiceAccountSchema[] searchServiceAccount($name)
+```php
+searchServiceAccount($name): \Equisoft\SDK\AccountService\Model\ServiceAccountSchema[]
+```
 
 Searches service accounts that match ALL params. If none are provided, returns all service accounts
 
@@ -132,12 +133,13 @@ Searches service accounts that match ALL params. If none are provided, returns a
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Equisoft\SDK\AccountService\Api\ServiceAccountApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$name = 'name_example'; // string | 
+$name = 'name_example'; // string
 
 try {
     $result = $apiInstance->searchServiceAccount($name);
@@ -145,11 +147,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ServiceAccountApi->searchServiceAccount: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -166,16 +166,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `updateServiceAccount()`
 
-## updateServiceAccount
-
-> \Equisoft\SDK\AccountService\Model\ServiceAccountUuidSchema updateServiceAccount($uuid, $serviceAccountUpdateSchema)
+```php
+updateServiceAccount($uuid, $serviceAccountUpdateSchema): \Equisoft\SDK\AccountService\Model\ServiceAccountUuidSchema
+```
 
 Updates a service account by uuid
 
@@ -186,13 +187,14 @@ Updates a service account by uuid
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Equisoft\SDK\AccountService\Api\ServiceAccountApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $uuid = 'uuid_example'; // string | Service account identifier
-$serviceAccountUpdateSchema = new \Equisoft\SDK\AccountService\Model\ServiceAccountUpdateSchema(); // \Equisoft\SDK\AccountService\Model\ServiceAccountUpdateSchema | 
+$serviceAccountUpdateSchema = new \Equisoft\SDK\AccountService\Model\ServiceAccountUpdateSchema(); // \Equisoft\SDK\AccountService\Model\ServiceAccountUpdateSchema
 
 try {
     $result = $apiInstance->updateServiceAccount($uuid, $serviceAccountUpdateSchema);
@@ -200,11 +202,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ServiceAccountApi->updateServiceAccount: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -221,10 +221,9 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

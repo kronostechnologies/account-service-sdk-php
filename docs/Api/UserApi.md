@@ -1,19 +1,20 @@
 # Equisoft\SDK\AccountService\UserApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteUserSessions**](UserApi.md#deleteUserSessions) | **DELETE** /users/{uuid}/sessions | Delete all sessions for the user.
-[**getUser**](UserApi.md#getUser) | **GET** /users/{uuid} | Get detailed information about a user account.
-[**getUuidById**](UserApi.md#getUuidById) | **GET** /users/{id}/uuid | Find an uuid by id.
-[**listUsers**](UserApi.md#listUsers) | **GET** /users | Searches accounts that match ALL params. If no search parameters are provided, returns all users.
+[**deleteUserSessions()**](UserApi.md#deleteUserSessions) | **DELETE** /users/{uuid}/sessions | Delete all sessions for the user.
+[**getUser()**](UserApi.md#getUser) | **GET** /users/{uuid} | Get detailed information about a user account.
+[**getUuidById()**](UserApi.md#getUuidById) | **GET** /users/{id}/uuid | Find an uuid by id.
+[**listUsers()**](UserApi.md#listUsers) | **GET** /users | Searches accounts that match ALL params. If no search parameters are provided, returns all users.
 
 
+## `deleteUserSessions()`
 
-## deleteUserSessions
-
-> deleteUserSessions($uuid)
+```php
+deleteUserSessions($uuid)
+```
 
 Delete all sessions for the user.
 
@@ -22,6 +23,7 @@ Delete all sessions for the user.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Equisoft\SDK\AccountService\Api\UserApi(
@@ -36,11 +38,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->deleteUserSessions: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -59,14 +59,15 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: Not defined
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getUser()`
 
-## getUser
-
-> \Equisoft\SDK\AccountService\Model\User getUser($uuid)
+```php
+getUser($uuid): \Equisoft\SDK\AccountService\Model\User
+```
 
 Get detailed information about a user account.
 
@@ -75,6 +76,7 @@ Get detailed information about a user account.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Equisoft\SDK\AccountService\Api\UserApi(
@@ -90,11 +92,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->getUser: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -111,16 +111,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getUuidById()`
 
-## getUuidById
-
-> \Equisoft\SDK\AccountService\Model\Id getUuidById($id)
+```php
+getUuidById($id): \Equisoft\SDK\AccountService\Model\Id
+```
 
 Find an uuid by id.
 
@@ -129,6 +130,7 @@ Find an uuid by id.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Equisoft\SDK\AccountService\Api\UserApi(
@@ -144,11 +146,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->getUuidById: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -165,16 +165,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listUsers()`
 
-## listUsers
-
-> \Equisoft\SDK\AccountService\Model\UserAccountSearchResult[] listUsers($identifierOrEmail, $identifier, $email)
+```php
+listUsers($identifierOrEmail, $identifier, $email): \Equisoft\SDK\AccountService\Model\UserAccountSearchResult[]
+```
 
 Searches accounts that match ALL params. If no search parameters are provided, returns all users.
 
@@ -185,14 +186,15 @@ Searches accounts that match ALL params. If no search parameters are provided, r
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Equisoft\SDK\AccountService\Api\UserApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$identifierOrEmail = 'identifierOrEmail_example'; // string | 
-$identifier = 'identifier_example'; // string | 
-$email = 'email_example'; // string | 
+$identifierOrEmail = 'identifierOrEmail_example'; // string
+$identifier = 'identifier_example'; // string
+$email = 'email_example'; // string
 
 try {
     $result = $apiInstance->listUsers($identifierOrEmail, $identifier, $email);
@@ -200,11 +202,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->listUsers: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -223,9 +223,8 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-
