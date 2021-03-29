@@ -1,16 +1,17 @@
 # Equisoft\SDK\AccountService\PermissionApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createOrUpdatePermission**](PermissionApi.md#createOrUpdatePermission) | **PUT** /permissions/{code} | Create or update a permission for a given code
+[**createOrUpdatePermission()**](PermissionApi.md#createOrUpdatePermission) | **PUT** /permissions/{code} | Create or update a permission for a given code
 
 
+## `createOrUpdatePermission()`
 
-## createOrUpdatePermission
-
-> \Equisoft\SDK\AccountService\Model\PermissionCreated createOrUpdatePermission($code, $createOrUpdatePermissionPayload)
+```php
+createOrUpdatePermission($code, $createOrUpdatePermissionPayload): \Equisoft\SDK\AccountService\Model\PermissionCreated
+```
 
 Create or update a permission for a given code
 
@@ -21,13 +22,14 @@ Create or update a permission for a given code
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Equisoft\SDK\AccountService\Api\PermissionApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $code = 'code_example'; // string | The permission code
-$createOrUpdatePermissionPayload = new \Equisoft\SDK\AccountService\Model\CreateOrUpdatePermissionPayload(); // \Equisoft\SDK\AccountService\Model\CreateOrUpdatePermissionPayload | 
+$createOrUpdatePermissionPayload = new \Equisoft\SDK\AccountService\Model\CreateOrUpdatePermissionPayload(); // \Equisoft\SDK\AccountService\Model\CreateOrUpdatePermissionPayload
 
 try {
     $result = $apiInstance->createOrUpdatePermission($code, $createOrUpdatePermissionPayload);
@@ -35,11 +37,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling PermissionApi->createOrUpdatePermission: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -56,10 +56,9 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

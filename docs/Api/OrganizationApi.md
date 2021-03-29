@@ -1,19 +1,20 @@
 # Equisoft\SDK\AccountService\OrganizationApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createOrUpdateOrganization**](OrganizationApi.md#createOrUpdateOrganization) | **PUT** /organizations/{uuid} | Create or update an organization for a given uuid
-[**createOrganization**](OrganizationApi.md#createOrganization) | **POST** /organizations | Creates a new organization
-[**getOrganization**](OrganizationApi.md#getOrganization) | **GET** /organizations/{uuid} | Get detailed information about an organization.
-[**listOrganization**](OrganizationApi.md#listOrganization) | **GET** /organizations | List organizations
+[**createOrUpdateOrganization()**](OrganizationApi.md#createOrUpdateOrganization) | **PUT** /organizations/{uuid} | Create or update an organization for a given uuid
+[**createOrganization()**](OrganizationApi.md#createOrganization) | **POST** /organizations | Creates a new organization
+[**getOrganization()**](OrganizationApi.md#getOrganization) | **GET** /organizations/{uuid} | Get detailed information about an organization.
+[**listOrganization()**](OrganizationApi.md#listOrganization) | **GET** /organizations | List organizations
 
 
+## `createOrUpdateOrganization()`
 
-## createOrUpdateOrganization
-
-> \Equisoft\SDK\AccountService\Model\OrganizationCreated createOrUpdateOrganization($uuid, $createOrUpdateOrganizationPayload)
+```php
+createOrUpdateOrganization($uuid, $createOrUpdateOrganizationPayload): \Equisoft\SDK\AccountService\Model\OrganizationCreated
+```
 
 Create or update an organization for a given uuid
 
@@ -24,13 +25,14 @@ Create or update an organization for a given uuid
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Equisoft\SDK\AccountService\Api\OrganizationApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
 $uuid = 'uuid_example'; // string | The organization identifier
-$createOrUpdateOrganizationPayload = new \Equisoft\SDK\AccountService\Model\CreateOrUpdateOrganizationPayload(); // \Equisoft\SDK\AccountService\Model\CreateOrUpdateOrganizationPayload | 
+$createOrUpdateOrganizationPayload = new \Equisoft\SDK\AccountService\Model\CreateOrUpdateOrganizationPayload(); // \Equisoft\SDK\AccountService\Model\CreateOrUpdateOrganizationPayload
 
 try {
     $result = $apiInstance->createOrUpdateOrganization($uuid, $createOrUpdateOrganizationPayload);
@@ -38,11 +40,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationApi->createOrUpdateOrganization: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -59,17 +59,18 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `createOrganization()`
 
-## createOrganization
-
-> \Equisoft\SDK\AccountService\Model\OrganizationCreated createOrganization($createOrganizationPayload)
+```php
+createOrganization($createOrganizationPayload): \Equisoft\SDK\AccountService\Model\OrganizationCreated
+```
 
 Creates a new organization
 
@@ -80,12 +81,13 @@ Creates a new organization
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Equisoft\SDK\AccountService\Api\OrganizationApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$createOrganizationPayload = new \Equisoft\SDK\AccountService\Model\CreateOrganizationPayload(); // \Equisoft\SDK\AccountService\Model\CreateOrganizationPayload | 
+$createOrganizationPayload = new \Equisoft\SDK\AccountService\Model\CreateOrganizationPayload(); // \Equisoft\SDK\AccountService\Model\CreateOrganizationPayload
 
 try {
     $result = $apiInstance->createOrganization($createOrganizationPayload);
@@ -93,11 +95,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationApi->createOrganization: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -113,17 +113,18 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getOrganization()`
 
-## getOrganization
-
-> \Equisoft\SDK\AccountService\Model\Organization getOrganization($uuid)
+```php
+getOrganization($uuid): \Equisoft\SDK\AccountService\Model\Organization
+```
 
 Get detailed information about an organization.
 
@@ -132,6 +133,7 @@ Get detailed information about an organization.
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 
 
 $apiInstance = new Equisoft\SDK\AccountService\Api\OrganizationApi(
@@ -147,11 +149,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationApi->getOrganization: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -168,16 +168,17 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `listOrganization()`
 
-## listOrganization
-
-> \Equisoft\SDK\AccountService\Model\Organization listOrganization($max, $pageToken, $parent)
+```php
+listOrganization($max, $pageToken, $parent): \Equisoft\SDK\AccountService\Model\Organization
+```
 
 List organizations
 
@@ -188,14 +189,15 @@ List organizations
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+
 $apiInstance = new Equisoft\SDK\AccountService\Api\OrganizationApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$max = 56; // int | 
-$pageToken = 'pageToken_example'; // string | 
-$parent = 'parent_example'; // string | 
+$max = 56; // int
+$pageToken = 'pageToken_example'; // string
+$parent = 'parent_example'; // string
 
 try {
     $result = $apiInstance->listOrganization($max, $pageToken, $parent);
@@ -203,11 +205,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationApi->listOrganization: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -226,9 +226,8 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-
