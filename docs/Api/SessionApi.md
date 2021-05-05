@@ -283,7 +283,7 @@ No authorization required
 ## `enableSession()`
 
 ```php
-enableSession($uuid)
+enableSession($uuid, $body)
 ```
 
 Allow activation for sessions created with enable=false. This may be extended to enable specific services. Disabled sessions are not allowed to be used by first-party application (Equisoft/Connect, Equisoft/Plan).
@@ -302,9 +302,10 @@ $apiInstance = new Equisoft\SDK\AccountService\Api\SessionApi(
     new GuzzleHttp\Client()
 );
 $uuid = 'uuid_example'; // string
+$body = 'body_example'; // string
 
 try {
-    $apiInstance->enableSession($uuid);
+    $apiInstance->enableSession($uuid, $body);
 } catch (Exception $e) {
     echo 'Exception when calling SessionApi->enableSession: ', $e->getMessage(), PHP_EOL;
 }
@@ -315,6 +316,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | **string**|  |
+ **body** | **string**|  | [optional]
 
 ### Return type
 
@@ -326,7 +328,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `text/plain`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
@@ -561,7 +563,7 @@ No authorization required
 ## `revertIdentity()`
 
 ```php
-revertIdentity($uuid): \Equisoft\SDK\AccountService\Model\Session
+revertIdentity($uuid, $body): \Equisoft\SDK\AccountService\Model\Session
 ```
 
 Revert an impersonated session to the context of the \"admin\" user who initiated the impersonation.
@@ -580,9 +582,10 @@ $apiInstance = new Equisoft\SDK\AccountService\Api\SessionApi(
     new GuzzleHttp\Client()
 );
 $uuid = 'uuid_example'; // string
+$body = 'body_example'; // string
 
 try {
-    $result = $apiInstance->revertIdentity($uuid);
+    $result = $apiInstance->revertIdentity($uuid, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling SessionApi->revertIdentity: ', $e->getMessage(), PHP_EOL;
@@ -594,6 +597,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | **string**|  |
+ **body** | **string**|  | [optional]
 
 ### Return type
 
@@ -605,7 +609,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `text/plain`
 - **Accept**: `application/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

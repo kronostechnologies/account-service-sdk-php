@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**serviceName** | [**\Equisoft\SDK\AccountService\Model\ServiceName**](ServiceName.md) |  | [optional]
+**serviceName** | [**\Equisoft\SDK\AccountService\Model\ServiceName**](ServiceName.md) |  |
 **databaseId** | **int** |  | [optional]
 **databaseName** | **string** |  | [optional]
 **databaseState** | [**\Equisoft\SDK\AccountService\Model\DatabaseState**](DatabaseState.md) |  | [optional]

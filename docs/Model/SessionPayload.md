@@ -10,7 +10,5 @@ Name | Type | Description | Notes
 **publicComputer** | **bool** | Indicate that the session is initiated from a public computer. | [optional]
 **mobileDevice** | **bool** | Indicate that the session is initiated from a mobile device. | [optional]
 **cookieDomain** | **string** | Indicate the domain name the session cookie was emitted for. If null, the cookie is assumed to be on the current hostname. | [optional]
-**isPublicComputer** | **bool** | Indicate that the session is initiated from a public computer. | [optional]
-**isMobileDevice** | **bool** | Indicate that the session is initiated from a mobile device. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

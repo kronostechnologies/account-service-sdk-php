@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **mobilePhone** | **string** | Mobile phone used for sms password reset. | [optional]
 **locale** | **string** |  |
 **state** | [**\Equisoft\SDK\AccountService\Model\UserState**](UserState.md) |  |
-**roles** | **string[]** | Roles the user is member a member of. |
+**legacyRoles** | **string[]** | Legacy roles the user is member of |
 **deletable** | **bool** | User deletion is disabled. |
 **billable** | **bool** | User is accounted for billing. |
 **agreement** | [**\Equisoft\SDK\AccountService\Model\UserAgreement**](UserAgreement.md) |  |
