@@ -62,7 +62,7 @@ class RolesOnOrganization implements ModelInterface, ArrayAccess, \JsonSerializa
     protected static $openAPITypes = [
         'uuid' => 'string',
         'name' => '\Equisoft\SDK\AccountService\Model\LocalizedString',
-        'path' => 'string[]',
+        'path' => '\Equisoft\SDK\AccountService\Model\OrganizationPathElement[]',
         'roles' => '\Equisoft\SDK\AccountService\Model\UserAccountRole[]',
         'permissions' => '\Equisoft\SDK\AccountService\Model\UserAccountPermission[]'
     ];
@@ -299,7 +299,7 @@ class RolesOnOrganization implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets path
      *
-     * @return string[]
+     * @return \Equisoft\SDK\AccountService\Model\OrganizationPathElement[]
      */
     public function getPath()
     {
@@ -309,7 +309,7 @@ class RolesOnOrganization implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets path
      *
-     * @param string[] $path List of parents uuids, ordered by oldest ancestor
+     * @param \Equisoft\SDK\AccountService\Model\OrganizationPathElement[] $path List of parents uuids, ordered by oldest ancestor
      *
      * @return self
      */
