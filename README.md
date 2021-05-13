@@ -120,7 +120,6 @@ Class | Method | HTTP request | Description
 - [Organization](docs/Model/Organization.md)
 - [OrganizationCreated](docs/Model/OrganizationCreated.md)
 - [OrganizationPathElement](docs/Model/OrganizationPathElement.md)
-- [Path](docs/Model/Path.md)
 - [PermissionCreated](docs/Model/PermissionCreated.md)
 - [RoleCreated](docs/Model/RoleCreated.md)
 - [RolesOnOrganization](docs/Model/RolesOnOrganization.md)

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **uuid** | **string** |  |
 **name** | [**\Equisoft\SDK\AccountService\Model\LocalizedString**](LocalizedString.md) |  |
-**path** | **string[]** | List of parents uuids, ordered by oldest ancestor |
+**path** | [**\Equisoft\SDK\AccountService\Model\OrganizationPathElement[]**](OrganizationPathElement.md) | List of parents uuids, ordered by oldest ancestor |
 **roles** | [**\Equisoft\SDK\AccountService\Model\UserAccountRole[]**](UserAccountRole.md) |  |
 **permissions** | [**\Equisoft\SDK\AccountService\Model\UserAccountPermission[]**](UserAccountPermission.md) |  |
 

@@ -25,7 +25,6 @@ docs/Model/LocalizedString.md
 docs/Model/Organization.md
 docs/Model/OrganizationCreated.md
 docs/Model/OrganizationPathElement.md
-docs/Model/Path.md
 docs/Model/PermissionCreated.md
 docs/Model/RoleCreated.md
 docs/Model/RolesOnOrganization.md
@@ -76,7 +75,6 @@ lib/Model/ModelInterface.php
 lib/Model/Organization.php
 lib/Model/OrganizationCreated.php
 lib/Model/OrganizationPathElement.php
-lib/Model/Path.php
 lib/Model/PermissionCreated.php
 lib/Model/RoleCreated.php
 lib/Model/RolesOnOrganization.php
@@ -124,7 +122,6 @@ test/Model/LocalizedStringTest.php
 test/Model/OrganizationCreatedTest.php
 test/Model/OrganizationPathElementTest.php
 test/Model/OrganizationTest.php
-test/Model/PathTest.php
 test/Model/PermissionCreatedTest.php
 test/Model/RoleCreatedTest.php
 test/Model/RolesOnOrganizationTest.php
