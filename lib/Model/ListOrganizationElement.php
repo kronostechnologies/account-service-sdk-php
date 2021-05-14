@@ -63,7 +63,7 @@ class ListOrganizationElement implements ModelInterface, ArrayAccess, \JsonSeria
         'uuid' => 'string',
         'name' => '\Equisoft\SDK\AccountService\Model\LocalizedString',
         'parentUuid' => 'string',
-        'path' => '\Equisoft\SDK\AccountService\Model\Path[]'
+        'path' => '\Equisoft\SDK\AccountService\Model\OrganizationPathElement[]'
     ];
 
     /**
@@ -311,7 +311,7 @@ class ListOrganizationElement implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets path
      *
-     * @return \Equisoft\SDK\AccountService\Model\Path[]
+     * @return \Equisoft\SDK\AccountService\Model\OrganizationPathElement[]
      */
     public function getPath()
     {
@@ -321,7 +321,7 @@ class ListOrganizationElement implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets path
      *
-     * @param \Equisoft\SDK\AccountService\Model\Path[] $path path
+     * @param \Equisoft\SDK\AccountService\Model\OrganizationPathElement[] $path path
      *
      * @return self
      */

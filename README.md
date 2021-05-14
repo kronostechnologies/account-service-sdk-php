@@ -73,12 +73,13 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *OrganizationApi* | [**createOrUpdateOrganization**](docs/Api/OrganizationApi.md#createorupdateorganization) | **PUT** /organizations/{uuid} | Create or update an organization for a given uuid
-*OrganizationApi* | [**createOrUpdateRole**](docs/Api/OrganizationApi.md#createorupdaterole) | **PUT** /organizations/{uuid}/roles/{roleId} | Create or update organization roles for a given uuid
 *OrganizationApi* | [**createOrganization**](docs/Api/OrganizationApi.md#createorganization) | **POST** /organizations | Creates a new organization
-*OrganizationApi* | [**createRole**](docs/Api/OrganizationApi.md#createrole) | **POST** /organizations/{uuid}/roles | Create organization roles for a given uuid
 *OrganizationApi* | [**getOrganization**](docs/Api/OrganizationApi.md#getorganization) | **GET** /organizations/{uuid} | Get detailed information about an organization.
 *OrganizationApi* | [**listOrganization**](docs/Api/OrganizationApi.md#listorganization) | **GET** /organizations | List organizations
 *PermissionApi* | [**createOrUpdatePermission**](docs/Api/PermissionApi.md#createorupdatepermission) | **PUT** /permissions/{code} | Create or update a permission for a given code
+*RoleApi* | [**createOrUpdateRole**](docs/Api/RoleApi.md#createorupdaterole) | **PUT** /organizations/{uuid}/roles/{roleId} | Create or update organization roles for a given uuid
+*RoleApi* | [**createRole**](docs/Api/RoleApi.md#createrole) | **POST** /organizations/{uuid}/roles | Create organization roles for a given uuid
+*RoleApi* | [**getRole**](docs/Api/RoleApi.md#getrole) | **GET** /roles/{roleId} | Get organization role for a given uuid
 *ServiceAccountApi* | [**createServiceAccount**](docs/Api/ServiceAccountApi.md#createserviceaccount) | **POST** /serviceAccounts | Creates a new service account
 *ServiceAccountApi* | [**getServiceAccount**](docs/Api/ServiceAccountApi.md#getserviceaccount) | **GET** /serviceAccounts/{uuid} | Get detailed information about a user account.
 *ServiceAccountApi* | [**searchServiceAccount**](docs/Api/ServiceAccountApi.md#searchserviceaccount) | **GET** /serviceAccounts | Searches service accounts that match ALL params. If none are provided, returns all service accounts
@@ -120,8 +121,8 @@ Class | Method | HTTP request | Description
 - [Organization](docs/Model/Organization.md)
 - [OrganizationCreated](docs/Model/OrganizationCreated.md)
 - [OrganizationPathElement](docs/Model/OrganizationPathElement.md)
-- [Path](docs/Model/Path.md)
 - [PermissionCreated](docs/Model/PermissionCreated.md)
+- [Role](docs/Model/Role.md)
 - [RoleCreated](docs/Model/RoleCreated.md)
 - [RolesOnOrganization](docs/Model/RolesOnOrganization.md)
 - [ServiceAccess](docs/Model/ServiceAccess.md)

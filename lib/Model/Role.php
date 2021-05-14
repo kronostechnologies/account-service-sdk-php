@@ -1,6 +1,6 @@
 <?php
 /**
- * Path
+ * Role
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Equisoft\SDK\AccountService\ObjectSerializer;
 
 /**
- * Path Class Doc Comment
+ * Role Class Doc Comment
  *
  * @category Class
  * @package  Equisoft\SDK\AccountService
@@ -43,7 +43,7 @@ use \Equisoft\SDK\AccountService\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class Path implements ModelInterface, ArrayAccess, \JsonSerializable
+class Role implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class Path implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Path';
+    protected static $openAPIModelName = 'Role';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,7 +60,9 @@ class Path implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'uuid' => 'string'
+        'uuid' => 'string',
+        'name' => '\Equisoft\SDK\AccountService\Model\LocalizedString',
+        'permissions' => 'string[]'
     ];
 
     /**
@@ -71,7 +73,9 @@ class Path implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'uuid' => null
+        'uuid' => null,
+        'name' => null,
+        'permissions' => null
     ];
 
     /**
@@ -101,7 +105,9 @@ class Path implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'uuid' => 'uuid'
+        'uuid' => 'uuid',
+        'name' => 'name',
+        'permissions' => 'permissions'
     ];
 
     /**
@@ -110,7 +116,9 @@ class Path implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'uuid' => 'setUuid'
+        'uuid' => 'setUuid',
+        'name' => 'setName',
+        'permissions' => 'setPermissions'
     ];
 
     /**
@@ -119,7 +127,9 @@ class Path implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'uuid' => 'getUuid'
+        'uuid' => 'getUuid',
+        'name' => 'getName',
+        'permissions' => 'getPermissions'
     ];
 
     /**
@@ -183,6 +193,8 @@ class Path implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['permissions'] = $data['permissions'] ?? null;
     }
 
     /**
@@ -196,6 +208,12 @@ class Path implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if ($this->container['uuid'] === null) {
             $invalidProperties[] = "'uuid' can't be null";
+        }
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ($this->container['permissions'] === null) {
+            $invalidProperties[] = "'permissions' can't be null";
         }
         return $invalidProperties;
     }
@@ -232,6 +250,54 @@ class Path implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setUuid($uuid)
     {
         $this->container['uuid'] = $uuid;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return \Equisoft\SDK\AccountService\Model\LocalizedString
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param \Equisoft\SDK\AccountService\Model\LocalizedString $name name
+     *
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets permissions
+     *
+     * @return string[]
+     */
+    public function getPermissions()
+    {
+        return $this->container['permissions'];
+    }
+
+    /**
+     * Sets permissions
+     *
+     * @param string[] $permissions permissions
+     *
+     * @return self
+     */
+    public function setPermissions($permissions)
+    {
+        $this->container['permissions'] = $permissions;
 
         return $this;
     }
