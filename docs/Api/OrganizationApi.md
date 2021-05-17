@@ -239,7 +239,7 @@ No authorization required
 ## `getOrganization()`
 
 ```php
-getOrganization($uuid): \Equisoft\SDK\AccountService\Model\Organization
+getOrganization($uuid, $xUserUuid): \Equisoft\SDK\AccountService\Model\Organization
 ```
 
 Get detailed information about an organization.
@@ -258,9 +258,10 @@ $apiInstance = new Equisoft\SDK\AccountService\Api\OrganizationApi(
     new GuzzleHttp\Client()
 );
 $uuid = 'uuid_example'; // string | The organization identifier
+$xUserUuid = 'xUserUuid_example'; // string | Uuid of the user for whom the call is made. Used to apply access and security rules
 
 try {
-    $result = $apiInstance->getOrganization($uuid);
+    $result = $apiInstance->getOrganization($uuid, $xUserUuid);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationApi->getOrganization: ', $e->getMessage(), PHP_EOL;
@@ -272,6 +273,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | **string**| The organization identifier |
+ **xUserUuid** | **string**| Uuid of the user for whom the call is made. Used to apply access and security rules | [optional]
 
 ### Return type
 
@@ -293,7 +295,7 @@ No authorization required
 ## `listOrganization()`
 
 ```php
-listOrganization($max, $pageToken, $parent): \Equisoft\SDK\AccountService\Model\ListUserOrganizations
+listOrganization($max, $pageToken, $parent, $xUserUuid): \Equisoft\SDK\AccountService\Model\ListUserOrganizations
 ```
 
 List organizations
@@ -311,12 +313,13 @@ $apiInstance = new Equisoft\SDK\AccountService\Api\OrganizationApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$max = 56; // int
-$pageToken = 'pageToken_example'; // string
-$parent = 'parent_example'; // string
+$max = 56; // int | Max number of organizations per page.
+$pageToken = 'pageToken_example'; // string | Page token to start with.
+$parent = 'parent_example'; // string | Parent uuid.
+$xUserUuid = 'xUserUuid_example'; // string | Uuid of the user for whom the call is made. Used to apply access and security rules
 
 try {
-    $result = $apiInstance->listOrganization($max, $pageToken, $parent);
+    $result = $apiInstance->listOrganization($max, $pageToken, $parent, $xUserUuid);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OrganizationApi->listOrganization: ', $e->getMessage(), PHP_EOL;
@@ -327,9 +330,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max** | **int**|  |
- **pageToken** | **string**|  | [optional]
- **parent** | **string**|  | [optional]
+ **max** | **int**| Max number of organizations per page. |
+ **pageToken** | **string**| Page token to start with. | [optional]
+ **parent** | **string**| Parent uuid. | [optional]
+ **xUserUuid** | **string**| Uuid of the user for whom the call is made. Used to apply access and security rules | [optional]
 
 ### Return type
 

@@ -1361,14 +1361,15 @@ class OrganizationApi
      * Get detailed information about an organization.
      *
      * @param  string $uuid The organization identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Equisoft\SDK\AccountService\Model\Organization|\Equisoft\SDK\AccountService\Model\ErrorPayload
      */
-    public function getOrganization($uuid)
+    public function getOrganization($uuid, $xUserUuid = null)
     {
-        list($response) = $this->getOrganizationWithHttpInfo($uuid);
+        list($response) = $this->getOrganizationWithHttpInfo($uuid, $xUserUuid);
         return $response;
     }
 
@@ -1378,14 +1379,15 @@ class OrganizationApi
      * Get detailed information about an organization.
      *
      * @param  string $uuid The organization identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Equisoft\SDK\AccountService\Model\Organization|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getOrganizationWithHttpInfo($uuid)
+    public function getOrganizationWithHttpInfo($uuid, $xUserUuid = null)
     {
-        $request = $this->getOrganizationRequest($uuid);
+        $request = $this->getOrganizationRequest($uuid, $xUserUuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1486,13 +1488,14 @@ class OrganizationApi
      * Get detailed information about an organization.
      *
      * @param  string $uuid The organization identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getOrganizationAsync($uuid)
+    public function getOrganizationAsync($uuid, $xUserUuid = null)
     {
-        return $this->getOrganizationAsyncWithHttpInfo($uuid)
+        return $this->getOrganizationAsyncWithHttpInfo($uuid, $xUserUuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1506,14 +1509,15 @@ class OrganizationApi
      * Get detailed information about an organization.
      *
      * @param  string $uuid The organization identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getOrganizationAsyncWithHttpInfo($uuid)
+    public function getOrganizationAsyncWithHttpInfo($uuid, $xUserUuid = null)
     {
         $returnType = '\Equisoft\SDK\AccountService\Model\Organization';
-        $request = $this->getOrganizationRequest($uuid);
+        $request = $this->getOrganizationRequest($uuid, $xUserUuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1553,11 +1557,12 @@ class OrganizationApi
      * Create request for operation 'getOrganization'
      *
      * @param  string $uuid The organization identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getOrganizationRequest($uuid)
+    public function getOrganizationRequest($uuid, $xUserUuid = null)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1565,10 +1570,6 @@ class OrganizationApi
                 'Missing the required parameter $uuid when calling getOrganization'
             );
         }
-        if (strlen($uuid) < 1) {
-            throw new \InvalidArgumentException('invalid length for "$uuid" when calling OrganizationApi.getOrganization, must be bigger than or equal to 1.');
-        }
-
 
         $resourcePath = '/organizations/{uuid}';
         $formParams = [];
@@ -1578,6 +1579,10 @@ class OrganizationApi
         $multipart = false;
 
 
+        // header params
+        if ($xUserUuid !== null) {
+            $headerParams['X-User-Uuid'] = ObjectSerializer::toHeaderValue($xUserUuid);
+        }
 
         // path params
         if ($uuid !== null) {
@@ -1651,17 +1656,18 @@ class OrganizationApi
      *
      * List organizations
      *
-     * @param  int $max max (required)
-     * @param  string $pageToken pageToken (optional)
-     * @param  string $parent parent (optional)
+     * @param  int $max Max number of organizations per page. (required)
+     * @param  string $pageToken Page token to start with. (optional)
+     * @param  string $parent Parent uuid. (optional)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Equisoft\SDK\AccountService\Model\ListUserOrganizations
      */
-    public function listOrganization($max, $pageToken = null, $parent = null)
+    public function listOrganization($max, $pageToken = null, $parent = null, $xUserUuid = null)
     {
-        list($response) = $this->listOrganizationWithHttpInfo($max, $pageToken, $parent);
+        list($response) = $this->listOrganizationWithHttpInfo($max, $pageToken, $parent, $xUserUuid);
         return $response;
     }
 
@@ -1670,17 +1676,18 @@ class OrganizationApi
      *
      * List organizations
      *
-     * @param  int $max (required)
-     * @param  string $pageToken (optional)
-     * @param  string $parent (optional)
+     * @param  int $max Max number of organizations per page. (required)
+     * @param  string $pageToken Page token to start with. (optional)
+     * @param  string $parent Parent uuid. (optional)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Equisoft\SDK\AccountService\Model\ListUserOrganizations, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listOrganizationWithHttpInfo($max, $pageToken = null, $parent = null)
+    public function listOrganizationWithHttpInfo($max, $pageToken = null, $parent = null, $xUserUuid = null)
     {
-        $request = $this->listOrganizationRequest($max, $pageToken, $parent);
+        $request = $this->listOrganizationRequest($max, $pageToken, $parent, $xUserUuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1760,16 +1767,17 @@ class OrganizationApi
      *
      * List organizations
      *
-     * @param  int $max (required)
-     * @param  string $pageToken (optional)
-     * @param  string $parent (optional)
+     * @param  int $max Max number of organizations per page. (required)
+     * @param  string $pageToken Page token to start with. (optional)
+     * @param  string $parent Parent uuid. (optional)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listOrganizationAsync($max, $pageToken = null, $parent = null)
+    public function listOrganizationAsync($max, $pageToken = null, $parent = null, $xUserUuid = null)
     {
-        return $this->listOrganizationAsyncWithHttpInfo($max, $pageToken, $parent)
+        return $this->listOrganizationAsyncWithHttpInfo($max, $pageToken, $parent, $xUserUuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1782,17 +1790,18 @@ class OrganizationApi
      *
      * List organizations
      *
-     * @param  int $max (required)
-     * @param  string $pageToken (optional)
-     * @param  string $parent (optional)
+     * @param  int $max Max number of organizations per page. (required)
+     * @param  string $pageToken Page token to start with. (optional)
+     * @param  string $parent Parent uuid. (optional)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listOrganizationAsyncWithHttpInfo($max, $pageToken = null, $parent = null)
+    public function listOrganizationAsyncWithHttpInfo($max, $pageToken = null, $parent = null, $xUserUuid = null)
     {
         $returnType = '\Equisoft\SDK\AccountService\Model\ListUserOrganizations';
-        $request = $this->listOrganizationRequest($max, $pageToken, $parent);
+        $request = $this->listOrganizationRequest($max, $pageToken, $parent, $xUserUuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1831,14 +1840,15 @@ class OrganizationApi
     /**
      * Create request for operation 'listOrganization'
      *
-     * @param  int $max (required)
-     * @param  string $pageToken (optional)
-     * @param  string $parent (optional)
+     * @param  int $max Max number of organizations per page. (required)
+     * @param  string $pageToken Page token to start with. (optional)
+     * @param  string $parent Parent uuid. (optional)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listOrganizationRequest($max, $pageToken = null, $parent = null)
+    public function listOrganizationRequest($max, $pageToken = null, $parent = null, $xUserUuid = null)
     {
         // verify the required parameter 'max' is set
         if ($max === null || (is_array($max) && count($max) === 0)) {
@@ -1888,6 +1898,10 @@ class OrganizationApi
             }
         }
 
+        // header params
+        if ($xUserUuid !== null) {
+            $headerParams['X-User-Uuid'] = ObjectSerializer::toHeaderValue($xUserUuid);
+        }
 
 
 

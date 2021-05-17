@@ -121,7 +121,7 @@ No authorization required
 ## `getUserPermissions()`
 
 ```php
-getUserPermissions($uuid): \Equisoft\SDK\AccountService\Model\UserPermissions
+getUserPermissions($uuid, $xUserUuid): \Equisoft\SDK\AccountService\Model\UserPermissions
 ```
 
 Get user permissions
@@ -140,9 +140,10 @@ $apiInstance = new Equisoft\SDK\AccountService\Api\UserApi(
     new GuzzleHttp\Client()
 );
 $uuid = 'uuid_example'; // string | The user account's identifier
+$xUserUuid = 'xUserUuid_example'; // string | Uuid of the user for whom the call is made. Used to apply access and security rules
 
 try {
-    $result = $apiInstance->getUserPermissions($uuid);
+    $result = $apiInstance->getUserPermissions($uuid, $xUserUuid);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->getUserPermissions: ', $e->getMessage(), PHP_EOL;
@@ -154,6 +155,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | **string**| The user account&#39;s identifier |
+ **xUserUuid** | **string**| Uuid of the user for whom the call is made. Used to apply access and security rules | [optional]
 
 ### Return type
 
@@ -229,7 +231,7 @@ No authorization required
 ## `listUsers()`
 
 ```php
-listUsers($identifierOrEmail, $identifier, $email): \Equisoft\SDK\AccountService\Model\UserAccountSearchResult[]
+listUsers($identifierOrEmail, $identifier, $email, $includeDeleted): \Equisoft\SDK\AccountService\Model\UserAccountSearchResult[]
 ```
 
 Searches accounts that match ALL params. If no search parameters are provided, returns all users.
@@ -250,9 +252,10 @@ $apiInstance = new Equisoft\SDK\AccountService\Api\UserApi(
 $identifierOrEmail = 'identifierOrEmail_example'; // string
 $identifier = 'identifier_example'; // string
 $email = 'email_example'; // string
+$includeDeleted = True; // bool
 
 try {
-    $result = $apiInstance->listUsers($identifierOrEmail, $identifier, $email);
+    $result = $apiInstance->listUsers($identifierOrEmail, $identifier, $email, $includeDeleted);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UserApi->listUsers: ', $e->getMessage(), PHP_EOL;
@@ -266,6 +269,7 @@ Name | Type | Description  | Notes
  **identifierOrEmail** | **string**|  | [optional]
  **identifier** | **string**|  | [optional]
  **email** | **string**|  | [optional]
+ **includeDeleted** | **bool**|  | [optional]
 
 ### Return type
 

@@ -635,14 +635,15 @@ class UserApi
      * Get user permissions
      *
      * @param  string $uuid The user account&#39;s identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Equisoft\SDK\AccountService\Model\UserPermissions|\Equisoft\SDK\AccountService\Model\ErrorPayload
      */
-    public function getUserPermissions($uuid)
+    public function getUserPermissions($uuid, $xUserUuid = null)
     {
-        list($response) = $this->getUserPermissionsWithHttpInfo($uuid);
+        list($response) = $this->getUserPermissionsWithHttpInfo($uuid, $xUserUuid);
         return $response;
     }
 
@@ -652,14 +653,15 @@ class UserApi
      * Get user permissions
      *
      * @param  string $uuid The user account&#39;s identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Equisoft\SDK\AccountService\Model\UserPermissions|\Equisoft\SDK\AccountService\Model\ErrorPayload, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getUserPermissionsWithHttpInfo($uuid)
+    public function getUserPermissionsWithHttpInfo($uuid, $xUserUuid = null)
     {
-        $request = $this->getUserPermissionsRequest($uuid);
+        $request = $this->getUserPermissionsRequest($uuid, $xUserUuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -760,13 +762,14 @@ class UserApi
      * Get user permissions
      *
      * @param  string $uuid The user account&#39;s identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserPermissionsAsync($uuid)
+    public function getUserPermissionsAsync($uuid, $xUserUuid = null)
     {
-        return $this->getUserPermissionsAsyncWithHttpInfo($uuid)
+        return $this->getUserPermissionsAsyncWithHttpInfo($uuid, $xUserUuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -780,14 +783,15 @@ class UserApi
      * Get user permissions
      *
      * @param  string $uuid The user account&#39;s identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getUserPermissionsAsyncWithHttpInfo($uuid)
+    public function getUserPermissionsAsyncWithHttpInfo($uuid, $xUserUuid = null)
     {
         $returnType = '\Equisoft\SDK\AccountService\Model\UserPermissions';
-        $request = $this->getUserPermissionsRequest($uuid);
+        $request = $this->getUserPermissionsRequest($uuid, $xUserUuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -827,11 +831,12 @@ class UserApi
      * Create request for operation 'getUserPermissions'
      *
      * @param  string $uuid The user account&#39;s identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getUserPermissionsRequest($uuid)
+    public function getUserPermissionsRequest($uuid, $xUserUuid = null)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -839,10 +844,6 @@ class UserApi
                 'Missing the required parameter $uuid when calling getUserPermissions'
             );
         }
-        if (strlen($uuid) < 1) {
-            throw new \InvalidArgumentException('invalid length for "$uuid" when calling UserApi.getUserPermissions, must be bigger than or equal to 1.');
-        }
-
 
         $resourcePath = '/users/{uuid}/permissions';
         $formParams = [];
@@ -852,6 +853,10 @@ class UserApi
         $multipart = false;
 
 
+        // header params
+        if ($xUserUuid !== null) {
+            $headerParams['X-User-Uuid'] = ObjectSerializer::toHeaderValue($xUserUuid);
+        }
 
         // path params
         if ($uuid !== null) {
@@ -1215,14 +1220,15 @@ class UserApi
      * @param  string $identifierOrEmail identifierOrEmail (optional)
      * @param  string $identifier identifier (optional)
      * @param  string $email email (optional)
+     * @param  bool $includeDeleted includeDeleted (optional)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Equisoft\SDK\AccountService\Model\UserAccountSearchResult[]
      */
-    public function listUsers($identifierOrEmail = null, $identifier = null, $email = null)
+    public function listUsers($identifierOrEmail = null, $identifier = null, $email = null, $includeDeleted = null)
     {
-        list($response) = $this->listUsersWithHttpInfo($identifierOrEmail, $identifier, $email);
+        list($response) = $this->listUsersWithHttpInfo($identifierOrEmail, $identifier, $email, $includeDeleted);
         return $response;
     }
 
@@ -1234,14 +1240,15 @@ class UserApi
      * @param  string $identifierOrEmail (optional)
      * @param  string $identifier (optional)
      * @param  string $email (optional)
+     * @param  bool $includeDeleted (optional)
      *
      * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Equisoft\SDK\AccountService\Model\UserAccountSearchResult[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function listUsersWithHttpInfo($identifierOrEmail = null, $identifier = null, $email = null)
+    public function listUsersWithHttpInfo($identifierOrEmail = null, $identifier = null, $email = null, $includeDeleted = null)
     {
-        $request = $this->listUsersRequest($identifierOrEmail, $identifier, $email);
+        $request = $this->listUsersRequest($identifierOrEmail, $identifier, $email, $includeDeleted);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1324,13 +1331,14 @@ class UserApi
      * @param  string $identifierOrEmail (optional)
      * @param  string $identifier (optional)
      * @param  string $email (optional)
+     * @param  bool $includeDeleted (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listUsersAsync($identifierOrEmail = null, $identifier = null, $email = null)
+    public function listUsersAsync($identifierOrEmail = null, $identifier = null, $email = null, $includeDeleted = null)
     {
-        return $this->listUsersAsyncWithHttpInfo($identifierOrEmail, $identifier, $email)
+        return $this->listUsersAsyncWithHttpInfo($identifierOrEmail, $identifier, $email, $includeDeleted)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1346,14 +1354,15 @@ class UserApi
      * @param  string $identifierOrEmail (optional)
      * @param  string $identifier (optional)
      * @param  string $email (optional)
+     * @param  bool $includeDeleted (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listUsersAsyncWithHttpInfo($identifierOrEmail = null, $identifier = null, $email = null)
+    public function listUsersAsyncWithHttpInfo($identifierOrEmail = null, $identifier = null, $email = null, $includeDeleted = null)
     {
         $returnType = '\Equisoft\SDK\AccountService\Model\UserAccountSearchResult[]';
-        $request = $this->listUsersRequest($identifierOrEmail, $identifier, $email);
+        $request = $this->listUsersRequest($identifierOrEmail, $identifier, $email, $includeDeleted);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1395,11 +1404,12 @@ class UserApi
      * @param  string $identifierOrEmail (optional)
      * @param  string $identifier (optional)
      * @param  string $email (optional)
+     * @param  bool $includeDeleted (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listUsersRequest($identifierOrEmail = null, $identifier = null, $email = null)
+    public function listUsersRequest($identifierOrEmail = null, $identifier = null, $email = null, $includeDeleted = null)
     {
 
         $resourcePath = '/users';
@@ -1440,6 +1450,17 @@ class UserApi
             }
             else {
                 $queryParams['email'] = ObjectSerializer::toString($email);
+            }
+        }
+        // query params
+        if ($includeDeleted !== null) {
+            if('form' === 'form' && is_array($includeDeleted)) {
+                foreach($includeDeleted as $key => $value) {
+                    $queryParams[$key] = ObjectSerializer::toString($value);
+                }
+            }
+            else {
+                $queryParams['includeDeleted'] = ObjectSerializer::toString($includeDeleted);
             }
         }
 
