@@ -1356,6 +1356,234 @@ class OrganizationApi
     }
 
     /**
+     * Operation deleteOrganization
+     *
+     * Delete organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteOrganization($uuid, $xUserUuid = null)
+    {
+        $this->deleteOrganizationWithHttpInfo($uuid, $xUserUuid);
+    }
+
+    /**
+     * Operation deleteOrganizationWithHttpInfo
+     *
+     * Delete organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteOrganizationWithHttpInfo($uuid, $xUserUuid = null)
+    {
+        $request = $this->deleteOrganizationRequest($uuid, $xUserUuid);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteOrganizationAsync
+     *
+     * Delete organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteOrganizationAsync($uuid, $xUserUuid = null)
+    {
+        return $this->deleteOrganizationAsyncWithHttpInfo($uuid, $xUserUuid)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteOrganizationAsyncWithHttpInfo
+     *
+     * Delete organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteOrganizationAsyncWithHttpInfo($uuid, $xUserUuid = null)
+    {
+        $returnType = '';
+        $request = $this->deleteOrganizationRequest($uuid, $xUserUuid);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteOrganization'
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteOrganizationRequest($uuid, $xUserUuid = null)
+    {
+        // verify the required parameter 'uuid' is set
+        if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $uuid when calling deleteOrganization'
+            );
+        }
+
+        $resourcePath = '/organizations/{uuid}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+        // header params
+        if ($xUserUuid !== null) {
+            $headerParams['X-User-Uuid'] = ObjectSerializer::toHeaderValue($xUserUuid);
+        }
+
+        // path params
+        if ($uuid !== null) {
+            $resourcePath = str_replace(
+                '{' . 'uuid' . '}',
+                ObjectSerializer::toPathValue($uuid),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'DELETE',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation getOrganization
      *
      * Get detailed information about an organization.

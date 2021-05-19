@@ -5,6 +5,7 @@ README.md
 composer.json
 docs/Api/OrganizationApi.md
 docs/Api/PermissionApi.md
+docs/Api/RoleApi.md
 docs/Api/ServiceAccountApi.md
 docs/Api/SessionApi.md
 docs/Api/UserApi.md
@@ -26,6 +27,7 @@ docs/Model/Organization.md
 docs/Model/OrganizationCreated.md
 docs/Model/OrganizationPathElement.md
 docs/Model/PermissionCreated.md
+docs/Model/Role.md
 docs/Model/RoleCreated.md
 docs/Model/RolesOnOrganization.md
 docs/Model/ServiceAccess.md
@@ -51,6 +53,7 @@ docs/Model/UserState.md
 git_push.sh
 lib/Api/OrganizationApi.php
 lib/Api/PermissionApi.php
+lib/Api/RoleApi.php
 lib/Api/ServiceAccountApi.php
 lib/Api/SessionApi.php
 lib/Api/UserApi.php
@@ -76,6 +79,7 @@ lib/Model/Organization.php
 lib/Model/OrganizationCreated.php
 lib/Model/OrganizationPathElement.php
 lib/Model/PermissionCreated.php
+lib/Model/Role.php
 lib/Model/RoleCreated.php
 lib/Model/RolesOnOrganization.php
 lib/Model/ServiceAccess.php
@@ -102,6 +106,7 @@ lib/ObjectSerializer.php
 phpunit.xml.dist
 test/Api/OrganizationApiTest.php
 test/Api/PermissionApiTest.php
+test/Api/RoleApiTest.php
 test/Api/ServiceAccountApiTest.php
 test/Api/SessionApiTest.php
 test/Api/UserApiTest.php
@@ -124,6 +129,7 @@ test/Model/OrganizationPathElementTest.php
 test/Model/OrganizationTest.php
 test/Model/PermissionCreatedTest.php
 test/Model/RoleCreatedTest.php
+test/Model/RoleTest.php
 test/Model/RolesOnOrganizationTest.php
 test/Model/ServiceAccessTest.php
 test/Model/ServiceAccountCreationSchemaTest.php

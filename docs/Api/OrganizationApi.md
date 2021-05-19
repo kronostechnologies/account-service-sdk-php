@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**createOrUpdateRole()**](OrganizationApi.md#createOrUpdateRole) | **PUT** /organizations/{uuid}/roles/{roleId} | Create or update organization roles for a given uuid
 [**createOrganization()**](OrganizationApi.md#createOrganization) | **POST** /organizations | Creates a new organization
 [**createRole()**](OrganizationApi.md#createRole) | **POST** /organizations/{uuid}/roles | Create organization roles for a given uuid
+[**deleteOrganization()**](OrganizationApi.md#deleteOrganization) | **DELETE** /organizations/{uuid} | Delete organization
 [**getOrganization()**](OrganizationApi.md#getOrganization) | **GET** /organizations/{uuid} | Get detailed information about an organization.
 [**listOrganization()**](OrganizationApi.md#listOrganization) | **GET** /organizations | List organizations
 
@@ -231,6 +232,61 @@ No authorization required
 
 - **Content-Type**: `application/json`
 - **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `deleteOrganization()`
+
+```php
+deleteOrganization($uuid, $xUserUuid)
+```
+
+Delete organization
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Equisoft\SDK\AccountService\Api\OrganizationApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$uuid = 'uuid_example'; // string | The organization identifier
+$xUserUuid = 'xUserUuid_example'; // string | Uuid of the user for whom the call is made. Used to apply access and security rules
+
+try {
+    $apiInstance->deleteOrganization($uuid, $xUserUuid);
+} catch (Exception $e) {
+    echo 'Exception when calling OrganizationApi->deleteOrganization: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **string**| The organization identifier |
+ **xUserUuid** | **string**| Uuid of the user for whom the call is made. Used to apply access and security rules | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

@@ -121,6 +121,18 @@ class OrganizationApiTest extends TestCase
     }
 
     /**
+     * Test case for deleteOrganization
+     *
+     * Delete organization.
+     *
+     */
+    public function testDeleteOrganization()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getOrganization
      *
      * Get detailed information about an organization..
