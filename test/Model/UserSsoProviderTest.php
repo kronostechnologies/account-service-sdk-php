@@ -1,6 +1,6 @@
 <?php
 /**
- * ListUserOrganizationsTest
+ * UserSsoProviderTest
  *
  * PHP version 7.2
  *
@@ -32,15 +32,15 @@ namespace Equisoft\SDK\AccountService\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ListUserOrganizationsTest Class Doc Comment
+ * UserSsoProviderTest Class Doc Comment
  *
  * @category    Class
- * @description ListUserOrganizations
+ * @description UserSsoProvider
  * @package     Equisoft\SDK\AccountService
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ListUserOrganizationsTest extends TestCase
+class UserSsoProviderTest extends TestCase
 {
 
     /**
@@ -72,27 +72,18 @@ class ListUserOrganizationsTest extends TestCase
     }
 
     /**
-     * Test "ListUserOrganizations"
+     * Test "UserSsoProvider"
      */
-    public function testListUserOrganizations()
+    public function testUserSsoProvider()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "organizations"
+     * Test attribute "code"
      */
-    public function testPropertyOrganizations()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "nextPageToken"
-     */
-    public function testPropertyNextPageToken()
+    public function testPropertyCode()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

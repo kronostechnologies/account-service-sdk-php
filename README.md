@@ -55,13 +55,13 @@ $apiInstance = new Equisoft\SDK\AccountService\Api\OrganizationApi(
     new GuzzleHttp\Client()
 );
 $uuid = 'uuid_example'; // string | The organization identifier
-$createOrUpdateOrganizationPayload = new \Equisoft\SDK\AccountService\Model\CreateOrUpdateOrganizationPayload(); // \Equisoft\SDK\AccountService\Model\CreateOrUpdateOrganizationPayload
+$serviceCode = 'serviceCode_example'; // string | The service code
+$upsertServicePayload = new \Equisoft\SDK\AccountService\Model\UpsertServicePayload(); // \Equisoft\SDK\AccountService\Model\UpsertServicePayload
 
 try {
-    $result = $apiInstance->createOrUpdateOrganization($uuid, $createOrUpdateOrganizationPayload);
-    print_r($result);
+    $apiInstance->addService($uuid, $serviceCode, $upsertServicePayload);
 } catch (Exception $e) {
-    echo 'Exception when calling OrganizationApi->createOrUpdateOrganization: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling OrganizationApi->addService: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -72,6 +72,8 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*OrganizationApi* | [**addService**](docs/Api/OrganizationApi.md#addservice) | **PUT** /organizations/{uuid}/services/{serviceCode} | Add/update a service for an organization
+*OrganizationApi* | [**addServiceToUser**](docs/Api/OrganizationApi.md#addservicetouser) | **PUT** /organizations/{uuid}/users/{userUuid}/services/{serviceCode} | Add/update a service to a user for an organization
 *OrganizationApi* | [**createOrUpdateOrganization**](docs/Api/OrganizationApi.md#createorupdateorganization) | **PUT** /organizations/{uuid} | Create or update an organization for a given uuid
 *OrganizationApi* | [**createOrUpdateRole**](docs/Api/OrganizationApi.md#createorupdaterole) | **PUT** /organizations/{uuid}/roles/{roleId} | Create or update organization roles for a given uuid
 *OrganizationApi* | [**createOrganization**](docs/Api/OrganizationApi.md#createorganization) | **POST** /organizations | Creates a new organization
@@ -79,6 +81,8 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**deleteOrganization**](docs/Api/OrganizationApi.md#deleteorganization) | **DELETE** /organizations/{uuid} | Delete organization
 *OrganizationApi* | [**getOrganization**](docs/Api/OrganizationApi.md#getorganization) | **GET** /organizations/{uuid} | Get detailed information about an organization.
 *OrganizationApi* | [**listOrganization**](docs/Api/OrganizationApi.md#listorganization) | **GET** /organizations | List organizations
+*OrganizationApi* | [**removeService**](docs/Api/OrganizationApi.md#removeservice) | **DELETE** /organizations/{uuid}/services/{serviceCode} | Remove a service for an organization
+*OrganizationApi* | [**removeServiceFromUser**](docs/Api/OrganizationApi.md#removeservicefromuser) | **DELETE** /organizations/{uuid}/users/{userUuid}/services/{serviceCode} | Remove a service from a user for an organization
 *PermissionApi* | [**createOrUpdatePermission**](docs/Api/PermissionApi.md#createorupdatepermission) | **PUT** /permissions/{code} | Create or update a permission for a given code
 *RoleApi* | [**getRole**](docs/Api/RoleApi.md#getrole) | **GET** /roles/{uuid} | Get organization role for a given uuid
 *ServiceAccountApi* | [**createServiceAccount**](docs/Api/ServiceAccountApi.md#createserviceaccount) | **POST** /serviceAccounts | Creates a new service account
@@ -122,6 +126,7 @@ Class | Method | HTTP request | Description
 - [Organization](docs/Model/Organization.md)
 - [OrganizationCreated](docs/Model/OrganizationCreated.md)
 - [OrganizationPathElement](docs/Model/OrganizationPathElement.md)
+- [OrganizationServicesElement](docs/Model/OrganizationServicesElement.md)
 - [PermissionCreated](docs/Model/PermissionCreated.md)
 - [Role](docs/Model/Role.md)
 - [RoleCreated](docs/Model/RoleCreated.md)
@@ -138,6 +143,7 @@ Class | Method | HTTP request | Description
 - [SessionState](docs/Model/SessionState.md)
 - [SsoProvider](docs/Model/SsoProvider.md)
 - [SsoToken](docs/Model/SsoToken.md)
+- [UpsertServicePayload](docs/Model/UpsertServicePayload.md)
 - [User](docs/Model/User.md)
 - [UserAccountPermission](docs/Model/UserAccountPermission.md)
 - [UserAccountRole](docs/Model/UserAccountRole.md)
@@ -145,6 +151,8 @@ Class | Method | HTTP request | Description
 - [UserAgreement](docs/Model/UserAgreement.md)
 - [UserAgreementState](docs/Model/UserAgreementState.md)
 - [UserPermissions](docs/Model/UserPermissions.md)
+- [UserServiceAssociation](docs/Model/UserServiceAssociation.md)
+- [UserSsoProvider](docs/Model/UserSsoProvider.md)
 - [UserState](docs/Model/UserState.md)
 
 ## Authorization

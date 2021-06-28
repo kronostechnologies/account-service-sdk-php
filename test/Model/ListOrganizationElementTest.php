@@ -115,4 +115,13 @@ class ListOrganizationElementTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "services"
+     */
+    public function testPropertyServices()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
 }

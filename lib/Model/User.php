@@ -67,12 +67,17 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'mobilePhone' => 'string',
         'locale' => 'string',
         'state' => '\Equisoft\SDK\AccountService\Model\UserState',
+        'locked' => 'bool',
         'legacyRoles' => 'string[]',
         'deletable' => 'bool',
         'billable' => 'bool',
         'agreement' => '\Equisoft\SDK\AccountService\Model\UserAgreement',
         'created' => '\DateTime',
-        'services' => '\Equisoft\SDK\AccountService\Model\ServiceAccess[]'
+        'services' => '\Equisoft\SDK\AccountService\Model\ServiceAccess[]',
+        'servicesUsers' => '\Equisoft\SDK\AccountService\Model\UserServiceAssociation[]',
+        'authType' => 'string',
+        'ssoProvider' => '\Equisoft\SDK\AccountService\Model\UserSsoProvider',
+        'ssoIdentifier' => 'string'
     ];
 
     /**
@@ -90,12 +95,17 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'mobilePhone' => null,
         'locale' => null,
         'state' => null,
+        'locked' => null,
         'legacyRoles' => null,
         'deletable' => null,
         'billable' => null,
         'agreement' => null,
         'created' => 'date-time',
-        'services' => null
+        'services' => null,
+        'servicesUsers' => null,
+        'authType' => null,
+        'ssoProvider' => null,
+        'ssoIdentifier' => null
     ];
 
     /**
@@ -132,12 +142,17 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'mobilePhone' => 'mobilePhone',
         'locale' => 'locale',
         'state' => 'state',
+        'locked' => 'locked',
         'legacyRoles' => 'legacyRoles',
         'deletable' => 'deletable',
         'billable' => 'billable',
         'agreement' => 'agreement',
         'created' => 'created',
-        'services' => 'services'
+        'services' => 'services',
+        'servicesUsers' => 'servicesUsers',
+        'authType' => 'authType',
+        'ssoProvider' => 'ssoProvider',
+        'ssoIdentifier' => 'ssoIdentifier'
     ];
 
     /**
@@ -153,12 +168,17 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'mobilePhone' => 'setMobilePhone',
         'locale' => 'setLocale',
         'state' => 'setState',
+        'locked' => 'setLocked',
         'legacyRoles' => 'setLegacyRoles',
         'deletable' => 'setDeletable',
         'billable' => 'setBillable',
         'agreement' => 'setAgreement',
         'created' => 'setCreated',
-        'services' => 'setServices'
+        'services' => 'setServices',
+        'servicesUsers' => 'setServicesUsers',
+        'authType' => 'setAuthType',
+        'ssoProvider' => 'setSsoProvider',
+        'ssoIdentifier' => 'setSsoIdentifier'
     ];
 
     /**
@@ -174,12 +194,17 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         'mobilePhone' => 'getMobilePhone',
         'locale' => 'getLocale',
         'state' => 'getState',
+        'locked' => 'getLocked',
         'legacyRoles' => 'getLegacyRoles',
         'deletable' => 'getDeletable',
         'billable' => 'getBillable',
         'agreement' => 'getAgreement',
         'created' => 'getCreated',
-        'services' => 'getServices'
+        'services' => 'getServices',
+        'servicesUsers' => 'getServicesUsers',
+        'authType' => 'getAuthType',
+        'ssoProvider' => 'getSsoProvider',
+        'ssoIdentifier' => 'getSsoIdentifier'
     ];
 
     /**
@@ -249,12 +274,17 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['mobilePhone'] = $data['mobilePhone'] ?? null;
         $this->container['locale'] = $data['locale'] ?? null;
         $this->container['state'] = $data['state'] ?? null;
+        $this->container['locked'] = $data['locked'] ?? null;
         $this->container['legacyRoles'] = $data['legacyRoles'] ?? null;
         $this->container['deletable'] = $data['deletable'] ?? null;
         $this->container['billable'] = $data['billable'] ?? null;
         $this->container['agreement'] = $data['agreement'] ?? null;
         $this->container['created'] = $data['created'] ?? null;
         $this->container['services'] = $data['services'] ?? null;
+        $this->container['servicesUsers'] = $data['servicesUsers'] ?? null;
+        $this->container['authType'] = $data['authType'] ?? null;
+        $this->container['ssoProvider'] = $data['ssoProvider'] ?? null;
+        $this->container['ssoIdentifier'] = $data['ssoIdentifier'] ?? null;
     }
 
     /**
@@ -284,6 +314,9 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['state'] === null) {
             $invalidProperties[] = "'state' can't be null";
         }
+        if ($this->container['locked'] === null) {
+            $invalidProperties[] = "'locked' can't be null";
+        }
         if ($this->container['legacyRoles'] === null) {
             $invalidProperties[] = "'legacyRoles' can't be null";
         }
@@ -298,6 +331,12 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['services'] === null) {
             $invalidProperties[] = "'services' can't be null";
+        }
+        if ($this->container['servicesUsers'] === null) {
+            $invalidProperties[] = "'servicesUsers' can't be null";
+        }
+        if ($this->container['authType'] === null) {
+            $invalidProperties[] = "'authType' can't be null";
         }
         return $invalidProperties;
     }
@@ -483,6 +522,30 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets locked
+     *
+     * @return bool
+     */
+    public function getLocked()
+    {
+        return $this->container['locked'];
+    }
+
+    /**
+     * Sets locked
+     *
+     * @param bool $locked locked
+     *
+     * @return self
+     */
+    public function setLocked($locked)
+    {
+        $this->container['locked'] = $locked;
+
+        return $this;
+    }
+
+    /**
      * Gets legacyRoles
      *
      * @return string[]
@@ -622,6 +685,102 @@ class User implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setServices($services)
     {
         $this->container['services'] = $services;
+
+        return $this;
+    }
+
+    /**
+     * Gets servicesUsers
+     *
+     * @return \Equisoft\SDK\AccountService\Model\UserServiceAssociation[]
+     */
+    public function getServicesUsers()
+    {
+        return $this->container['servicesUsers'];
+    }
+
+    /**
+     * Sets servicesUsers
+     *
+     * @param \Equisoft\SDK\AccountService\Model\UserServiceAssociation[] $servicesUsers servicesUsers
+     *
+     * @return self
+     */
+    public function setServicesUsers($servicesUsers)
+    {
+        $this->container['servicesUsers'] = $servicesUsers;
+
+        return $this;
+    }
+
+    /**
+     * Gets authType
+     *
+     * @return string
+     */
+    public function getAuthType()
+    {
+        return $this->container['authType'];
+    }
+
+    /**
+     * Sets authType
+     *
+     * @param string $authType authType
+     *
+     * @return self
+     */
+    public function setAuthType($authType)
+    {
+        $this->container['authType'] = $authType;
+
+        return $this;
+    }
+
+    /**
+     * Gets ssoProvider
+     *
+     * @return \Equisoft\SDK\AccountService\Model\UserSsoProvider|null
+     */
+    public function getSsoProvider()
+    {
+        return $this->container['ssoProvider'];
+    }
+
+    /**
+     * Sets ssoProvider
+     *
+     * @param \Equisoft\SDK\AccountService\Model\UserSsoProvider|null $ssoProvider ssoProvider
+     *
+     * @return self
+     */
+    public function setSsoProvider($ssoProvider)
+    {
+        $this->container['ssoProvider'] = $ssoProvider;
+
+        return $this;
+    }
+
+    /**
+     * Gets ssoIdentifier
+     *
+     * @return string|null
+     */
+    public function getSsoIdentifier()
+    {
+        return $this->container['ssoIdentifier'];
+    }
+
+    /**
+     * Sets ssoIdentifier
+     *
+     * @param string|null $ssoIdentifier ssoIdentifier
+     *
+     * @return self
+     */
+    public function setSsoIdentifier($ssoIdentifier)
+    {
+        $this->container['ssoIdentifier'] = $ssoIdentifier;
 
         return $this;
     }

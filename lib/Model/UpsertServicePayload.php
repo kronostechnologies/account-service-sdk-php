@@ -1,6 +1,6 @@
 <?php
 /**
- * ListUserOrganizations
+ * UpsertServicePayload
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Equisoft\SDK\AccountService\ObjectSerializer;
 
 /**
- * ListUserOrganizations Class Doc Comment
+ * UpsertServicePayload Class Doc Comment
  *
  * @category Class
  * @package  Equisoft\SDK\AccountService
@@ -43,7 +43,7 @@ use \Equisoft\SDK\AccountService\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSerializable
+class UpsertServicePayload implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListUserOrganizations';
+    protected static $openAPIModelName = 'UpsertServicePayload';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +60,7 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'organizations' => '\Equisoft\SDK\AccountService\Model\ListOrganizationElement[]',
-        'nextPageToken' => 'string'
+        'externalId' => 'string'
     ];
 
     /**
@@ -72,8 +71,7 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'organizations' => null,
-        'nextPageToken' => null
+        'externalId' => null
     ];
 
     /**
@@ -103,8 +101,7 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'organizations' => 'organizations',
-        'nextPageToken' => 'nextPageToken'
+        'externalId' => 'externalId'
     ];
 
     /**
@@ -113,8 +110,7 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'organizations' => 'setOrganizations',
-        'nextPageToken' => 'setNextPageToken'
+        'externalId' => 'setExternalId'
     ];
 
     /**
@@ -123,8 +119,7 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'organizations' => 'getOrganizations',
-        'nextPageToken' => 'getNextPageToken'
+        'externalId' => 'getExternalId'
     ];
 
     /**
@@ -187,8 +182,7 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->container['organizations'] = $data['organizations'] ?? null;
-        $this->container['nextPageToken'] = $data['nextPageToken'] ?? null;
+        $this->container['externalId'] = $data['externalId'] ?? null;
     }
 
     /**
@@ -200,9 +194,6 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['organizations'] === null) {
-            $invalidProperties[] = "'organizations' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -219,49 +210,25 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
-     * Gets organizations
-     *
-     * @return \Equisoft\SDK\AccountService\Model\ListOrganizationElement[]
-     */
-    public function getOrganizations()
-    {
-        return $this->container['organizations'];
-    }
-
-    /**
-     * Sets organizations
-     *
-     * @param \Equisoft\SDK\AccountService\Model\ListOrganizationElement[] $organizations organizations
-     *
-     * @return self
-     */
-    public function setOrganizations($organizations)
-    {
-        $this->container['organizations'] = $organizations;
-
-        return $this;
-    }
-
-    /**
-     * Gets nextPageToken
+     * Gets externalId
      *
      * @return string|null
      */
-    public function getNextPageToken()
+    public function getExternalId()
     {
-        return $this->container['nextPageToken'];
+        return $this->container['externalId'];
     }
 
     /**
-     * Sets nextPageToken
+     * Sets externalId
      *
-     * @param string|null $nextPageToken nextPageToken
+     * @param string|null $externalId externalId
      *
      * @return self
      */
-    public function setNextPageToken($nextPageToken)
+    public function setExternalId($externalId)
     {
-        $this->container['nextPageToken'] = $nextPageToken;
+        $this->container['externalId'] = $externalId;
 
         return $this;
     }

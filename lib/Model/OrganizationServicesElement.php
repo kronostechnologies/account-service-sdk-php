@@ -1,6 +1,6 @@
 <?php
 /**
- * ListUserOrganizations
+ * OrganizationServicesElement
  *
  * PHP version 7.2
  *
@@ -33,7 +33,7 @@ use \ArrayAccess;
 use \Equisoft\SDK\AccountService\ObjectSerializer;
 
 /**
- * ListUserOrganizations Class Doc Comment
+ * OrganizationServicesElement Class Doc Comment
  *
  * @category Class
  * @package  Equisoft\SDK\AccountService
@@ -43,7 +43,7 @@ use \Equisoft\SDK\AccountService\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSerializable
+class OrganizationServicesElement implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ListUserOrganizations';
+    protected static $openAPIModelName = 'OrganizationServicesElement';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,8 +60,8 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
       * @var string[]
       */
     protected static $openAPITypes = [
-        'organizations' => '\Equisoft\SDK\AccountService\Model\ListOrganizationElement[]',
-        'nextPageToken' => 'string'
+        'code' => 'string',
+        'externalId' => 'string'
     ];
 
     /**
@@ -72,8 +72,8 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'organizations' => null,
-        'nextPageToken' => null
+        'code' => null,
+        'externalId' => null
     ];
 
     /**
@@ -103,8 +103,8 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $attributeMap = [
-        'organizations' => 'organizations',
-        'nextPageToken' => 'nextPageToken'
+        'code' => 'code',
+        'externalId' => 'externalId'
     ];
 
     /**
@@ -113,8 +113,8 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $setters = [
-        'organizations' => 'setOrganizations',
-        'nextPageToken' => 'setNextPageToken'
+        'code' => 'setCode',
+        'externalId' => 'setExternalId'
     ];
 
     /**
@@ -123,8 +123,8 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
      * @var string[]
      */
     protected static $getters = [
-        'organizations' => 'getOrganizations',
-        'nextPageToken' => 'getNextPageToken'
+        'code' => 'getCode',
+        'externalId' => 'getExternalId'
     ];
 
     /**
@@ -187,8 +187,8 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
      */
     public function __construct(array $data = null)
     {
-        $this->container['organizations'] = $data['organizations'] ?? null;
-        $this->container['nextPageToken'] = $data['nextPageToken'] ?? null;
+        $this->container['code'] = $data['code'] ?? null;
+        $this->container['externalId'] = $data['externalId'] ?? null;
     }
 
     /**
@@ -200,8 +200,8 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
-        if ($this->container['organizations'] === null) {
-            $invalidProperties[] = "'organizations' can't be null";
+        if ($this->container['code'] === null) {
+            $invalidProperties[] = "'code' can't be null";
         }
         return $invalidProperties;
     }
@@ -219,49 +219,49 @@ class ListUserOrganizations implements ModelInterface, ArrayAccess, \JsonSeriali
 
 
     /**
-     * Gets organizations
+     * Gets code
      *
-     * @return \Equisoft\SDK\AccountService\Model\ListOrganizationElement[]
+     * @return string
      */
-    public function getOrganizations()
+    public function getCode()
     {
-        return $this->container['organizations'];
+        return $this->container['code'];
     }
 
     /**
-     * Sets organizations
+     * Sets code
      *
-     * @param \Equisoft\SDK\AccountService\Model\ListOrganizationElement[] $organizations organizations
+     * @param string $code code
      *
      * @return self
      */
-    public function setOrganizations($organizations)
+    public function setCode($code)
     {
-        $this->container['organizations'] = $organizations;
+        $this->container['code'] = $code;
 
         return $this;
     }
 
     /**
-     * Gets nextPageToken
+     * Gets externalId
      *
      * @return string|null
      */
-    public function getNextPageToken()
+    public function getExternalId()
     {
-        return $this->container['nextPageToken'];
+        return $this->container['externalId'];
     }
 
     /**
-     * Sets nextPageToken
+     * Sets externalId
      *
-     * @param string|null $nextPageToken nextPageToken
+     * @param string|null $externalId externalId
      *
      * @return self
      */
-    public function setNextPageToken($nextPageToken)
+    public function setExternalId($externalId)
     {
-        $this->container['nextPageToken'] = $nextPageToken;
+        $this->container['externalId'] = $externalId;
 
         return $this;
     }

@@ -4,6 +4,8 @@ All URIs are relative to http://localhost.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**addService()**](OrganizationApi.md#addService) | **PUT** /organizations/{uuid}/services/{serviceCode} | Add/update a service for an organization
+[**addServiceToUser()**](OrganizationApi.md#addServiceToUser) | **PUT** /organizations/{uuid}/users/{userUuid}/services/{serviceCode} | Add/update a service to a user for an organization
 [**createOrUpdateOrganization()**](OrganizationApi.md#createOrUpdateOrganization) | **PUT** /organizations/{uuid} | Create or update an organization for a given uuid
 [**createOrUpdateRole()**](OrganizationApi.md#createOrUpdateRole) | **PUT** /organizations/{uuid}/roles/{roleId} | Create or update organization roles for a given uuid
 [**createOrganization()**](OrganizationApi.md#createOrganization) | **POST** /organizations | Creates a new organization
@@ -11,7 +13,125 @@ Method | HTTP request | Description
 [**deleteOrganization()**](OrganizationApi.md#deleteOrganization) | **DELETE** /organizations/{uuid} | Delete organization
 [**getOrganization()**](OrganizationApi.md#getOrganization) | **GET** /organizations/{uuid} | Get detailed information about an organization.
 [**listOrganization()**](OrganizationApi.md#listOrganization) | **GET** /organizations | List organizations
+[**removeService()**](OrganizationApi.md#removeService) | **DELETE** /organizations/{uuid}/services/{serviceCode} | Remove a service for an organization
+[**removeServiceFromUser()**](OrganizationApi.md#removeServiceFromUser) | **DELETE** /organizations/{uuid}/users/{userUuid}/services/{serviceCode} | Remove a service from a user for an organization
 
+
+## `addService()`
+
+```php
+addService($uuid, $serviceCode, $upsertServicePayload)
+```
+
+Add/update a service for an organization
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Equisoft\SDK\AccountService\Api\OrganizationApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$uuid = 'uuid_example'; // string | The organization identifier
+$serviceCode = 'serviceCode_example'; // string | The service code
+$upsertServicePayload = new \Equisoft\SDK\AccountService\Model\UpsertServicePayload(); // \Equisoft\SDK\AccountService\Model\UpsertServicePayload
+
+try {
+    $apiInstance->addService($uuid, $serviceCode, $upsertServicePayload);
+} catch (Exception $e) {
+    echo 'Exception when calling OrganizationApi->addService: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **string**| The organization identifier |
+ **serviceCode** | **string**| The service code |
+ **upsertServicePayload** | [**\Equisoft\SDK\AccountService\Model\UpsertServicePayload**](../Model/UpsertServicePayload.md)|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `addServiceToUser()`
+
+```php
+addServiceToUser($uuid, $userUuid, $serviceCode, $upsertServicePayload)
+```
+
+Add/update a service to a user for an organization
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Equisoft\SDK\AccountService\Api\OrganizationApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$uuid = 'uuid_example'; // string | The organization identifier
+$userUuid = 'userUuid_example'; // string | The user identifier
+$serviceCode = 'serviceCode_example'; // string | The service code
+$upsertServicePayload = new \Equisoft\SDK\AccountService\Model\UpsertServicePayload(); // \Equisoft\SDK\AccountService\Model\UpsertServicePayload
+
+try {
+    $apiInstance->addServiceToUser($uuid, $userUuid, $serviceCode, $upsertServicePayload);
+} catch (Exception $e) {
+    echo 'Exception when calling OrganizationApi->addServiceToUser: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **string**| The organization identifier |
+ **userUuid** | **string**| The user identifier |
+ **serviceCode** | **string**| The service code |
+ **upsertServicePayload** | [**\Equisoft\SDK\AccountService\Model\UpsertServicePayload**](../Model/UpsertServicePayload.md)|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `createOrUpdateOrganization()`
 
@@ -369,7 +489,7 @@ $apiInstance = new Equisoft\SDK\AccountService\Api\OrganizationApi(
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client()
 );
-$max = 56; // int | Max number of organizations per page.
+$max = 56; // int | Max number of organizations per page. Must be a positive integer.
 $pageToken = 'pageToken_example'; // string | Page token to start with.
 $parent = 'parent_example'; // string | Parent uuid.
 $xUserUuid = 'xUserUuid_example'; // string | Uuid of the user for whom the call is made. Used to apply access and security rules
@@ -386,7 +506,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **max** | **int**| Max number of organizations per page. |
+ **max** | **int**| Max number of organizations per page. Must be a positive integer. |
  **pageToken** | **string**| Page token to start with. | [optional]
  **parent** | **string**| Parent uuid. | [optional]
  **xUserUuid** | **string**| Uuid of the user for whom the call is made. Used to apply access and security rules | [optional]
@@ -403,6 +523,118 @@ No authorization required
 
 - **Content-Type**: Not defined
 - **Accept**: `application/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `removeService()`
+
+```php
+removeService($uuid, $serviceCode)
+```
+
+Remove a service for an organization
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Equisoft\SDK\AccountService\Api\OrganizationApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$uuid = 'uuid_example'; // string | The organization identifier
+$serviceCode = 'serviceCode_example'; // string | The service code
+
+try {
+    $apiInstance->removeService($uuid, $serviceCode);
+} catch (Exception $e) {
+    echo 'Exception when calling OrganizationApi->removeService: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **string**| The organization identifier |
+ **serviceCode** | **string**| The service code |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `removeServiceFromUser()`
+
+```php
+removeServiceFromUser($uuid, $userUuid, $serviceCode)
+```
+
+Remove a service from a user for an organization
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+$apiInstance = new Equisoft\SDK\AccountService\Api\OrganizationApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+$uuid = 'uuid_example'; // string | The organization identifier
+$userUuid = 'userUuid_example'; // string | The user identifier
+$serviceCode = 'serviceCode_example'; // string | The service code
+
+try {
+    $apiInstance->removeServiceFromUser($uuid, $userUuid, $serviceCode);
+} catch (Exception $e) {
+    echo 'Exception when calling OrganizationApi->removeServiceFromUser: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **string**| The organization identifier |
+ **userUuid** | **string**| The user identifier |
+ **serviceCode** | **string**| The service code |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

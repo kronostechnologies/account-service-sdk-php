@@ -1,10 +1,9 @@
-# # ListUserOrganizations
+# # UserSsoProvider
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**organizations** | [**\Equisoft\SDK\AccountService\Model\ListOrganizationElement[]**](ListOrganizationElement.md) |  |
-**nextPageToken** | **string** |  | [optional]
+**code** | **string** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

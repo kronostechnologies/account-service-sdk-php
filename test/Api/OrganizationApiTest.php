@@ -73,6 +73,30 @@ class OrganizationApiTest extends TestCase
     }
 
     /**
+     * Test case for addService
+     *
+     * Add/update a service for an organization.
+     *
+     */
+    public function testAddService()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for addServiceToUser
+     *
+     * Add/update a service to a user for an organization.
+     *
+     */
+    public function testAddServiceToUser()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for createOrUpdateOrganization
      *
      * Create or update an organization for a given uuid.
@@ -151,6 +175,30 @@ class OrganizationApiTest extends TestCase
      *
      */
     public function testListOrganization()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for removeService
+     *
+     * Remove a service for an organization.
+     *
+     */
+    public function testRemoveService()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for removeServiceFromUser
+     *
+     * Remove a service from a user for an organization.
+     *
+     */
+    public function testRemoveServiceFromUser()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

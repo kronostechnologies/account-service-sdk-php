@@ -1,6 +1,6 @@
 <?php
 /**
- * ListUserOrganizationsTest
+ * UpsertServicePayloadTest
  *
  * PHP version 7.2
  *
@@ -32,15 +32,15 @@ namespace Equisoft\SDK\AccountService\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * ListUserOrganizationsTest Class Doc Comment
+ * UpsertServicePayloadTest Class Doc Comment
  *
  * @category    Class
- * @description ListUserOrganizations
+ * @description UpsertServicePayload
  * @package     Equisoft\SDK\AccountService
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class ListUserOrganizationsTest extends TestCase
+class UpsertServicePayloadTest extends TestCase
 {
 
     /**
@@ -72,27 +72,18 @@ class ListUserOrganizationsTest extends TestCase
     }
 
     /**
-     * Test "ListUserOrganizations"
+     * Test "UpsertServicePayload"
      */
-    public function testListUserOrganizations()
+    public function testUpsertServicePayload()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "organizations"
+     * Test attribute "externalId"
      */
-    public function testPropertyOrganizations()
-    {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "nextPageToken"
-     */
-    public function testPropertyNextPageToken()
+    public function testPropertyExternalId()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

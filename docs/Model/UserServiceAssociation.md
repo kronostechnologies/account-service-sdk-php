@@ -1,10 +1,11 @@
-# # ListUserOrganizations
+# # UserServiceAssociation
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**organizations** | [**\Equisoft\SDK\AccountService\Model\ListOrganizationElement[]**](ListOrganizationElement.md) |  |
-**nextPageToken** | **string** |  | [optional]
+**organizationUuid** | **string** |  |
+**code** | **string** |  |
+**externalId** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

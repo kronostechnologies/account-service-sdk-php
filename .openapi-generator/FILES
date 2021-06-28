@@ -26,6 +26,7 @@ docs/Model/LocalizedString.md
 docs/Model/Organization.md
 docs/Model/OrganizationCreated.md
 docs/Model/OrganizationPathElement.md
+docs/Model/OrganizationServicesElement.md
 docs/Model/PermissionCreated.md
 docs/Model/Role.md
 docs/Model/RoleCreated.md
@@ -42,6 +43,7 @@ docs/Model/SessionPayload.md
 docs/Model/SessionState.md
 docs/Model/SsoProvider.md
 docs/Model/SsoToken.md
+docs/Model/UpsertServicePayload.md
 docs/Model/User.md
 docs/Model/UserAccountPermission.md
 docs/Model/UserAccountRole.md
@@ -49,6 +51,8 @@ docs/Model/UserAccountSearchResult.md
 docs/Model/UserAgreement.md
 docs/Model/UserAgreementState.md
 docs/Model/UserPermissions.md
+docs/Model/UserServiceAssociation.md
+docs/Model/UserSsoProvider.md
 docs/Model/UserState.md
 git_push.sh
 lib/Api/OrganizationApi.php
@@ -78,6 +82,7 @@ lib/Model/ModelInterface.php
 lib/Model/Organization.php
 lib/Model/OrganizationCreated.php
 lib/Model/OrganizationPathElement.php
+lib/Model/OrganizationServicesElement.php
 lib/Model/PermissionCreated.php
 lib/Model/Role.php
 lib/Model/RoleCreated.php
@@ -94,6 +99,7 @@ lib/Model/SessionPayload.php
 lib/Model/SessionState.php
 lib/Model/SsoProvider.php
 lib/Model/SsoToken.php
+lib/Model/UpsertServicePayload.php
 lib/Model/User.php
 lib/Model/UserAccountPermission.php
 lib/Model/UserAccountRole.php
@@ -101,6 +107,8 @@ lib/Model/UserAccountSearchResult.php
 lib/Model/UserAgreement.php
 lib/Model/UserAgreementState.php
 lib/Model/UserPermissions.php
+lib/Model/UserServiceAssociation.php
+lib/Model/UserSsoProvider.php
 lib/Model/UserState.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
@@ -126,6 +134,7 @@ test/Model/ListUserOrganizationsTest.php
 test/Model/LocalizedStringTest.php
 test/Model/OrganizationCreatedTest.php
 test/Model/OrganizationPathElementTest.php
+test/Model/OrganizationServicesElementTest.php
 test/Model/OrganizationTest.php
 test/Model/PermissionCreatedTest.php
 test/Model/RoleCreatedTest.php
@@ -143,11 +152,14 @@ test/Model/SessionStateTest.php
 test/Model/SessionTest.php
 test/Model/SsoProviderTest.php
 test/Model/SsoTokenTest.php
+test/Model/UpsertServicePayloadTest.php
 test/Model/UserAccountPermissionTest.php
 test/Model/UserAccountRoleTest.php
 test/Model/UserAccountSearchResultTest.php
 test/Model/UserAgreementStateTest.php
 test/Model/UserAgreementTest.php
 test/Model/UserPermissionsTest.php
+test/Model/UserServiceAssociationTest.php
+test/Model/UserSsoProviderTest.php
 test/Model/UserStateTest.php
 test/Model/UserTest.php

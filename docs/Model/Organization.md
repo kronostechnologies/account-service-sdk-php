@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **equisoftPlanProfiles** | **string[]** |  |
 **createdAt** | [**\DateTime**](\DateTime.md) |  |
 **modifiedAt** | [**\DateTime**](\DateTime.md) |  | [optional]
+**services** | [**\Equisoft\SDK\AccountService\Model\OrganizationServicesElement[]**](OrganizationServicesElement.md) |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

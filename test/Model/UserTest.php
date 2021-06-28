@@ -144,6 +144,15 @@ class UserTest extends TestCase
     }
 
     /**
+     * Test attribute "locked"
+     */
+    public function testPropertyLocked()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "legacyRoles"
      */
     public function testPropertyLegacyRoles()
@@ -192,6 +201,42 @@ class UserTest extends TestCase
      * Test attribute "services"
      */
     public function testPropertyServices()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "servicesUsers"
+     */
+    public function testPropertyServicesUsers()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "authType"
+     */
+    public function testPropertyAuthType()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "ssoProvider"
+     */
+    public function testPropertySsoProvider()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "ssoIdentifier"
+     */
+    public function testPropertySsoIdentifier()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

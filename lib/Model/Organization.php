@@ -67,7 +67,8 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'equisoftConnectProfiles' => 'string[]',
         'equisoftPlanProfiles' => 'string[]',
         'createdAt' => '\DateTime',
-        'modifiedAt' => '\DateTime'
+        'modifiedAt' => '\DateTime',
+        'services' => '\Equisoft\SDK\AccountService\Model\OrganizationServicesElement[]'
     ];
 
     /**
@@ -85,7 +86,8 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'equisoftConnectProfiles' => null,
         'equisoftPlanProfiles' => null,
         'createdAt' => 'date-time',
-        'modifiedAt' => 'date-time'
+        'modifiedAt' => 'date-time',
+        'services' => null
     ];
 
     /**
@@ -122,7 +124,8 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'equisoftConnectProfiles' => 'equisoftConnectProfiles',
         'equisoftPlanProfiles' => 'equisoftPlanProfiles',
         'createdAt' => 'createdAt',
-        'modifiedAt' => 'modifiedAt'
+        'modifiedAt' => 'modifiedAt',
+        'services' => 'services'
     ];
 
     /**
@@ -138,7 +141,8 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'equisoftConnectProfiles' => 'setEquisoftConnectProfiles',
         'equisoftPlanProfiles' => 'setEquisoftPlanProfiles',
         'createdAt' => 'setCreatedAt',
-        'modifiedAt' => 'setModifiedAt'
+        'modifiedAt' => 'setModifiedAt',
+        'services' => 'setServices'
     ];
 
     /**
@@ -154,7 +158,8 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         'equisoftConnectProfiles' => 'getEquisoftConnectProfiles',
         'equisoftPlanProfiles' => 'getEquisoftPlanProfiles',
         'createdAt' => 'getCreatedAt',
-        'modifiedAt' => 'getModifiedAt'
+        'modifiedAt' => 'getModifiedAt',
+        'services' => 'getServices'
     ];
 
     /**
@@ -225,6 +230,7 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['equisoftPlanProfiles'] = $data['equisoftPlanProfiles'] ?? null;
         $this->container['createdAt'] = $data['createdAt'] ?? null;
         $this->container['modifiedAt'] = $data['modifiedAt'] ?? null;
+        $this->container['services'] = $data['services'] ?? null;
     }
 
     /**
@@ -253,6 +259,9 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['createdAt'] === null) {
             $invalidProperties[] = "'createdAt' can't be null";
+        }
+        if ($this->container['services'] === null) {
+            $invalidProperties[] = "'services' can't be null";
         }
         return $invalidProperties;
     }
@@ -457,6 +466,30 @@ class Organization implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setModifiedAt($modifiedAt)
     {
         $this->container['modifiedAt'] = $modifiedAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets services
+     *
+     * @return \Equisoft\SDK\AccountService\Model\OrganizationServicesElement[]
+     */
+    public function getServices()
+    {
+        return $this->container['services'];
+    }
+
+    /**
+     * Sets services
+     *
+     * @param \Equisoft\SDK\AccountService\Model\OrganizationServicesElement[] $services services
+     *
+     * @return self
+     */
+    public function setServices($services)
+    {
+        $this->container['services'] = $services;
 
         return $this;
     }

@@ -63,7 +63,8 @@ class ListOrganizationElement implements ModelInterface, ArrayAccess, \JsonSeria
         'uuid' => 'string',
         'name' => '\Equisoft\SDK\AccountService\Model\LocalizedString',
         'parentUuid' => 'string',
-        'path' => '\Equisoft\SDK\AccountService\Model\OrganizationPathElement[]'
+        'path' => '\Equisoft\SDK\AccountService\Model\OrganizationPathElement[]',
+        'services' => '\Equisoft\SDK\AccountService\Model\OrganizationServicesElement[]'
     ];
 
     /**
@@ -77,7 +78,8 @@ class ListOrganizationElement implements ModelInterface, ArrayAccess, \JsonSeria
         'uuid' => null,
         'name' => null,
         'parentUuid' => null,
-        'path' => null
+        'path' => null,
+        'services' => null
     ];
 
     /**
@@ -110,7 +112,8 @@ class ListOrganizationElement implements ModelInterface, ArrayAccess, \JsonSeria
         'uuid' => 'uuid',
         'name' => 'name',
         'parentUuid' => 'parentUuid',
-        'path' => 'path'
+        'path' => 'path',
+        'services' => 'services'
     ];
 
     /**
@@ -122,7 +125,8 @@ class ListOrganizationElement implements ModelInterface, ArrayAccess, \JsonSeria
         'uuid' => 'setUuid',
         'name' => 'setName',
         'parentUuid' => 'setParentUuid',
-        'path' => 'setPath'
+        'path' => 'setPath',
+        'services' => 'setServices'
     ];
 
     /**
@@ -134,7 +138,8 @@ class ListOrganizationElement implements ModelInterface, ArrayAccess, \JsonSeria
         'uuid' => 'getUuid',
         'name' => 'getName',
         'parentUuid' => 'getParentUuid',
-        'path' => 'getPath'
+        'path' => 'getPath',
+        'services' => 'getServices'
     ];
 
     /**
@@ -201,6 +206,7 @@ class ListOrganizationElement implements ModelInterface, ArrayAccess, \JsonSeria
         $this->container['name'] = $data['name'] ?? null;
         $this->container['parentUuid'] = $data['parentUuid'] ?? null;
         $this->container['path'] = $data['path'] ?? null;
+        $this->container['services'] = $data['services'] ?? null;
     }
 
     /**
@@ -220,6 +226,9 @@ class ListOrganizationElement implements ModelInterface, ArrayAccess, \JsonSeria
         }
         if ($this->container['path'] === null) {
             $invalidProperties[] = "'path' can't be null";
+        }
+        if ($this->container['services'] === null) {
+            $invalidProperties[] = "'services' can't be null";
         }
         return $invalidProperties;
     }
@@ -328,6 +337,30 @@ class ListOrganizationElement implements ModelInterface, ArrayAccess, \JsonSeria
     public function setPath($path)
     {
         $this->container['path'] = $path;
+
+        return $this;
+    }
+
+    /**
+     * Gets services
+     *
+     * @return \Equisoft\SDK\AccountService\Model\OrganizationServicesElement[]
+     */
+    public function getServices()
+    {
+        return $this->container['services'];
+    }
+
+    /**
+     * Sets services
+     *
+     * @param \Equisoft\SDK\AccountService\Model\OrganizationServicesElement[] $services services
+     *
+     * @return self
+     */
+    public function setServices($services)
+    {
+        $this->container['services'] = $services;
 
         return $this;
     }

@@ -116,6 +116,535 @@ class OrganizationApi
     }
 
     /**
+     * Operation addService
+     *
+     * Add/update a service for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $serviceCode The service code (required)
+     * @param  \Equisoft\SDK\AccountService\Model\UpsertServicePayload $upsertServicePayload upsertServicePayload (required)
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function addService($uuid, $serviceCode, $upsertServicePayload)
+    {
+        $this->addServiceWithHttpInfo($uuid, $serviceCode, $upsertServicePayload);
+    }
+
+    /**
+     * Operation addServiceWithHttpInfo
+     *
+     * Add/update a service for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $serviceCode The service code (required)
+     * @param  \Equisoft\SDK\AccountService\Model\UpsertServicePayload $upsertServicePayload (required)
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function addServiceWithHttpInfo($uuid, $serviceCode, $upsertServicePayload)
+    {
+        $request = $this->addServiceRequest($uuid, $serviceCode, $upsertServicePayload);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation addServiceAsync
+     *
+     * Add/update a service for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $serviceCode The service code (required)
+     * @param  \Equisoft\SDK\AccountService\Model\UpsertServicePayload $upsertServicePayload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function addServiceAsync($uuid, $serviceCode, $upsertServicePayload)
+    {
+        return $this->addServiceAsyncWithHttpInfo($uuid, $serviceCode, $upsertServicePayload)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation addServiceAsyncWithHttpInfo
+     *
+     * Add/update a service for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $serviceCode The service code (required)
+     * @param  \Equisoft\SDK\AccountService\Model\UpsertServicePayload $upsertServicePayload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function addServiceAsyncWithHttpInfo($uuid, $serviceCode, $upsertServicePayload)
+    {
+        $returnType = '';
+        $request = $this->addServiceRequest($uuid, $serviceCode, $upsertServicePayload);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'addService'
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $serviceCode The service code (required)
+     * @param  \Equisoft\SDK\AccountService\Model\UpsertServicePayload $upsertServicePayload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function addServiceRequest($uuid, $serviceCode, $upsertServicePayload)
+    {
+        // verify the required parameter 'uuid' is set
+        if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $uuid when calling addService'
+            );
+        }
+        // verify the required parameter 'serviceCode' is set
+        if ($serviceCode === null || (is_array($serviceCode) && count($serviceCode) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $serviceCode when calling addService'
+            );
+        }
+        // verify the required parameter 'upsertServicePayload' is set
+        if ($upsertServicePayload === null || (is_array($upsertServicePayload) && count($upsertServicePayload) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $upsertServicePayload when calling addService'
+            );
+        }
+
+        $resourcePath = '/organizations/{uuid}/services/{serviceCode}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($uuid !== null) {
+            $resourcePath = str_replace(
+                '{' . 'uuid' . '}',
+                ObjectSerializer::toPathValue($uuid),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($serviceCode !== null) {
+            $resourcePath = str_replace(
+                '{' . 'serviceCode' . '}',
+                ObjectSerializer::toPathValue($serviceCode),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($upsertServicePayload)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($upsertServicePayload));
+            } else {
+                $httpBody = $upsertServicePayload;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PUT',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation addServiceToUser
+     *
+     * Add/update a service to a user for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $userUuid The user identifier (required)
+     * @param  string $serviceCode The service code (required)
+     * @param  \Equisoft\SDK\AccountService\Model\UpsertServicePayload $upsertServicePayload upsertServicePayload (required)
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function addServiceToUser($uuid, $userUuid, $serviceCode, $upsertServicePayload)
+    {
+        $this->addServiceToUserWithHttpInfo($uuid, $userUuid, $serviceCode, $upsertServicePayload);
+    }
+
+    /**
+     * Operation addServiceToUserWithHttpInfo
+     *
+     * Add/update a service to a user for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $userUuid The user identifier (required)
+     * @param  string $serviceCode The service code (required)
+     * @param  \Equisoft\SDK\AccountService\Model\UpsertServicePayload $upsertServicePayload (required)
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function addServiceToUserWithHttpInfo($uuid, $userUuid, $serviceCode, $upsertServicePayload)
+    {
+        $request = $this->addServiceToUserRequest($uuid, $userUuid, $serviceCode, $upsertServicePayload);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation addServiceToUserAsync
+     *
+     * Add/update a service to a user for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $userUuid The user identifier (required)
+     * @param  string $serviceCode The service code (required)
+     * @param  \Equisoft\SDK\AccountService\Model\UpsertServicePayload $upsertServicePayload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function addServiceToUserAsync($uuid, $userUuid, $serviceCode, $upsertServicePayload)
+    {
+        return $this->addServiceToUserAsyncWithHttpInfo($uuid, $userUuid, $serviceCode, $upsertServicePayload)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation addServiceToUserAsyncWithHttpInfo
+     *
+     * Add/update a service to a user for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $userUuid The user identifier (required)
+     * @param  string $serviceCode The service code (required)
+     * @param  \Equisoft\SDK\AccountService\Model\UpsertServicePayload $upsertServicePayload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function addServiceToUserAsyncWithHttpInfo($uuid, $userUuid, $serviceCode, $upsertServicePayload)
+    {
+        $returnType = '';
+        $request = $this->addServiceToUserRequest($uuid, $userUuid, $serviceCode, $upsertServicePayload);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'addServiceToUser'
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $userUuid The user identifier (required)
+     * @param  string $serviceCode The service code (required)
+     * @param  \Equisoft\SDK\AccountService\Model\UpsertServicePayload $upsertServicePayload (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function addServiceToUserRequest($uuid, $userUuid, $serviceCode, $upsertServicePayload)
+    {
+        // verify the required parameter 'uuid' is set
+        if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $uuid when calling addServiceToUser'
+            );
+        }
+        // verify the required parameter 'userUuid' is set
+        if ($userUuid === null || (is_array($userUuid) && count($userUuid) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $userUuid when calling addServiceToUser'
+            );
+        }
+        // verify the required parameter 'serviceCode' is set
+        if ($serviceCode === null || (is_array($serviceCode) && count($serviceCode) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $serviceCode when calling addServiceToUser'
+            );
+        }
+        // verify the required parameter 'upsertServicePayload' is set
+        if ($upsertServicePayload === null || (is_array($upsertServicePayload) && count($upsertServicePayload) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $upsertServicePayload when calling addServiceToUser'
+            );
+        }
+
+        $resourcePath = '/organizations/{uuid}/users/{userUuid}/services/{serviceCode}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($uuid !== null) {
+            $resourcePath = str_replace(
+                '{' . 'uuid' . '}',
+                ObjectSerializer::toPathValue($uuid),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($userUuid !== null) {
+            $resourcePath = str_replace(
+                '{' . 'userUuid' . '}',
+                ObjectSerializer::toPathValue($userUuid),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($serviceCode !== null) {
+            $resourcePath = str_replace(
+                '{' . 'serviceCode' . '}',
+                ObjectSerializer::toPathValue($serviceCode),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                ['application/json']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($upsertServicePayload)) {
+            if ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($upsertServicePayload));
+            } else {
+                $httpBody = $upsertServicePayload;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'PUT',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
      * Operation createOrUpdateOrganization
      *
      * Create or update an organization for a given uuid
@@ -1884,7 +2413,7 @@ class OrganizationApi
      *
      * List organizations
      *
-     * @param  int $max Max number of organizations per page. (required)
+     * @param  int $max Max number of organizations per page. Must be a positive integer. (required)
      * @param  string $pageToken Page token to start with. (optional)
      * @param  string $parent Parent uuid. (optional)
      * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
@@ -1904,7 +2433,7 @@ class OrganizationApi
      *
      * List organizations
      *
-     * @param  int $max Max number of organizations per page. (required)
+     * @param  int $max Max number of organizations per page. Must be a positive integer. (required)
      * @param  string $pageToken Page token to start with. (optional)
      * @param  string $parent Parent uuid. (optional)
      * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
@@ -1995,7 +2524,7 @@ class OrganizationApi
      *
      * List organizations
      *
-     * @param  int $max Max number of organizations per page. (required)
+     * @param  int $max Max number of organizations per page. Must be a positive integer. (required)
      * @param  string $pageToken Page token to start with. (optional)
      * @param  string $parent Parent uuid. (optional)
      * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
@@ -2018,7 +2547,7 @@ class OrganizationApi
      *
      * List organizations
      *
-     * @param  int $max Max number of organizations per page. (required)
+     * @param  int $max Max number of organizations per page. Must be a positive integer. (required)
      * @param  string $pageToken Page token to start with. (optional)
      * @param  string $parent Parent uuid. (optional)
      * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
@@ -2068,7 +2597,7 @@ class OrganizationApi
     /**
      * Create request for operation 'listOrganization'
      *
-     * @param  int $max Max number of organizations per page. (required)
+     * @param  int $max Max number of organizations per page. Must be a positive integer. (required)
      * @param  string $pageToken Page token to start with. (optional)
      * @param  string $parent Parent uuid. (optional)
      * @param  string $xUserUuid Uuid of the user for whom the call is made. Used to apply access and security rules (optional)
@@ -2084,6 +2613,10 @@ class OrganizationApi
                 'Missing the required parameter $max when calling listOrganization'
             );
         }
+        if ($max < 1) {
+            throw new \InvalidArgumentException('invalid value for "$max" when calling OrganizationApi.listOrganization, must be bigger than or equal to 1.');
+        }
+
 
         $resourcePath = '/organizations';
         $formParams = [];
@@ -2184,6 +2717,501 @@ class OrganizationApi
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation removeService
+     *
+     * Remove a service for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $serviceCode The service code (required)
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function removeService($uuid, $serviceCode)
+    {
+        $this->removeServiceWithHttpInfo($uuid, $serviceCode);
+    }
+
+    /**
+     * Operation removeServiceWithHttpInfo
+     *
+     * Remove a service for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $serviceCode The service code (required)
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function removeServiceWithHttpInfo($uuid, $serviceCode)
+    {
+        $request = $this->removeServiceRequest($uuid, $serviceCode);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation removeServiceAsync
+     *
+     * Remove a service for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $serviceCode The service code (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function removeServiceAsync($uuid, $serviceCode)
+    {
+        return $this->removeServiceAsyncWithHttpInfo($uuid, $serviceCode)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation removeServiceAsyncWithHttpInfo
+     *
+     * Remove a service for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $serviceCode The service code (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function removeServiceAsyncWithHttpInfo($uuid, $serviceCode)
+    {
+        $returnType = '';
+        $request = $this->removeServiceRequest($uuid, $serviceCode);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'removeService'
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $serviceCode The service code (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function removeServiceRequest($uuid, $serviceCode)
+    {
+        // verify the required parameter 'uuid' is set
+        if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $uuid when calling removeService'
+            );
+        }
+        // verify the required parameter 'serviceCode' is set
+        if ($serviceCode === null || (is_array($serviceCode) && count($serviceCode) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $serviceCode when calling removeService'
+            );
+        }
+
+        $resourcePath = '/organizations/{uuid}/services/{serviceCode}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($uuid !== null) {
+            $resourcePath = str_replace(
+                '{' . 'uuid' . '}',
+                ObjectSerializer::toPathValue($uuid),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($serviceCode !== null) {
+            $resourcePath = str_replace(
+                '{' . 'serviceCode' . '}',
+                ObjectSerializer::toPathValue($serviceCode),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'DELETE',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation removeServiceFromUser
+     *
+     * Remove a service from a user for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $userUuid The user identifier (required)
+     * @param  string $serviceCode The service code (required)
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function removeServiceFromUser($uuid, $userUuid, $serviceCode)
+    {
+        $this->removeServiceFromUserWithHttpInfo($uuid, $userUuid, $serviceCode);
+    }
+
+    /**
+     * Operation removeServiceFromUserWithHttpInfo
+     *
+     * Remove a service from a user for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $userUuid The user identifier (required)
+     * @param  string $serviceCode The service code (required)
+     *
+     * @throws \Equisoft\SDK\AccountService\ApiException on non-2xx response
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function removeServiceFromUserWithHttpInfo($uuid, $userUuid, $serviceCode)
+    {
+        $request = $this->removeServiceFromUserRequest($uuid, $userUuid, $serviceCode);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation removeServiceFromUserAsync
+     *
+     * Remove a service from a user for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $userUuid The user identifier (required)
+     * @param  string $serviceCode The service code (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function removeServiceFromUserAsync($uuid, $userUuid, $serviceCode)
+    {
+        return $this->removeServiceFromUserAsyncWithHttpInfo($uuid, $userUuid, $serviceCode)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation removeServiceFromUserAsyncWithHttpInfo
+     *
+     * Remove a service from a user for an organization
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $userUuid The user identifier (required)
+     * @param  string $serviceCode The service code (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function removeServiceFromUserAsyncWithHttpInfo($uuid, $userUuid, $serviceCode)
+    {
+        $returnType = '';
+        $request = $this->removeServiceFromUserRequest($uuid, $userUuid, $serviceCode);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'removeServiceFromUser'
+     *
+     * @param  string $uuid The organization identifier (required)
+     * @param  string $userUuid The user identifier (required)
+     * @param  string $serviceCode The service code (required)
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function removeServiceFromUserRequest($uuid, $userUuid, $serviceCode)
+    {
+        // verify the required parameter 'uuid' is set
+        if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $uuid when calling removeServiceFromUser'
+            );
+        }
+        // verify the required parameter 'userUuid' is set
+        if ($userUuid === null || (is_array($userUuid) && count($userUuid) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $userUuid when calling removeServiceFromUser'
+            );
+        }
+        // verify the required parameter 'serviceCode' is set
+        if ($serviceCode === null || (is_array($serviceCode) && count($serviceCode) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $serviceCode when calling removeServiceFromUser'
+            );
+        }
+
+        $resourcePath = '/organizations/{uuid}/users/{userUuid}/services/{serviceCode}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($uuid !== null) {
+            $resourcePath = str_replace(
+                '{' . 'uuid' . '}',
+                ObjectSerializer::toPathValue($uuid),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($userUuid !== null) {
+            $resourcePath = str_replace(
+                '{' . 'userUuid' . '}',
+                ObjectSerializer::toPathValue($userUuid),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($serviceCode !== null) {
+            $resourcePath = str_replace(
+                '{' . 'serviceCode' . '}',
+                ObjectSerializer::toPathValue($serviceCode),
+                $resourcePath
+            );
+        }
+
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                []
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                [],
+                []
+            );
+        }
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'DELETE',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
